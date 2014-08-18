@@ -2,10 +2,11 @@ LeNote
 ======
 
 LePtC bilingual colorful note LaTeX template
-LePtC Ë«Óï²ÊÉ«±Ê¼ÇÄ£°æ
 
-Ö§³Ö CTeX ºÍ TeXLive£¬±àÒë·½Ê½ÍÆ¼ö xelatex
+LePtC åŒè¯­å½©è‰²ç¬”è®°æ¨¡ç‰ˆ
+
+æ”¯æŒ CTeX å’Œ TeXLiveï¼Œç¼–è¯‘æ–¹å¼æŽ¨è xelatex
 
 
 
-ÏÈÈÓÉÏÀ´£¬ÒÔºóÂýÂý¸üÐÂ ...
+å…ˆæ‰”ä¸Šæ¥ï¼Œä»¥åŽæ…¢æ…¢æ›´æ–° ...
