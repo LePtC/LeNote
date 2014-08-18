@@ -4,7 +4,7 @@
 % author = LePtC
 % version = 2014.08
 % email = alileptc@gmail.com
-% available on GitHub: 
+% available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
 % 本模版用于 xelatex+xeCJK 方案，编译命令为：
 % xelatex --quiet --synctex=1 -interaction=nonstopmode $(NAME_PART).tex
@@ -14,7 +14,7 @@
 \NeedsTeXFormat{LaTeX2e}[2007/10/19]
 \ProvidesClass{leptc}
 
-\LoadClass{article} % [UTF8,10pt,noindent]{ctexart}
+\LoadClass[12pt]{article} % [UTF8,noindent]{ctexart}
 % 最后各科笔记合并时改为 book
 
 
@@ -49,7 +49,7 @@
 \setlength{\tabcolsep}{2pt} % 表格列间距又太多...
 
 \RequirePackage{subcaption}
-\RequirePackage[font=large,skip=0pt,labelsep=none]{caption}
+\RequirePackage[skip=0pt,labelsep=none]{caption}
 % \setlength{\abovecaptionskip}{0pt} % 图表都另外做标题
 % \setlength{\belowcaptionskip}{0pt}
 % \setlength{\intextsep}{2pt}
@@ -388,25 +388,27 @@
 \renewcommand{\rubysize}{0.7}
 \renewcommand{\rubysep}{-0.1ex} 
 % 英文为 Verdana 体
-\newcommand{\eng}[2][]{\large\ruby{#2}{\textnormal{\fontspec{Verdana}#1}}} 
+\newcommand{\eng}[2][]{\ruby{#2}{\textnormal{\fontspec{Verdana}#1}}} 
 % 英文注在右侧
 \newcommand{\engs}[2][]{#2\ \textnormal{\small\fontspec{Verdana}#1}} 
 
 \setlength\fboxsep{1pt} % 设框的偏移 
 \setlength\fboxrule{1pt} % 设框宽 \fcolorbox{b}{b}{text}
 
-\newcommand{\entc}[2][]{{\color{b}\large\textnormal{
-	\hei \ruby{{\fcolorbox{b}{w}{{\color{b}#2}}}}{\fontspec{Verdana}#1}
+\newcommand{\entc}[2][]{{\color{b}\textnormal{
+	\hei 
+	\ruby{{\fcolorbox{b}{w}{{\color{b}#2}}}}
+	{\fontspec{Verdana}#1}
 }}}
 
 % \ruby 默认居中对齐，没有左对齐的选项，用 box 重新计算左对齐的宽度...
 \RequirePackage{calc} 
-\newcommand{\ent}[2][]{\large\textnormal{
+\newcommand{\ent}[2][]{{\textnormal{
 	\hei
-	\ruby{{\hspace{-3pt}\fcolorbox{b}{w}{{\color{b}#2}}\hspace{-3pt}}}{ % 可选 \framebox{#1} 
-	{\hspace{3pt}\color{b}\makebox[\widthof{#2}+\widthof{#2}/2][l]{\fontspec{Verdana}#1}}
+	\ruby{{\hspace{-3pt}\fcolorbox{b}{w}{{\color{b}#2}}\hspace{-3pt}}}
+	{{\hspace{3pt}\color{b}\makebox[\widthof{#2}+\widthof{#2}/2][l]{\fontspec{Verdana}#1}}
 	}
-}}
+}}}
 
 
 
@@ -419,7 +421,7 @@
 % 章标题 ---------------
 
 \titleformat{\section}{\centering\large\hei\color{w}}{\Large{\color{r}\fontspec{Adobe Heiti Std}\thesection}}{5pt}{\colorbox{r}}
-\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{r}\line(1,0){550}}\vspace{-33pt}\section{#1}\label{#1}\end{minipage}}
+\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{r}\line(1,0){550}}\vspace{-37.6pt}\section{#1}\label{#1}\end{minipage}}
 
 % 其它环境 ---------------
  
@@ -441,7 +443,7 @@
 
 % 方便括号配对，整篇文档不需要出现 $
 \newcommand{\eq}[1]{\,$ #1 $}
-\newcommand{\eqd}[1]{\,$\displaystyle #1 $}
+\newcommand{\eqd}[1]{\,$\displaystyle #1 $\,}
 
 % 物理单位高亮紫色 ---------------
 
