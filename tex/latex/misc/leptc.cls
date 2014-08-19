@@ -180,9 +180,14 @@
 
 \LetLtxMacro{\olddelta}{\delta}
 \renewcommand{\delta}{{\color{g}\olddelta}}
+% 拉普拉斯算符正体，表示相差用斜体
 \LetLtxMacro{\oldDelta}{\Delta}
-\renewcommand{\Delta}{{\color{g}\oldDelta}}
-% \newcommand{\varDelta}{{\color{g}\mathchar"7101}}
+% \renewcommand{\Delta}{{\color{g}\oldDelta}}
+\renewcommand{\Delta}{{\color{g}\varDelta}}
+
+% 其它默认斜体
+\LetLtxMacro{\oldPhi}{\Phi}
+\renewcommand{\Phi}{\varPhi}
 
 % 常微分分式 ---------------
 
@@ -242,9 +247,9 @@
 
 % 发明一种新的记号区分对t求导和对s求导（待议） ---------------
 
-\newcommand{\vecp}[1]{\accentset{\prime}{\vv{#1}}}
-\newcommand{\vecpp}[1]{\accentset{\prime\prime}{\vv{#1}}}
-\newcommand{\ap}[1]{\accentset{\prime}{#1}}
+% \newcommand{\vecp}[1]{\accentset{\prime}{\vv{#1}}}
+% \newcommand{\vecpp}[1]{\accentset{\prime\prime}{\vv{#1}}}
+% \newcommand{\ap}[1]{\accentset{\prime}{#1}}
 
 % 双矢量  ---------------
 
@@ -349,13 +354,12 @@
 
 \def\imagetop#1{\vtop{\null\hbox{#1}}}
 \newcommand{\figr}[3]{
-	{\setlength{\tabcolsep}{0pt}
-	\begin{tabular}{p{{\textwidth-#2\textwidth}}p{#2\textwidth}}
+	{\setlength{\tabcolsep}{2pt}
+	\begin{tabular}{@{}p{{\textwidth-#2\textwidth}}p{#2\textwidth}@{}}
 	\vspace{-14 pt}
 		{#3}
 		&{\raisebox{-\totalheight+\baselineskip}{\includegraphics[width=#2\textwidth]{#1}}}
-	\end{tabular}
-	}
+	\end{tabular}}
 }
 
 
@@ -442,7 +446,7 @@
 
 
 % 方便括号配对，整篇文档不需要出现 $
-\newcommand{\eq}[1]{\,$ #1 $}
+\newcommand{\eq}[1]{\,$ #1 $\,}
 \newcommand{\eqd}[1]{\,$\displaystyle #1 $\,}
 
 % 物理单位高亮紫色 ---------------
@@ -504,6 +508,9 @@
 % \newcommand{\con}{Const.}
 \newcommand{\cc}{\text{c.c.}} % 复共轭
 % \newcommand{\~}{$\sim$} % text 模式用
+
+% 垂直 \perp 平行 \parallel 但这个平行是竖线，我想要斜的
+\newcommand{\para}{\mathbin{\,/\mkern-5mu/\,}}
 
 % 理论力学，内力外力 ---------------
 

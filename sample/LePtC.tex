@@ -13,28 +13,64 @@ Last compiled on {\yyyymmdddate\today} at \currenttime
 
 \chap{安装}
 
-\ent[install TeX]{安装\TeX 系统} 直接安装 \href{http://www.ctex.org/CTeXDownload }{CTeX Full} 或 \href{http://www.ctan.org/tex-archive/systems/texlive/Images/ }{TeXLive iso} ,前者是把 \file{leptc.cls} 放到 \code{CTeX/MiKTeX/tex/latex/} 目录下,然后在 MiKTeX 的 Settings 里面点 Refresh FNDB 即可,后者是在 \code{texlive/2014/texmf.cnf} 末尾加上 \code{TEXMFLOCAL = $SELFAUTOPARENT/../texmf-local,E:/anypath}, 然后把\file{leptc.cls} 放到 \\ \code{anypath/tex/latex/misc} 中,在命令行执行 \code{texhash} 即可
+\ent[install TeX]{安装\TeX 系统} 
+Windows 系统可选择安装 
+\href{http://miktex.org/download}{MiKTeX}
+然后选择自动安装缺失的包,或直接安装 
+\href{http://www.ctex.org/CTeXDownload }{CTeX Full} 
+或 \href{http://www.ctan.org/tex-archive/systems/texlive/Images/ }{TeXLive iso} ,
+前两者是把 \file{leptc.cls} 放到 
+\code{CTeX/MiKTeX/tex/latex/} 目录下,
+然后在 MiKTeX 的 Settings 里面点 Refresh FNDB 即可,
+后者是在 \code{texlive/2014/texmf.cnf} 末尾加上 
+\\ \code{TEXMFLOCAL = $SELFAUTOPARENT/../texmf-local,E:/blabla/(anypath)}, 
+\\然后把\file{leptc.cls} 放到 
+\code{(anypath)/tex/latex/misc} 这个路径中,
+在命令行执行 \code{texhash} 即可
 
 \ent[compiler]{编译器} 
-只有 latex+dvipdfmx 或 xelatex 编译出的 pdf 能正确复制,前者请参考文件 \file{leptc.sty}
+只有 latex+dvipdfmx 或 xelatex 编译出的 pdf 能正确复制,
+前者请参考文件 \file{leptc.sty}
 
-dvipdfmx 方案本狸已停止更新,推荐使用 \XeTeX 方案, xelatex 的编译命令及常用选项：
+dvipdfmx 方案本狸已停止更新,推荐使用 \XeTeX 方案, 
+xelatex 的编译命令及常用选项：
 
 \code{xelatex --quiet --synctex=1 -interaction=nonstopmode $(NAME_PART).tex}
 
-\com{xelatex.exe 等编译器均在 \code{CTeX/MiKTeX/miktex/bin/} 或 \code{texlive/2014/bin/win32} 目录下,如果命令行没有此命令,可在命令中输入 exe 的完整路径,或手动将路径添加到系统的环境变量并重启}
+xelatex 需要多编译几遍才能正确生成书签,
+可在所有编译完成后加入对
+\file{.aux,.out,.log}等文件的清理命令
 
-\ent[editor]{编辑器} \href{http://tex.stackexchange.com/questions/339/latex-editors-ides }{各种编辑器的比较},熟悉哪个就用哪个好啦,初学者可以就用安装\TeX 系统时带的 TeXworks 
+\com{xelatex.exe 等编译器均在 
+\code{CTeX/MiKTeX/miktex/bin/} 
+或 \code{texlive/2014/bin/win32} 目录下,
+如果命令行没有此命令,可在命令中输入 exe 的完整路径,
+或手动将路径添加到系统的环境变量并重启}
 
-阿狸用的是 notepad++, synctex 需要借助一个 dde 插件 cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
+\ent[editor]{编辑器} 
+\href{http://tex.stackexchange.com/questions/339/latex-editors-ides }{各种编辑器的比较},
+熟悉哪个就用哪个好啦,
+初学者可以就用安装\TeX 系统时带的 TeXworks 
 
-\ent[reader]{阅读器} 推荐使用 \href{http://blog.kowalczyk.info/software/sumatrapdf/download-free-pdf-viewer-cn.html }{SumatraPDF} 来查看 pdf,有 \href{http://xhmikosr.1f0.de/sumatrapdf/ }{64 位版本}\com{非官方的}
+阿狸用的是 notepad++, synctex 需要借助一个 dde 插件 
+cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
+
+\ent[reader]{阅读器} 推荐使用 
+\href{http://blog.kowalczyk.info/software/sumatrapdf/download-free-pdf-viewer-cn.html }{SumatraPDF} 
+来查看 pdf,有 
+\href{http://xhmikosr.1f0.de/sumatrapdf/ }{64 位版本}
+\com{非官方的}
 
 支持 synctex,需在 \code{InverseSearchCmdLine} 里填入相应编辑器反向查找的命令
 
-\ent[tex file]{tex 文档}新建filename.tex,存为 UTF-8 无 BOM 格式,开头为 \verb|\documentclass{leptc}|,然后就可以 \\ \verb|\begin{document}| 闭着眼睛写啦,喵 \tld
+\ent[tex file]{tex 文档} 
+新建filename.tex,存为 UTF-8 无 BOM 格式,
+开头为 \verb|\documentclass{leptc}|,
+然后就可以 \\ \verb|\begin{document}| 闭着眼睛写啦,
+喵 \tld
 
-\com{待解决：文档名不能有空格否则不能识别,不能有中文否则会报错}
+\com{待解决：文档名不能有空格否则不能识别,
+不能有中文否则会报错}
 
 
 
@@ -83,9 +119,34 @@ dvipdfmx 方案本狸已停止更新,推荐使用 \XeTeX 方案, xelatex 的编�
 	&\verb|\link[笔记名]{章节名}|
 	&同一笔记内的链接笔记名可省略	\\
 
-% \fig[0.5]{picture.png}
+	贴图
+	&\figin[0.05]{ali}
+	&\verb|\fig[相对页面宽度]{图片名}|
+	&内置\verb|\figin|多图并排\verb|\figgg|	\\
 
 \end{tabular}
+
+\chap{排版}
+
+\figr{ali.jpg}{0.1}
+{
+图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}
+}
+\begin{minipage}{\textwidth}
+{\ttfamily
+\begin{lstlisting}[language={[LaTeX]TeX}]
+\figr{ali.jpg}{0.1}
+{
+图文混排 \eq{\rightarrow}
+...
+（所有左排的内容）
+}
+\end{lstlisting}
+}
+\end{minipage}
+\com{记得在右括号之后还要有一个换行}
+\com{待解决：图文混排环境内不支持 listing}
+
 
 
 
@@ -115,12 +176,14 @@ dvipdfmx 方案本狸已停止更新,推荐使用 \XeTeX 方案, xelatex 的编�
 \end{tabular}
 
 \ \\
-但字母作大型运算符\com{如\eqd{\min_{i=1}^n}}不做高亮,不易混淆的符号型算符\com{如\eqd{\sqrt{\ }}}不做高亮
+但字母作大型运算符\com{如\eqd{\min_{i=1}^n}}不做高亮,
+不易混淆的符号型算符\com{如\eqd{\sqrt{\ }}}不做高亮
 
 
 \chap{字体}
 
-正文默认字体： Adobe 仿宋,\textbf{词条 Adobe 黑体},英文 Times New Roman,\engs[Verdana]{英文翻译}
+正文默认字体： Adobe 仿宋,\textbf{词条 Adobe 黑体},
+英文 Times New Roman,\engs[Verdana]{英文翻译}
 
 打字机 \verb|\texttt{}|用于源代码： \file{file.tex}
 
@@ -186,6 +249,7 @@ dvipdfmx 方案本狸已停止更新,推荐使用 \XeTeX 方案, xelatex 的编�
 
 \ \\
 太多了 ... 慢慢写
+
 
 
 \chap{其它}
