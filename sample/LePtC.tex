@@ -8,7 +8,7 @@
 
 项目主页：\url{https://github.com/LePtC/LeNote }
 
-Last compiled on {\yyyymmdddate\today} at \currenttime
+Last compiled on {\yyyymmdddate\today} at {\hhmmsstime} [UTC+8]
 
 
 \chap{安装}
@@ -92,7 +92,7 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	 
 	&\eng[English translation]{注英文} 	
 	&\verb|\eng[English]{正文} | 
-	& \verb|\engs| \engs[translation]{标在右侧} 		\\
+	& \verb|\engr| \engr[translation]{标在右侧} 		\\
 
 	inline公式 
 	&\eq{f(x,y)=\frac{\e^x}{y}}
@@ -107,7 +107,7 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	 
 	&\com{注释}
 	&\verb|\com{注释}|
-	&仿铅笔的颜色	\\
+	&多行注释用\verb|\coms{注\\释}|	\\
 
 	证明
 	&\eq{\vec{v}=\prv{\od{}{t}(r \ve{r})=}\dot r\ve{r}+r\dot \theta\ve{\theta}\quad}
@@ -132,7 +132,7 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 {
 图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}
 }
-\begin{minipage}{\textwidth}
+\begin{tabular}{ll}
 {\ttfamily
 \begin{lstlisting}[language={[LaTeX]TeX}]
 \figr{ali.jpg}{0.1}
@@ -141,11 +141,13 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 ...
 （所有左排的内容）
 }
-\end{lstlisting}
-}
-\end{minipage}
-\com{记得在右括号之后还要有一个换行}
-\com{待解决：图文混排环境内不支持 listing}
+\end{lstlisting}}
+
+&\coms{记得在最后一个右括号之后还要有一个换行\\
+待解决：图文混排环境内不支持 listing?}\\
+
+\end{tabular}
+
 
 
 
@@ -183,7 +185,7 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 \chap{字体}
 
 正文默认字体： Adobe 仿宋,\textbf{词条 Adobe 黑体},
-英文 Times New Roman,\engs[Verdana]{英文翻译}
+英文 Times New Roman,\engr[Verdana]{英文翻译}
 
 打字机 \verb|\texttt{}|用于源代码： \file{file.tex}
 
@@ -242,14 +244,17 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\verb|\nabla x,\nablad \vec x,\nablat \vec x,\nablas x|\\
 
 	矩阵,行列式
-	&\eq{\mat{1&0\\0&1},\dmat{a&b\\c&d}}
-	&\verb|\mat{1&0\\0&1},\dmat{a&b\\c&d}|\\
+	&\eq{\mat{1&0\\0&1},\matd{a&b\\c&d}}
+	&\verb|\mat{1&0\\0&1},\matd{a&b\\c&d}|\\
+
+	左花括号
+	&\eq{\delta _{ij} = \leftB[2]{1 &(i = j)\\ 0 &(i \ne j)}}
+	&\verb|\leftB[行数]{1 &(i = j)\\ 0 &(i \ne j)}|\\
 
 \end{tabular}
 
 \ \\
 太多了 ... 慢慢写
-
 
 
 \chap{其它}

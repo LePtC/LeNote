@@ -64,6 +64,7 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+% \RequirePackage{unicode-math} % 不兼容！
 \RequirePackage{dtklogos} % 提供 \LaTeX \XeTeX 等
 \RequirePackage{xeCJK} % 顺序必须放最后 ...
 %--------------------------------------------------
@@ -97,7 +98,6 @@
 %--------------------------------------------------
 % 函数名的自动高亮，包括三角函数等，不包括大型运算符类函数
 \RequirePackage{letltxmacro} % 替换原有的 command
-\RequirePackage{ifthen}
 \RequirePackage{xifthen} % \ifthenelse
 %--------------------------------------------------
 
@@ -186,6 +186,8 @@
 \renewcommand{\Delta}{{\color{g}\varDelta}}
 
 % 其它默认斜体
+\LetLtxMacro{\oldGamma}{\Gamma}
+\renewcommand{\Gamma}{\varGamma}
 \LetLtxMacro{\oldPhi}{\Phi}
 \renewcommand{\Phi}{\varPhi}
 
@@ -261,43 +263,48 @@
 
 %--------------------------------------------------
 % 方便矩阵，包括方括号矩阵、行列式
-
+% 圆括号p，方括号b，花括号B，单竖v，双竖V
 %--------------------------------------------------
 
 
 % 默认矩阵还是方括号好看 ---------------
 
 % 自定义缩放 \mat[.7]{x\\y\\z}
-\newcommand{\mat}[2][1.0]{
-	\scalebox{#1}{
-		\renewcommand{\arraystretch}{.8}
-		\hspace{-10pt}
-		$\begin{bmatrix}#2\end{bmatrix}$
-		\hspace{-8pt}
-	}
-} 
+\newcommand{\mat}[2][1.0]{\scalebox{#1}{
+	\renewcommand{\arraystretch}{.8}
+	\hspace{-10pt}
+	\ensuremath{\begin{bmatrix}#2\end{bmatrix}}
+	\hspace{-8pt}
+}} 
 
-% 行列式包直线 ---------------
+% 行列式 ---------------
 
-\newcommand{\dmat}[2][1.0]{
-	\scalebox{#1}{
-		\renewcommand{\arraystretch}{.8}
-		\hspace{-10pt}
-		$ \left| \begin{matrix}#2\end{matrix} \right| $
-		\hspace{-8pt}
-	}
-}
+\newcommand{\matd}[2][1.0]{\scalebox{#1}{
+	\renewcommand{\arraystretch}{.8}
+	\hspace{-10pt}
+	\ensuremath{\begin{vmatrix}#2\end{vmatrix}}
+	\hspace{-8pt}
+}}
 
 % nothing ---------------
 
-\newcommand{\nmat}[2][1.0]{
-	\scalebox{#1}{
-		\renewcommand{\arraystretch}{.8}
-		\hspace{-10pt}
-		$\begin{matrix}#2\end{matrix}$
-		\hspace{-8pt}
-	}
+\newcommand{\matn}[2][1.0]{\scalebox{#1}{
+	\renewcommand{\arraystretch}{.8}
+	\hspace{-10pt}
+	\ensuremath{\begin{matrix}#2\end{matrix}}
+	\hspace{-8pt}
+}}
+
+% 左花括号
+\newcommand{\leftB}[2][1]{
+	\ifthenelse{\equal{#1}{1}}{\{}{}
+	\ifthenelse{\equal{#1}{2}}{\Bigl\{}{}
+	\ifthenelse{\equal{#1}{3}}{\Biggl\{}{}
+	\ifthenelse{\equal{#1}{4}}{\left\{}{}
+	\,\matn{#2}
+	\ifthenelse{\equal{#1}{4}}{\right.}{}
 }
+
 
 
 
@@ -394,7 +401,7 @@
 % 英文为 Verdana 体
 \newcommand{\eng}[2][]{\ruby{#2}{\textnormal{\fontspec{Verdana}#1}}} 
 % 英文注在右侧
-\newcommand{\engs}[2][]{#2\ \textnormal{\small\fontspec{Verdana}#1}} 
+\newcommand{\engr}[2][]{#2\ \textnormal{\small\fontspec{Verdana}#1}} 
 
 \setlength\fboxsep{1pt} % 设框的偏移 
 \setlength\fboxrule{1pt} % 设框宽 \fcolorbox{b}{b}{text}
@@ -430,10 +437,22 @@
 % 其它环境 ---------------
  
 % 灰色代表注释笔记
-\newcommand{\com}[1]{{\color{y}\,(#1)}} 
+\newcommand{\com}[1]{{\color{y}$($#1$)$}}
+\newcommand{\coms}[1]{{\color{y}%
+	$\left(\begin{tabular}{l}%
+	#1%
+	\end{tabular}\right)$%
+}} 
+
 % 中括号代表证明
 \newcommand{\prv}[1]{{\color{y}{[#1]}}} 
-% \newcommand{\prv}[1]{{\color{y}{\ensuremath{\left[\text{#1}\right]}}}}
+\newcommand{\prvs}[1]{{\color{y}%
+	$\left[\begin{tabular}{l}%
+	#1%
+	\end{tabular}\right]$%
+}} 
+
+
 % 红色尖括号代表链接
 \newcommand{\link}[2][]{{\color{r}{$\langle$#1$-$\nameref{#2}$\rangle$}}} 
 
@@ -567,7 +586,6 @@
 % \RequirePackage{hypernat}
 
 \RequirePackage{datetime} % 当前时间
-\settimeformat{hhmmsstime}
 
 \RequirePackage{soul} % 高亮工具 \hl{...}
 
