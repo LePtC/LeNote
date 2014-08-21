@@ -432,12 +432,12 @@
 % 章标题 ---------------
 
 \titleformat{\section}{\centering\large\hei\color{w}}{\Large{\color{r}\fontspec{Adobe Heiti Std}\thesection}}{5pt}{\colorbox{r}}
-\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{r}\line(1,0){550}}\vspace{-37.6pt}\section{#1}\label{#1}\end{minipage}}
+\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{r}\line(1,0){555}}\vspace{-37.6pt}\section{#1}\label{#1}\end{minipage}}
 
 % 其它环境 ---------------
- 
+
 % 灰色代表注释笔记
-\newcommand{\com}[1]{{\color{y}$($#1$)$}}
+\newcommand{\com}[1]{{\color{y}(#1)}}
 \newcommand{\coms}[1]{{\color{y}%
 	$\left(\begin{tabular}{l}%
 	#1%
@@ -465,8 +465,8 @@
 
 
 % 方便括号配对，整篇文档不需要出现 $
-\newcommand{\eq}[1]{\,$ #1 $\,}
-\newcommand{\eqd}[1]{\,$\displaystyle #1 $\,}
+\newcommand{\eq}[1]{$ #1 $\,}
+\newcommand{\eqd}[1]{$\displaystyle #1 $\,}
 
 % 物理单位高亮紫色 ---------------
 
@@ -489,10 +489,14 @@
 
 % spacing ---------------
 
-\LetLtxMacro{\oldrightarrow}{\rightarrow}
-\renewcommand{\rightarrow}{\ \oldrightarrow\ }
-\LetLtxMacro{\oldLeftrightarrow}{\Leftrightarrow}
-\renewcommand{\Leftrightarrow}{\ \oldLeftrightarrow\ }
+% \LetLtxMacro{\oldrightarrow}{\rightarrow}
+\renewcommand{\to}{{\ensuremath{
+\ \mathbf{\rightarrow}\ }}}
+% \LetLtxMacro{\oldLeftrightarrow}{\Leftrightarrow}
+% 充要 necessary and sufficient
+\newcommand{\ns}{{\ensuremath{
+\ \mathbf{\Leftrightarrow}\ }}}
+% TODO: 怎么只改这两个字符的字体
 
 
 
