@@ -64,6 +64,7 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{mathrsfs} % \emf
 % \RequirePackage{unicode-math} % 不兼容！
 \RequirePackage{dtklogos} % 提供 \LaTeX \XeTeX 等
 \RequirePackage{xeCJK} % 顺序必须放最后 ...
@@ -190,6 +191,8 @@
 \renewcommand{\Gamma}{\varGamma}
 \LetLtxMacro{\oldPhi}{\Phi}
 \renewcommand{\Phi}{\varPhi}
+\LetLtxMacro{\oldPsi}{\Psi}
+\renewcommand{\Psi}{\varPsi}
 
 % 常微分分式 ---------------
 
@@ -491,11 +494,11 @@
 
 % \LetLtxMacro{\oldrightarrow}{\rightarrow}
 \renewcommand{\to}{{\ensuremath{
-\ \mathbf{\rightarrow}\ }}}
+\,\mathbf{\rightarrow}\,}}}
 % \LetLtxMacro{\oldLeftrightarrow}{\Leftrightarrow}
 % 充要 necessary and sufficient
 \newcommand{\ns}{{\ensuremath{
-\ \mathbf{\Leftrightarrow}\ }}}
+\,\mathbf{\Leftrightarrow}\,}}}
 % TODO: 怎么只改这两个字符的字体
 
 
@@ -522,6 +525,7 @@
 
 % 等号上面写东西
 \newcommand{\onequal}[1]{\overset{\text{#1}}{=\joinrel=}}
+% \onright 有 \xrightarrow 了
 
 \newcommand{\abs}[1]{\left|#1\right|}
 
@@ -533,7 +537,7 @@
 % \newcommand{\~}{$\sim$} % text 模式用
 
 % 垂直 \perp 平行 \parallel 但这个平行是竖线，我想要斜的
-\newcommand{\para}{\mathbin{\,/\mkern-5mu/\,}}
+\newcommand{\para}{{/\mkern-5mu/}}
 
 % 理论力学，内力外力 ---------------
 
@@ -544,6 +548,10 @@
 
 \newcommand{\kb}{k_\mathrm{B}}
 \newcommand{\NA}{N_\mathrm{A}}
+
+% 电磁学 ---------------
+
+\newcommand{\emf}{\mathscr{E}} % electromotive force 
 
 % 角度，温度 ---------------
 
@@ -591,7 +599,8 @@
 
 \RequirePackage{datetime} % 当前时间
 
-\RequirePackage{soul} % 高亮工具 \hl{...}
+\RequirePackage{ulem} % 删除线 \sout{...}
+\RequirePackage{soul} % 高亮工具 \hl{...} \st{...}
 
 % http://tex.stackexchange.com/questions/48706/feynmf-doesnt-produce-feynman-diagram-at-all-in-txc
 % \RequirePackage{feynmp} % 用法：记得给整个文档包上
