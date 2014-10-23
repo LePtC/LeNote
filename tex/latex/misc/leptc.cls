@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版
 % filename  = leptc.sty
 % author = LePtC
-% version = 2014.08
+% version = 2014.10
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -21,7 +21,7 @@
 
 %--------------------------------------------------
 % 页面设置
-\RequirePackage[a4paper, top=10pt, bottom=15pt, left=20pt, right=20pt]{geometry}
+\RequirePackage[a4paper, top=20pt, bottom=15pt, left=20pt, right=20pt]{geometry}
 %--------------------------------------------------
 
 
@@ -114,11 +114,7 @@
 
 % 自然对数正体，元电荷量斜体
 \newcommand{\e}{{\color{o}\mathrm{e}}} 
-\renewcommand{\exp}[1][]{
-	{\color{o}\mathrm{exp}}
-	\ifthenelse{\equal{#1}{}}{}{
-	\ensuremath{\left( #1 \right)}
-}}
+\renewcommand{\exp}{{\color{o}\mathrm{exp}}}
 
 \LetLtxMacro{\oldsin}{\sin}
 \renewcommand{\sin}{{\color{o}\,\oldsin\,}}
@@ -174,13 +170,16 @@
 
 % 矢量微分算符，可作梯度、散度、旋度、拉普拉斯算符
 \LetLtxMacro{\oldnabla}{\nabla}
-\renewcommand{\nabla}{{\color{g}\oldnabla}}
-\newcommand{\nablad}{{\color{g}\oldnabla\cdot}}
-\newcommand{\nablat}{{\color{g}\oldnabla\times}}
-\newcommand{\nablas}{{\color{g}\oldnabla^2}}
+\renewcommand{\nabla}{{\color{g}\mathbf{\oldnabla}}}
+\newcommand{\nablad}{{\color{g}\mathbf{\oldnabla\cdot}}}
+\newcommand{\nablat}{{\color{g}\mathbf{\oldnabla\times}}}
+\newcommand{\nablas}{{\color{g}\mathbf{\oldnabla^2}}}
 
 \LetLtxMacro{\olddelta}{\delta}
 \renewcommand{\delta}{{\color{g}\olddelta}}
+% 克罗内克函数
+\newcommand{\delfun}[1]{{\color{o}\olddelta}_{#1}}
+\newcommand{\epsfun}{{\color{o}\varepsilon}}
 % 拉普拉斯算符正体，表示相差用斜体
 \LetLtxMacro{\oldDelta}{\Delta}
 % \renewcommand{\Delta}{{\color{g}\oldDelta}}
@@ -193,6 +192,8 @@
 \renewcommand{\Phi}{\varPhi}
 \LetLtxMacro{\oldPsi}{\Psi}
 \renewcommand{\Psi}{\varPsi}
+\LetLtxMacro{\oldPi}{\Pi}
+\renewcommand{\Pi}{\varPi}
 
 % 常微分分式 ---------------
 
@@ -258,9 +259,15 @@
 
 % 双矢量  ---------------
 
-\newcommand{\dvec}[1]{\overset{ }{\tightoverset{\fldr\joinrel\fldr}{#1}}}
-\newcommand{\dvecd}[1]{\dot{\dvec{#1}}}
-\newcommand{\dvecdd}[1]{\ddot{\dvec{#1}}}
+\newcommand{\vvec}[1]{\overset{ }{\tightoverset{\fldr\joinrel\fldr}{#1}}}
+\newcommand{\vvecd}[1]{\dot{\vvec{#1}}}
+\newcommand{\vvecdd}[1]{\ddot{\vvec{#1}}}
+
+% 三阶张量  ---------------
+
+\newcommand{\vvvec}[1]{\overset{ }{\tightoverset{\fldr\joinrel\fldr\joinrel\fldr}{#1}}}
+\newcommand{\vvvecd}[1]{\dot{\vvvec{#1}}}
+\newcommand{\vvvecdd}[1]{\ddot{\vvvec{#1}}}
 
 
 
@@ -269,6 +276,13 @@
 % 圆括号p，方括号b，花括号B，单竖v，双竖V
 %--------------------------------------------------
 
+
+% 常用：单列表
+
+\newcommand{\tab}[1]{\begin{tabular}{l}%
+	#1%
+	\end{tabular}%
+}
 
 % 默认矩阵还是方括号好看 ---------------
 
@@ -304,10 +318,10 @@
 	\ifthenelse{\equal{#1}{2}}{\Bigl\{}{}
 	\ifthenelse{\equal{#1}{3}}{\Biggl\{}{}
 	\ifthenelse{\equal{#1}{4}}{\left\{}{}
-	\,\matn{#2}
+	\,\begin{tabular}{ll}#2\end{tabular}
 	\ifthenelse{\equal{#1}{4}}{\right.}{}
 }
-
+% http://tex.stackexchange.com/questions/45001/how-do-i-left-align-entries-in-a-matrix-with-beginmatrix
 
 
 
@@ -434,7 +448,10 @@
 
 % 章标题 ---------------
 
-\titleformat{\section}{\centering\large\hei\color{w}}{\Large{\color{r}\fontspec{Adobe Heiti Std}\thesection}}{5pt}{\colorbox{r}}
+% \titleformat{\section}{\centering\large\hei\color{w}}{\Large{\color{r}\fontspec{Adobe Heiti Std}\thesection}}{5pt}{\colorbox{r}}
+% no number
+\titleformat{\section}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{r}}
+
 \newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{r}\line(1,0){555}}\vspace{-37.6pt}\section{#1}\label{#1}\end{minipage}}
 
 % 其它环境 ---------------
@@ -442,17 +459,13 @@
 % 灰色代表注释笔记
 \newcommand{\com}[1]{{\color{y}(#1)}}
 \newcommand{\coms}[1]{{\color{y}%
-	$\left(\begin{tabular}{l}%
-	#1%
-	\end{tabular}\right)$%
+	$\left(\tab{#1}\right)$%
 }} 
 
 % 中括号代表证明
 \newcommand{\prv}[1]{{\color{y}{[#1]}}} 
 \newcommand{\prvs}[1]{{\color{y}%
-	$\left[\begin{tabular}{l}%
-	#1%
-	\end{tabular}\right]$%
+	$\left[\tab{#1}\right]$%
 }} 
 
 
@@ -552,6 +565,7 @@
 % 电磁学 ---------------
 
 \newcommand{\emf}{\mathscr{E}} % electromotive force 
+\newcommand{\muB}{\mu_\mathrm{B}} % 玻尔磁子
 
 % 角度，温度 ---------------
 
@@ -563,9 +577,15 @@
 % 光学 ---------------
 % \renewcommand{\o}{\mathrm{o}} % 非寻常光？...
 
+% 相对论 ---------------
+
+\newcommand{\Mp}{M_\mathrm{P}} % 普朗克单位制
+\newcommand{\lp}{l_\mathrm{P}} 
+\newcommand{\tp}{t_\mathrm{P}} 
+
 % bar ---------------
 
-\def\dbar{{{\color{g}\mathchar'26\mkern-12mu \mathrm{d}}}}
+\def\dbar{{{\color{g}\,\mathchar'26\mkern-12mu \mathrm{d}}}}
 
 \makeatletter
 \newcommand{\lambdabar}{{\mathchoice
