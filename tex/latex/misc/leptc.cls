@@ -15,13 +15,14 @@
 \ProvidesClass{leptc}
 
 \LoadClass[12pt]{article} % [UTF8,noindent]{ctexart}
+% 其它 pt 用 \LoadClass[14pt]{extarticle}
 % 最后各科笔记合并时改为 book
 
 
 
 %--------------------------------------------------
 % 页面设置
-\RequirePackage[a4paper, top=20pt, bottom=15pt, left=20pt, right=20pt]{geometry}
+\RequirePackage[a4paper, top=30pt, bottom=25pt, left=30pt, right=30pt]{geometry}
 %--------------------------------------------------
 
 
@@ -133,6 +134,7 @@
 \renewcommand{\arctan}{{\color{o}\,\oldarctan\,}}
 
 \newcommand{\sinc}{{\color{o}\,\mathrm{sinc}\,}}
+\newcommand{\tr}{{\color{o}\,\mathrm{tr}\,}} % trace
 
 \renewcommand{\H}{{\color{o}\,\mathrm{H}\,}} % 厄米函数
 \renewcommand{\L}{{\color{o}\,\mathrm{L}\,}} % 拉盖尔函数
@@ -142,6 +144,9 @@
 % 粗体被注册为群，双线被注册为数域，花体泛函
 % 字母形的算符高亮绿色
 \newcommand{\Fo}[1]{{\ensuremath{{\color{g}\mathcal{F}}\left[#1\right]}}}
+
+\renewcommand{\tr}{\,{\color{o}\mathrm{tr}}\,}
+\newcommand{\diag}[1]{\,{\color{o}\mathrm{diag}}\mat{#1}\,}
 
 % \lim \sum \max \min 之类不作处理
 % 图画符号（\prime，根号）即使是算符不上色,因为有麻烦 ...
@@ -178,12 +183,12 @@
 \LetLtxMacro{\olddelta}{\delta}
 \renewcommand{\delta}{{\color{g}\olddelta}}
 % 克罗内克函数
-\newcommand{\delfun}[1]{{\color{o}\olddelta}_{#1}}
+\newcommand{\delfun}{{\color{o}\olddelta}}
 \newcommand{\epsfun}{{\color{o}\varepsilon}}
-% 拉普拉斯算符正体，表示相差用斜体
+% 拉普拉斯算符正体，表示相差用斜体（算了还是用▽²表示拉普拉斯算符吧）
 \LetLtxMacro{\oldDelta}{\Delta}
-% \renewcommand{\Delta}{{\color{g}\oldDelta}}
-\renewcommand{\Delta}{{\color{g}\varDelta}}
+\renewcommand{\Delta}{{\color{g}\oldDelta}}
+% \renewcommand{\Delta}{{\color{g}\varDelta}}
 
 % 其它默认斜体
 \LetLtxMacro{\oldGamma}{\Gamma}
@@ -318,7 +323,7 @@
 	\ifthenelse{\equal{#1}{2}}{\Bigl\{}{}
 	\ifthenelse{\equal{#1}{3}}{\Biggl\{}{}
 	\ifthenelse{\equal{#1}{4}}{\left\{}{}
-	\,\begin{tabular}{ll}#2\end{tabular}
+	\,#2
 	\ifthenelse{\equal{#1}{4}}{\right.}{}
 }
 % http://tex.stackexchange.com/questions/45001/how-do-i-left-align-entries-in-a-matrix-with-beginmatrix
@@ -421,7 +426,7 @@
 \newcommand{\engr}[2][]{#2\ \textnormal{\small\fontspec{Verdana}#1}} 
 
 \setlength\fboxsep{1pt} % 设框的偏移 
-\setlength\fboxrule{1pt} % 设框宽 \fcolorbox{b}{b}{text}
+\setlength\fboxrule{0.5pt} % 设框宽 \fcolorbox{b}{b}{text}
 
 \newcommand{\entc}[2][]{{\color{b}\textnormal{
 	\hei 
@@ -438,6 +443,9 @@
 	}
 }}}
 
+% label, 用于"例","定理","推论"等
+\newcommand{\enl}[1]{{\colorbox{b}{{\hei\color{w}#1}}}}
+
 
 
 %--------------------------------------------------
@@ -452,7 +460,7 @@
 % no number
 \titleformat{\section}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{r}}
 
-\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{r}\line(1,0){555}}\vspace{-37.6pt}\section{#1}\label{#1}\end{minipage}}
+\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{r}\line(1,0){540}}\vspace{-37.6pt}\section{#1}\label{#1}\end{minipage}}
 
 % 其它环境 ---------------
 
@@ -524,13 +532,17 @@
 %--------------------------------------------------
 
 
-\newcommand{\LePtC}{L\hspace{-3pt}\raisebox{3pt}{e}P\hspace{-1pt}\raisebox{-2pt}{\scalebox{0.7}{t}}C}
+\newcommand{\LePtC}{L\hspace{-2pt}\raisebox{4pt}{e}\hspace{1pt}P\raisebox{-1pt}{\scalebox{0.8}{t}}\hspace{1pt}C}
 
 % text 中打 $\sim$
 \newcommand{\tld}{{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}}
 
 % 区分一撇 comma 和求导 slash，会覆盖掉 accent commands
-\newcommand{\co}{{^{\raisebox{3pt}{,}}}}
+\newcommand{\co}{\mathchoice{^{\raisebox{3pt}{$,$}}}
+	{^{\raisebox{3pt}{$,$}}}
+	{^{\scalebox{0.8}{\raisebox{3pt}{$,$}}}}
+	{^{\scalebox{0.8}{\raisebox{3pt}{$,$}}}}
+}
 % \renewcommand{\b}{^{\backprime}}
 
 %\RequirePackage{mhchem} % 化学公式
@@ -582,6 +594,11 @@
 \newcommand{\Mp}{M_\mathrm{P}} % 普朗克单位制
 \newcommand{\lp}{l_\mathrm{P}} 
 \newcommand{\tp}{t_\mathrm{P}} 
+
+% 量子力学 ---------------
+
+\newcommand{\hatv}[1]{\ensuremath{\hat{\vec{#1}}}}
+\newcommand{\hatvs}[1]{\ensuremath{\hat{\vec{#1}}\raisebox{3pt}{$^2$}}}
 
 % bar ---------------
 

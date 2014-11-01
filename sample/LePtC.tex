@@ -84,15 +84,20 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\verb|\chap{中文}|
 	&\com{说明\eq{\downarrow} }\\
 	
-	 
+	
 	&\ent[entry left]{词条} \hspace{30pt} \entc[entry center]{词条} \hspace{20pt}	
 	&\verb|\ent[entry]{词条} | 
 	&居中用 \verb|\entc| 		\\
-
-	 
+	
+	
 	&\eng[English translation]{注英文} 	
 	&\verb|\eng[English]{正文} | 
-	& \verb|\engr| \engr[translation]{标在右侧} 		\\
+	& 用 \verb|\engr| 则英文标在右侧 		\\
+
+	
+	&\enl{标签} 	
+	&\verb|\enl{标签} | 
+	& 用于\enl{例},\enl{定理},\enl{推论}等		\\
 
 	inline公式 
 	&\eq{f(x,y)=\frac{\e^x}{y}}
@@ -103,8 +108,7 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\eqd{f(x,y)=\frac{\e^x}{y}}
 	&\verb|\eqd{\frac{\e^x}{y}}|
 	&修改公式模式只需加一个 \verb|d|即可	\\
-
-	 
+	
 	&\com{注释}
 	&\verb|\com{注释}|
 	&多行注释用\verb|\coms{注\\释}|	\\
@@ -130,14 +134,14 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 
 \figr{ali.jpg}{0.1}
 {
-图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}图文混排 \eq{\rightarrow}
+图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 
 }
 \begin{tabular}{ll}
 {\ttfamily
 \begin{lstlisting}[language={[LaTeX]TeX}]
 \figr{ali.jpg}{0.1}
 {
-图文混排 \eq{\rightarrow}
+图文混排 \to
 ...
 （所有左排的内容）
 }
@@ -226,9 +230,9 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\eq{\vec{OA},\vec{p_c}',\vecd{p},\ve{r}}
 	&\verb|\vec{OA},\vec{p_c}',\vecd{p},\ve{r}|\\
 
-	双矢量
-	&\eq{\dvec{r},\dvecd{P}}
-	&\verb|\dvec{r},\dvecd{P}|\\
+	张量
+	&\eq{\vvecd{T},\vvvec{\varepsilon}}
+	&\verb|\vvecd{T},\vvvec{\varepsilon}|\\
 	
 	导数,偏导数
 	&\eqd{\od{y}{x},\pd[2]{L}{x},\md{L}{4}{x}{2}{y}{2}}
@@ -248,13 +252,14 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\verb|\mat{1&0\\0&1},\matd{a&b\\c&d}|\\
 
 	左花括号
-	&\eq{\delta _{ij} = \leftB[2]{1 &(i = j)\\ 0 &(i \ne j)}}
-	&\verb|\leftB[行数]{1 &(i = j)\\ 0 &(i \ne j)}|\\
+	&\eq{\delta _{ij} = \leftB[2]{\matn{1 &(i = j)\\ 0 &(i \ne j)}}}
+	&\verb|\leftB[行数]{\matn{1 &(i = j)\\ 0 &(i \ne j)}}|\\
 
 \end{tabular}
 
 \ \\
 太多了 ... 慢慢写
+
 
 
 \chap{其它}
