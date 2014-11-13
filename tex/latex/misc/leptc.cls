@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版
 % filename  = leptc.sty
 % author = LePtC
-% version = 2014.10
+% version = 2014.11
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -33,7 +33,7 @@
 
 \setlength{\thickmuskip}{1 mu} % 等号两边空太大
 \setlength{\medmuskip}{1 mu} 
-\setlength{\thinmuskip}{2 mu} % 会缩小 \, 的距离
+\setlength{\thinmuskip}{1 mu} % 会缩小 \, 的距离
 
 % 中括号大括号有特殊含义，公式中多层括号尽量都用圆括号
 \delimitershortfall-1sp % 嵌套括号尺寸总是递增
@@ -55,6 +55,8 @@
 % \setlength{\belowcaptionskip}{0pt}
 % \setlength{\intextsep}{2pt}
 
+\newcommand{\ski}{\vspace{3pt}} % 手动小间距
+
 
 
 %--------------------------------------------------
@@ -65,6 +67,8 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+% 解决 math 和 text 里逗号不一样的问题
+\RequirePackage[adobe-fangsong]{mathdesign} 
 \RequirePackage{mathrsfs} % \emf
 % \RequirePackage{unicode-math} % 不兼容！
 \RequirePackage{dtklogos} % 提供 \LaTeX \XeTeX 等
@@ -76,6 +80,15 @@
 \setCJKmainfont[BoldFont=Adobe Heiti Std, ItalicFont=Adobe Kaiti Std]{Adobe Fangsong Std}
 \setCJKfamilyfont{hei}{Adobe Heiti Std}
 \newcommand{\hei}{\CJKfamily{hei}} 
+
+% 自动把 l 全部换成 \ell
+% \mathcode`l="8000
+% \begingroup
+% \makeatletter
+% \lccode`\~=`\l
+% \DeclareMathSymbol{\lsb@l}{\mathalpha}{letters}{`l}
+% \lowercase{\gdef~{\ifnum\the\mathgroup=\m@ne \ell \else \lsb@l \fi}}%
+% \endgroup
 
 
 
@@ -162,7 +175,7 @@
 
 % 单个字母 ---------------
 
-% 微分算符正体，带指数的用法 \dif[2]
+% 微分算符正体，带指数的用法 \dif[2] TODO: 不要这样用了…
 \newcommand{\dif}[1][]{{\color{g}\,\ensuremath{\mathrm{d^{#1}}}}} 
 % TODO: \ensuremath{\,\mathrm{d}#1\@ifnextchar\dif{\,}{}}
 
@@ -193,12 +206,18 @@
 % 其它默认斜体
 \LetLtxMacro{\oldGamma}{\Gamma}
 \renewcommand{\Gamma}{\varGamma}
+\LetLtxMacro{\oldLambda}{\Lambda}
+\renewcommand{\Lambda}{\varLambda}
 \LetLtxMacro{\oldPhi}{\Phi}
 \renewcommand{\Phi}{\varPhi}
 \LetLtxMacro{\oldPsi}{\Psi}
 \renewcommand{\Psi}{\varPsi}
 \LetLtxMacro{\oldPi}{\Pi}
 \renewcommand{\Pi}{\varPi}
+
+% 大小O记号
+\newcommand{\bigO}{{\color{p}\mathrm{O}}}
+\newcommand{\smallo}{{\color{p}\mathrm{o}}}
 
 % 常微分分式 ---------------
 
@@ -217,7 +236,7 @@
 \newcommand{\pd}[3][]{\frac{\partial[#1] #2}{\partial #3^{#1}}}
 \newcommand{\pdat}[4][]{ \mathchoice
 	{\Big(\pd[#1]{#2}{#3}\Big)_{#4}}
-	{\big(\pd[#1]{#2}{#3}\big)_{#4}}
+	{(\pd[#1]{#2}{#3})_{#4}}
 	{(\pd[#1]{#2}{#3})_{#4}}
 	{(\pd[#1]{#2}{#3})_{#4}}
 }
@@ -255,6 +274,9 @@
 \newcommand{\ve}[1]{\,\vec{e_{#1}}} 
 \newcommand{\ved}[1]{\,\vecd{e_{#1}}} 
 \newcommand{\vedd}[1]{\,\vecdd{e_{#1}}} 
+
+% 左矢量
+\newcommand{\lvec}[1]{\overset{\rotatebox[origin=c]{180}{$\fldr$}}{#1}}
 
 % 发明一种新的记号区分对t求导和对s求导（待议） ---------------
 
@@ -478,7 +500,9 @@
 
 
 % 红色尖括号代表链接
-\newcommand{\link}[2][]{{\color{r}{$\langle$#1$-$\nameref{#2}$\rangle$}}} 
+% \newcommand{\link}[2][]{{\color{r}{$\langle$#1$-$\nameref{#2}$\rangle$}}} 
+% 未整合前先用这个
+\newcommand{\link}[2][]{{\color{r}{$\langle$#1$-$#2$\rangle$}}} 
 
 
 
@@ -489,8 +513,8 @@
 
 
 % 方便括号配对，整篇文档不需要出现 $
-\newcommand{\eq}[1]{$ #1 $\,}
-\newcommand{\eqd}[1]{$\displaystyle #1 $\,}
+\newcommand{\eq}[1]{\!$#1$}
+\newcommand{\eqd}[1]{$\displaystyle #1$}
 
 % 物理单位高亮紫色 ---------------
 
@@ -513,14 +537,15 @@
 
 % spacing ---------------
 
-% \LetLtxMacro{\oldrightarrow}{\rightarrow}
-\renewcommand{\to}{{\ensuremath{
-\,\mathbf{\rightarrow}\,}}}
-% \LetLtxMacro{\oldLeftrightarrow}{\Leftrightarrow}
+% TODO: 改不了字体?
+\renewcommand{\to}{{\ensuremath{\ \mathbf{\rightarrow}\ }}}
+
+\newcommand{\onto}[1]{{\,\ensuremath{\xrightarrow{#1}}\,}}
+
 % 充要 necessary and sufficient
 \newcommand{\ns}{{\ensuremath{
 \,\mathbf{\Leftrightarrow}\,}}}
-% TODO: 怎么只改这两个字符的字体
+% TODO: 怎么只改箭头类字符的字体?
 
 
 
@@ -529,8 +554,13 @@
 \RequirePackage{braket} % 提供量子力学常用
 \RequirePackage{wasysym} % 提供 \apprge \apprle
 \RequirePackage{esint} % 提供 \varoiint，要 overide 掉 amsmath
+\RequirePackage{extarrows} % 等号上面写东西 \xlongequal[below]{above}
 %--------------------------------------------------
 
+
+% 不用下面这种了
+% \newcommand{\onequal}[1]{\overset{\text{#1}}{=\joinrel=}}
+% \onright 有 \xrightarrow 了
 
 \newcommand{\LePtC}{L\hspace{-2pt}\raisebox{4pt}{e}\hspace{1pt}P\raisebox{-1pt}{\scalebox{0.8}{t}}\hspace{1pt}C}
 
@@ -547,10 +577,6 @@
 
 %\RequirePackage{mhchem} % 化学公式
 \newcommand{\ce}[1]{$\mathrm{#1}$}
-
-% 等号上面写东西
-\newcommand{\onequal}[1]{\overset{\text{#1}}{=\joinrel=}}
-% \onright 有 \xrightarrow 了
 
 \newcommand{\abs}[1]{\left|#1\right|}
 
@@ -571,7 +597,7 @@
 
 % 热学 ---------------
 
-\newcommand{\kb}{k_\mathrm{B}}
+\newcommand{\kB}{k_\mathrm{B}}
 \newcommand{\NA}{N_\mathrm{A}}
 
 % 电磁学 ---------------
@@ -602,7 +628,7 @@
 
 % bar ---------------
 
-\def\dbar{{{\color{g}\,\mathchar'26\mkern-12mu \mathrm{d}}}}
+\def\dbar{{{\color{g}\mkern5mu \mathchar'26\mkern-12mu \mathrm{d}}}}
 
 \makeatletter
 \newcommand{\lambdabar}{{\mathchoice
