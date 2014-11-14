@@ -27,13 +27,13 @@
 
 
 \setlength{\parindent}{0pt} % 不要首行缩进
-\linespread{1.1} % 行间距放大，否则对于表格太紧了
+\linespread{1.2} % 行间距放大，否则对于表格太紧了
 
 % 公式设置 ---------------
 
 \setlength{\thickmuskip}{1 mu} % 等号两边空太大
 \setlength{\medmuskip}{1 mu} 
-\setlength{\thinmuskip}{1 mu} % 会缩小 \, 的距离
+\setlength{\thinmuskip}{2 mu} % 会缩小 \, 的距离
 
 % 中括号大括号有特殊含义，公式中多层括号尽量都用圆括号
 \delimitershortfall-1sp % 嵌套括号尺寸总是递增
@@ -55,7 +55,7 @@
 % \setlength{\belowcaptionskip}{0pt}
 % \setlength{\intextsep}{2pt}
 
-\newcommand{\ski}{\vspace{3pt}} % 手动小间距
+% \newcommand{\ski}{\vspace{3pt}} % 手动小间距
 
 
 
@@ -98,6 +98,7 @@
 %--------------------------------------------------
 
 
+% 2014.11 更新: 红色弃用, 链接全部紫色, 公式高亮全部橙色, 证明绿色
 \definecolor{r}{RGB}{208,18,27} % InDesign 红色
 \definecolor{g}{RGB}{42,167,56} % InDesign 绿色
 \definecolor{b}{RGB}{12,51,136} % InDesign 蓝色
@@ -105,7 +106,7 @@
 \definecolor{o}{RGB}{255,128,0} % 高亮橙
 \definecolor{p}{RGB}{128,0,128} % 清华紫
 
-\definecolor{y}{RGB}{150,150,150} % 灰，仿铅笔
+\definecolor{y}{RGB}{140,140,140} % 灰，仿铅笔
 \definecolor{w}{RGB}{255,255,255} % 白，用于反色
 
 
@@ -127,7 +128,7 @@
 \renewcommand{\ln}{{\color{o}\,\oldln\,}}
 
 % 自然对数正体，元电荷量斜体
-\newcommand{\e}{{\color{o}\mathrm{e}}} 
+\newcommand{\e}{{\color{o}\,\mathbf{e}}} 
 \renewcommand{\exp}{{\color{o}\mathrm{exp}}}
 
 \LetLtxMacro{\oldsin}{\sin}
@@ -156,10 +157,11 @@
 
 % 粗体被注册为群，双线被注册为数域，花体泛函
 % 字母形的算符高亮绿色
-\newcommand{\Fo}[1]{{\ensuremath{{\color{g}\mathcal{F}}\left[#1\right]}}}
+\newcommand{\Fo}[1]{{\ensuremath{{\color{o}\mathcal{F}}\left[#1\right]}}}
 
 \renewcommand{\tr}{\,{\color{o}\mathrm{tr}}\,}
-\newcommand{\diag}[1]{\,{\color{o}\mathrm{diag}}\mat{#1}\,}
+\newcommand{\diag}[1][]{\,{\color{o}\mathrm{diag}}
+	\ifthenelse{\equal{#1}{}}{}{\mat{#1}}\,}
 
 % \lim \sum \max \min 之类不作处理
 % 图画符号（\prime，根号）即使是算符不上色,因为有麻烦 ...
@@ -176,32 +178,32 @@
 % 单个字母 ---------------
 
 % 微分算符正体，带指数的用法 \dif[2] TODO: 不要这样用了…
-\newcommand{\dif}[1][]{{\color{g}\,\ensuremath{\mathrm{d^{#1}}}}} 
+\newcommand{\dif}[1][]{{\color{o}\,\ensuremath{\mathrm{d}}}^{#1}} 
 % TODO: \ensuremath{\,\mathrm{d}#1\@ifnextchar\dif{\,}{}}
 
 % 协变导数
-\newcommand{\Dif}{{\color{g}\mathrm{D}}} 
+\newcommand{\Dif}{{\color{o}\mathrm{D}}} 
 
 % 偏导数
 \LetLtxMacro{\oldpartial}{\partial}
-\renewcommand{\partial}[1][]{{\color{g}\,\ensuremath{\oldpartial^{#1}}}}
+\renewcommand{\partial}[1][]{{\color{o}\,\ensuremath{\oldpartial^{#1}}}}
 
 % 矢量微分算符，可作梯度、散度、旋度、拉普拉斯算符
 \LetLtxMacro{\oldnabla}{\nabla}
-\renewcommand{\nabla}{{\color{g}\mathbf{\oldnabla}}}
-\newcommand{\nablad}{{\color{g}\mathbf{\oldnabla\cdot}}}
-\newcommand{\nablat}{{\color{g}\mathbf{\oldnabla\times}}}
-\newcommand{\nablas}{{\color{g}\mathbf{\oldnabla^2}}}
+\renewcommand{\nabla}{{\color{o}\mathbf{\oldnabla}}}
+\newcommand{\nablad}{{\color{o}\mathbf{\oldnabla\cdot}}}
+\newcommand{\nablat}{{\color{o}\mathbf{\oldnabla\times}}}
+\newcommand{\nablas}{{\color{o}\mathbf{\oldnabla^2}}}
 
 \LetLtxMacro{\olddelta}{\delta}
-\renewcommand{\delta}{{\color{g}\olddelta}}
+\renewcommand{\delta}{{\color{o}\olddelta}}
 % 克罗内克函数
 \newcommand{\delfun}{{\color{o}\olddelta}}
 \newcommand{\epsfun}{{\color{o}\varepsilon}}
 % 拉普拉斯算符正体，表示相差用斜体（算了还是用▽²表示拉普拉斯算符吧）
 \LetLtxMacro{\oldDelta}{\Delta}
-\renewcommand{\Delta}{{\color{g}\oldDelta}}
-% \renewcommand{\Delta}{{\color{g}\varDelta}}
+\renewcommand{\Delta}{{\color{o}\oldDelta}}
+% \renewcommand{\Delta}{{\color{o}\varDelta}}
 
 % 其它默认斜体
 \LetLtxMacro{\oldGamma}{\Gamma}
@@ -216,8 +218,8 @@
 \renewcommand{\Pi}{\varPi}
 
 % 大小O记号
-\newcommand{\bigO}{{\color{p}\mathrm{O}}}
-\newcommand{\smallo}{{\color{p}\mathrm{o}}}
+\newcommand{\bigO}{{\color{o}\mathrm{O}}}
+\newcommand{\smallo}{{\color{o}\mathrm{o}}}
 
 % 常微分分式 ---------------
 
@@ -478,11 +480,11 @@
 
 % 章标题 ---------------
 
-% \titleformat{\section}{\centering\large\hei\color{w}}{\Large{\color{r}\fontspec{Adobe Heiti Std}\thesection}}{5pt}{\colorbox{r}}
+% \titleformat{\section}{\centering\large\hei\color{w}}{\Large{\color{p}\fontspec{Adobe Heiti Std}\thesection}}{5pt}{\colorbox{r}}
 % no number
-\titleformat{\section}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{r}}
+\titleformat{\section}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{p}}
 
-\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{r}\line(1,0){540}}\vspace{-37.6pt}\section{#1}\label{#1}\end{minipage}}
+\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\line(1,0){540}}\vspace{-38.5pt}\section{#1}\label{#1}\end{minipage}}
 
 % 其它环境 ---------------
 
@@ -492,17 +494,19 @@
 	$\left(\tab{#1}\right)$%
 }} 
 
-% 中括号代表证明
-\newcommand{\prv}[1]{{\color{y}{[#1]}}} 
-\newcommand{\prvs}[1]{{\color{y}%
-	$\left[\tab{#1}\right]$%
-}} 
+% 方括号代表证明
+% \newcommand{\prv}[1]{{\color{g}{「#1」}}} 
+\newcommand{\prv}[1]{\ {\color{g}{#1}}\ } 
+% \left[ \right]? \left| \right|? \lceil \rfloor? 还是啥都不用省心...
+% \newcommand{\prvs}[1]{{\color{g}%
+	% $\left|\tab{#1}\right|$%
+% }} 
 
 
 % 红色尖括号代表链接
-% \newcommand{\link}[2][]{{\color{r}{$\langle$#1$-$\nameref{#2}$\rangle$}}} 
+% \newcommand{\link}[2][]{{\color{p}{$\langle$#1$-$\nameref{#2}$\rangle$}}} 
 % 未整合前先用这个
-\newcommand{\link}[2][]{{\color{r}{$\langle$#1$-$#2$\rangle$}}} 
+\newcommand{\link}[2][]{{\color{p}{$\langle$#1$-$#2$\rangle$}}} 
 
 
 
@@ -511,20 +515,21 @@
 % （物理单位、函数正体，变量、粒子符号斜体）
 %--------------------------------------------------
 
-
 % 方便括号配对，整篇文档不需要出现 $
-\newcommand{\eq}[1]{\!$#1$}
+\newcommand{\eq}[1]{\!$#1$} % 和中文混排需保证每个 \eq 前有个空格...
 \newcommand{\eqd}[1]{$\displaystyle #1$}
+\newcommand{\eqa}[1]{$\begin{aligned}#1\end{aligned}$}
+% \newcommand{\eqa}[1]{$\begin{align*}#1\end{align*}$}
 
 % 物理单位高亮紫色 ---------------
 
 % 虚数单位正体
 % \RequirePackage{bbm} % Mathematica 狂人可设 e i 双线体 \mathbbm{i}
-\newcommand{\ii}{{\color{p}\mathrm{i}}} 
+\newcommand{\ii}{{\color{o}\mathbf{i}}} 
 
 % \RequirePackage{siunitx} % 物理单位紫色，用法\SI{134.976}{MeV} 
 % 改用下面这种方案了
-\newcommand{\uni}[1]{{\ensuremath{\color{p}\ \mathrm{#1}}}} 
+\newcommand{\uni}[1]{{\ensuremath{\color{o}\ \mathrm{#1}}}} 
 
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
@@ -540,7 +545,7 @@
 % TODO: 改不了字体?
 \renewcommand{\to}{{\ensuremath{\ \mathbf{\rightarrow}\ }}}
 
-\newcommand{\onto}[1]{{\,\ensuremath{\xrightarrow{#1}}\,}}
+\newcommand{\onto}[2][]{{\,\ensuremath{\xrightarrow[#1]{#2}}\,}}
 
 % 充要 necessary and sufficient
 \newcommand{\ns}{{\ensuremath{
@@ -568,11 +573,13 @@
 \newcommand{\tld}{{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}}
 
 % 区分一撇 comma 和求导 slash，会覆盖掉 accent commands
-\newcommand{\co}{\mathchoice{^{\raisebox{3pt}{$,$}}}
+\newcommand{\co}[1][]{\ensuremath{\mathchoice
+	{^{\raisebox{3pt}{$,$}}}
 	{^{\raisebox{3pt}{$,$}}}
 	{^{\scalebox{0.8}{\raisebox{3pt}{$,$}}}}
 	{^{\scalebox{0.8}{\raisebox{3pt}{$,$}}}}
-}
+	\ifthenelse{\equal{#1}{}}{}{\kern-0.8ex_{#1}}
+}}
 % \renewcommand{\b}{^{\backprime}}
 
 %\RequirePackage{mhchem} % 化学公式
@@ -609,8 +616,8 @@
 
 \renewcommand{\deg}{^\circ} % text 模式用 \textsuperscript{}
 
-\newcommand{\oC}{{\ensuremath{\color{p}\,^{\circ}{\mathrm C}}}}
-\newcommand{\oF}{{\ensuremath{\color{p}\,^{\circ}{\mathrm F}}}}
+\newcommand{\oC}{{\ensuremath{\color{o}\,^{\circ}{\mathrm C}}}}
+\newcommand{\oF}{{\ensuremath{\color{o}\,^{\circ}{\mathrm F}}}}
 
 % 光学 ---------------
 % \renewcommand{\o}{\mathrm{o}} % 非寻常光？...
@@ -628,7 +635,7 @@
 
 % bar ---------------
 
-\def\dbar{{{\color{g}\mkern5mu \mathchar'26\mkern-12mu \mathrm{d}}}}
+\def\dbar{{{\color{o}\mkern5mu \mathchar'26\mkern-12mu \mathrm{d}}}}
 
 \makeatletter
 \newcommand{\lambdabar}{{\mathchoice
@@ -654,7 +661,7 @@
 
 \RequirePackage[xetex,colorlinks,unicode,pdfencoding=auto]{hyperref} 
 % 超链接包，unicode 和 \chap 有冲突？
-% \hypersetup{linkcolor=\color{r}, citecolor = \color{r}}
+% \hypersetup{linkcolor=\color{o}, citecolor = \color{o}}
 
 % \RequirePackage[sort&compress]{natbib} % 参考文献包
 % \setlength{\bibsep}{0pt}
