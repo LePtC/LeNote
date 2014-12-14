@@ -1,32 +1,30 @@
 %--------------------------------------------------
-% LePtC 双语彩色笔记模版 - 笔记
+% LePtC 双语彩色笔记模版 - 中文报告
 % filename  = leptc.sty
 % author = LePtC
 % version = 2014.12
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
-% 本模版用于 xelatex+xeCJK 方案，编译命令为：
-% xelatex --quiet --synctex=1 -interaction=nonstopmode $(NAME_PART).tex
-% 文档前加入 \documentclass{leptc} 即可
-%--------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}[2007/10/19]
 \ProvidesClass{leptc}
 
-\LoadClass[12pt]{article} % [UTF8,noindent]{ctexart}
+
+\LoadClass[11pt, onecolumn]{article} % [UTF8]
 % 其它 pt 用 \LoadClass[14pt]{extarticle}
 % 最后各科笔记合并时改为 book
 
+\newcommand{\HUGE}{\fontsize{29pt}{29pt}\selectfont}
 
 
 %--------------------------------------------------
 % 页面设置
-\RequirePackage[a4paper, top=30pt, bottom=25pt, left=30pt, right=30pt]{geometry}
+\RequirePackage[a4paper, top=50pt, bottom=50pt, left=50pt, right=50pt]{geometry}
 %--------------------------------------------------
 
-
-\setlength{\parindent}{0pt} % 不要首行缩进
+% \RequirePackage{indentfirst}
+\setlength{\parindent}{0em} % 要首行缩进
 \linespread{1.2} % 行间距放大，否则对于表格太紧了
 
 % 公式设置 ---------------
@@ -49,11 +47,13 @@
 \renewcommand{\arraystretch}{1.2} % 后面矩阵会单独处理
 \setlength{\tabcolsep}{5pt} % 表格列间距又太多...
 
+\RequirePackage{subfigure}
+
+\RequirePackage{caption}
 \RequirePackage{subcaption}
-\RequirePackage[skip=0pt,labelsep=none]{caption}
-% \setlength{\abovecaptionskip}{0pt} % 图表都另外做标题
-% \setlength{\belowcaptionskip}{0pt}
-% \setlength{\intextsep}{2pt}
+\setlength{\abovecaptionskip}{0pt} % 图表都另外做标题
+\setlength{\belowcaptionskip}{2pt}
+\setlength{\intextsep}{2pt}
 
 % \newcommand{\ski}{\vspace{3pt}} % 手动小间距
 
@@ -96,45 +96,6 @@
 
 
 %--------------------------------------------------
-% LePtC 双语词条
-\RequirePackage{ruby}
-%--------------------------------------------------
-
-
-\renewcommand{\rubysize}{0.7}
-\renewcommand{\rubysep}{-0.1ex} 
-% 英文为 Verdana 体
-\newcommand{\eng}[2][]{\ruby{#2}{\textnormal{\fontspec{Verdana}#1}}} 
-% 英文注在右侧
-\newcommand{\engr}[2][]{#2\ \textnormal{\small\fontspec{Verdana}#1}} 
-
-\setlength\fboxsep{1pt} % 设框的偏移 
-\setlength\fboxrule{0.5pt} % 设框宽 \fcolorbox{b}{b}{text}
-
-\newcommand{\entc}[2][]{{\color{b}\textnormal{
-	\hei 
-	\ruby{{\fcolorbox{b}{w}{{\color{b}#2}}}}
-	{\fontspec{Verdana}#1}
-}}}
-
-% \ruby 默认居中对齐，没有左对齐的选项，用 box 重新计算左对齐的宽度...
-\RequirePackage{calc} 
-\newcommand{\ent}[2][]{{\textnormal{
-	\hei
-	\ruby{{\hspace{-3pt}\fcolorbox{b}{w}{{\color{b}#2}}\hspace{-3pt}}}
-	{{\hspace{3pt}\color{b}\makebox[\widthof{#2}+\widthof{#2}/2][l]{\fontspec{Verdana}#1}}
-	}
-}}}
-
-% label, 用于"例","定理","推论"等
-\newcommand{\enl}[1]{{\colorbox{b}{{\hei\color{w}#1}}}}
-
-% 带圈数字序号
-\def\N#1{{\color{b}\scalebox{1.2}{\raisebox{.5pt}{\textcircled{\scalebox{0.8}{\raisebox{-.4pt}{$\mathbf{#1}$}}}}}}}
-
-
-
-%--------------------------------------------------
 % LePtC 彩色条目
 \RequirePackage{titlesec}
 %--------------------------------------------------
@@ -142,17 +103,64 @@
 
 % 章标题 ---------------
 
-% \titleformat{\section}{\centering\large\hei\color{w}}{\Large{\color{p}\fontspec{Adobe Heiti Std}\thesection}}{5pt}{\colorbox{r}}
+\titleformat{\section}{\Large\hei}{\Large\hei{\thesection}}{15pt}{}
 % no number
-\titleformat{\section}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{p}}
+% \titleformat{\section}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{p}}
 
-\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\line(1,0){540}}\vspace{-38.5pt}\section{#1}\label{#1}\end{minipage}}
-
-
-
+% \newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\line(1,0){540}}\vspace{-38.5pt}\section{#1}\label{#1}\end{minipage}}
 
 
 
 \RequirePackage{leptc}
+
+
+%--------------------------------------------------
+% 其它常用包
+
+%--------------------------------------------------
+
+
+% TEMPLATE ---------------
+
+\RequirePackage[xetex,colorlinks,unicode,pdfencoding=auto]{hyperref} 
+% 超链接包，unicode 和 \chap 有冲突？
+% \hypersetup{linkcolor=\color{o}, citecolor = \color{o}}
+
+
+\def\thudot{\unskip.}
+\bibliographystyle{thubib} % 参考文献格式
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
+
+
+\RequirePackage{datetime} % 当前时间
+%设置日期格式
+\renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+
+\RequirePackage{ulem} % 删除线 \sout{...}
+\RequirePackage{soul} % 高亮工具 \hl{...} \st{...}
+
+% http://tex.stackexchange.com/questions/48706/feynmf-doesnt-produce-feynman-diagram-at-all-in-txc
+% \RequirePackage{feynmp} % 用法：记得给整个文档包上
+% \begin{fmffile}{feynman}
+% \end{fmffile}
+
+
+\newenvironment{cabstract}{
+    \par {\hei 摘要：}}{
+    \par {\hei 关键词：}
+}
+
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+
+\RequirePackage{afterpage}
+\newcommand\blankpage{%
+\null
+\thispagestyle{empty}%
+\addtocounter{page}{-1}%
+\newpage}
+
+
+
 
 \endinput
