@@ -54,8 +54,12 @@
 
 \LetLtxMacro{\oldsin}{\sin}
 \renewcommand{\sin}{{\color{o}\,\oldsin\,}}
+\LetLtxMacro{\oldsec}{\sec}
+\renewcommand{\sec}{{\color{o}\,\oldsec\,}}
 \LetLtxMacro{\oldcos}{\cos}
 \renewcommand{\cos}{{\color{o}\,\oldcos\,}}
+\LetLtxMacro{\oldcsc}{\csc}
+\renewcommand{\csc}{{\color{o}\,\oldcsc\,}}
 \LetLtxMacro{\oldtan}{\tan}
 \renewcommand{\tan}{{\color{o}\,\oldtan\,}}
 \LetLtxMacro{\oldcot}{\cot}
@@ -63,8 +67,10 @@
 
 \LetLtxMacro{\oldsinh}{\sinh}
 \renewcommand{\sinh}{{\color{o}\,\oldsinh\,}}
+\newcommand{\sech}{{\color{o}\,\mathrm{sech}\,}}
 \LetLtxMacro{\oldcosh}{\cosh}
 \renewcommand{\cosh}{{\color{o}\,\oldcosh\,}}
+\newcommand{\csch}{{\color{o}\,\mathrm{csch}\,}}
 \LetLtxMacro{\oldtanh}{\tanh}
 \renewcommand{\tanh}{{\color{o}\,\oldtanh\,}}
 \LetLtxMacro{\oldcoth}{\coth}
@@ -82,20 +88,34 @@
 % 函数名只有一个字母时,不用正体区分?
 \newcommand{\He}{{\color{o}\,\mathrm{H}\,}} % 厄米函数
 \renewcommand{\La}{{\color{o}\,\mathrm{L}\,}} % 拉盖尔函数
+\newcommand{\Li}{{\color{o}\,\mathrm{Li}\,}} % 多对数函数...
 
-\renewcommand{\Re}{{\color{o}\text{Re}}}
-\renewcommand{\Im}{{\color{o}\text{Im}}}
+\renewcommand{\Re}{{\color{o}\mathrm{Re}}}
+\renewcommand{\Im}{{\color{o}\mathrm{Im}}}
+
+\newcommand{\sgn}{\,{\color{o}\mathrm{sgn}}\,}
 
 % 粗体被注册为群，双线被注册为数域，花体泛函
 % 字母形的算符高亮绿色
-\newcommand{\Fo}[1]{{\ensuremath{{\color{o}\mathcal{F}}\left[#1\right]}}}
+\newcommand{\Fo}[2][]{{\ensuremath{{\color{o}\mathcal{F}^{#1}}\left[#2\right]}}}
+
 
 \newcommand{\tr}{\,{\color{o}\mathrm{tr}}\,}
+\renewcommand{\det}{\,{\color{o}\mathrm{det}}\,}
 \newcommand{\diag}[1][]{\,{\color{o}\mathrm{diag}}
-	\ifthenelse{\equal{#1}{}}{}{\mat{#1}}\,}
+	\ifthenelse{\equal{#1}{}}{}{\mat[0.8]{#1}}\,}
 
-% \lim \sum \max \min 之类不作处理
-% 图画符号（\prime，根号）即使是算符不上色,因为有麻烦 ...
+% \lim \sum 之类不作处理?
+% 图画符号（\prime，根号）即使是算符也不上色,因为本身不易混淆,上色很麻烦 ...
+
+% 字母大型运算符加粗
+\LetLtxMacro{\oldmax}{\max}
+% \renewcommand{\max}{\mathop{\boldsymbol\oldmax}}
+\renewcommand{\max}{{\color{o}\oldmax}}
+\LetLtxMacro{\oldmin}{\min}
+% \renewcommand{\min}{\mathop{\boldsymbol\oldmin}}
+\renewcommand{\min}{{\color{o}\oldmin}}
+
 % TODO: \mathcal 表示范畴或者描述渐进行为的大O记号，\mathfrak表示李群对应的李代数  \mathfrak{g}, \mathfrak{h}
 
 
@@ -124,7 +144,9 @@
 \renewcommand{\nabla}{{\color{o}\mathbf{\oldnabla}}}
 \newcommand{\nablad}{{\color{o}\mathbf{\oldnabla\cdot}}}
 \newcommand{\nablat}{{\color{o}\mathbf{\oldnabla\times}}}
-\newcommand{\nablas}{{\color{o}\mathbf{\oldnabla^2}}}
+\newcommand{\nablas}{{\color{o}\oldnabla^2}}
+
+\newcommand{\squares}{{\color{o}\square^2}}
 
 \LetLtxMacro{\olddelta}{\delta}
 \renewcommand{\delta}{{\color{o}\olddelta}}
@@ -141,6 +163,12 @@
 \renewcommand{\Gamma}{\varGamma}
 \LetLtxMacro{\oldLambda}{\Lambda}
 \renewcommand{\Lambda}{\varLambda}
+\LetLtxMacro{\oldOmega}{\Omega}
+\renewcommand{\Omega}{\varOmega}
+\LetLtxMacro{\oldTheta}{\Theta}
+\renewcommand{\Theta}{\varTheta}
+\LetLtxMacro{\oldSigma}{\Sigma}
+\renewcommand{\Sigma}{\varSigma}
 \LetLtxMacro{\oldPhi}{\Phi}
 \renewcommand{\Phi}{\varPhi}
 \LetLtxMacro{\oldPsi}{\Psi}
@@ -166,7 +194,7 @@
 
 % 偏微分分式  ---------------
 
-\newcommand{\pd}[3][]{\frac{\partial[#1] #2}{\partial #3^{#1}}}
+\newcommand{\pd}[3][]{\frac{\partial[#1] #2}{\partial {#3}^{#1}}}
 \newcommand{\pdat}[4][]{ \mathchoice
 	{\Big(\pd[#1]{#2}{#3}\Big)_{#4}}
 	{\big(\pd[#1]{#2}{#3}\big)_{#4}}
@@ -199,6 +227,13 @@
 % 矢量与导数  ---------------
 
 \renewcommand{\vec}[1]{\vv{#1}}
+% \renewcommand{\vec}[1]{
+	% \ifthenelse{\equal{#1}{i}}{\vv{\imath}}{
+		% \ifthenelse{\equal{#1}{j}}{\vv{\jmath}}{
+			% \vv{#1}
+		% }
+	% }
+% }
 % \renewcommand{\vec}[1]{\overrightharp{#1}}
 \newcommand{\vecd}[1]{\dot{\vec{#1}}}
 \newcommand{\vecdd}[1]{\ddot{\vec{#1}}}
@@ -210,6 +245,7 @@
 
 % 左矢量
 \newcommand{\lvec}[1]{\overset{\rotatebox[origin=c]{180}{$\fldr$}}{#1}}
+\newcommand{\lrvec}[1]{\overset{\rotatebox[origin=c]{180}{$\fldr$}\hspace{-3pt}\raisebox{-1.6pt}{$\fldr$}}{#1}} % 在 \lrvec{\partial^\mu} 上效果很好...
 
 % 发明一种新的记号区分对t求导和对s求导（待议） ---------------
 
@@ -234,6 +270,9 @@
 %--------------------------------------------------
 % 方便矩阵，包括方括号矩阵、行列式
 % 圆括号p，方括号b，花括号B，单竖v，双竖V
+\RequirePackage{arydshln} % ,leftidx,mathtools矩阵中画虚线…
+% \setlength{\dashlinedash}{.4pt}
+% \setlength{\dashlinegap}{.8pt}
 %--------------------------------------------------
 
 
@@ -383,24 +422,29 @@
 % 其它环境 ---------------
 
 % 灰色代表注释笔记
-\newcommand{\com}[1]{{\color{y}(#1)}}
+% \newcommand{\com}[1]{{\color{y}(#1)}}
+\newcommand{\com}[1]{
+\ifmmode{{\color{y}{#1}}}
+\else{{\color{y}(#1)}}
+\fi} 
 \newcommand{\coms}[1]{{\color{y}%
 	$\left(\tab{#1}\right)$%
 }} 
 
 % 方括号代表证明
-% \newcommand{\prv}[1]{{\color{g}{「#1」}}} 
-\newcommand{\prv}[1]{
-\ifmmode{{\color{g}{#1}}}
-\else{\!{\color{g}{「#1」}}\!\!}
-\fi} 
+\newcommand{\prv}[1]{{\color{g}{#1}}} 
+% \newcommand{\prv}[1]{
+% \ifmmode{{\color{g}{#1}}}
+% \else{\!{\color{g}{「#1」}}\!\!}
+% \fi} 
 % \left[ \right]? \left| \right|? \lceil \rfloor? 还是啥都不用省心...
 % \newcommand{\prvs}[1]{{\color{g}%
 	% $\left|\tab{#1}\right|$%
 % }} 
-\newcommand{\prveq}[1]{
-{\color{g}{ $\lceil\left. #1 \right.\rfloor$}}}
-\newcommand{\prveqd}[1]{{\color{g}{ \eqd{\Big\lceil\left. #1 \right.\Big\rfloor}}}}
+\newcommand{\prveq}[1]{{\color{g}{ \eq{#1}}}} 
+% {\color{g}{ $\lceil\left. #1 \right.\rfloor$}}}
+\newcommand{\prveqd}[1]{{\color{g}{ \eqd{#1}}}} 
+% {{\color{g}{ \eqd{\Big\lceil\left. #1 \right.\Big\rfloor}}}}
 \newcommand{\prveqa}[1]{{\color{g}{\eqa{#1}}}}
 
 % 红色尖括号代表链接
@@ -437,16 +481,11 @@
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
 
-% 字母大型运算符加粗
-\LetLtxMacro{\oldmax}{\max}
-\renewcommand{\max}{\mathop{\boldsymbol\oldmax}}
-\LetLtxMacro{\oldmin}{\min}
-\renewcommand{\min}{\mathop{\boldsymbol\oldmin}}
-
 % spacing ---------------
 
 % TODO: 改不了字体?
-\renewcommand{\to}{{\ensuremath{\ \mathbf{\rightarrow}\ }}}
+% \renewcommand{\to}{{\ensuremath{\ \mathbf{\rightarrow}\ }}}
+\renewcommand{\to}{{\ \color{g}\scalebox{1.5}{$\fldr$}\ }}
 
 \newcommand{\onto}[2][]{{\,\ensuremath{\xrightarrow[#1]{#2}}\,}}
 
@@ -463,6 +502,7 @@
 \RequirePackage{wasysym} % 提供 \apprge \apprle
 \RequirePackage{esint} % 提供 \varoiint，要 overide 掉 amsmath
 \RequirePackage{extarrows} % 等号上面写东西 \xlongequal[below]{above}
+\RequirePackage{slashed} % 协变导数 \cancel 不行?
 %--------------------------------------------------
 
 
@@ -473,7 +513,7 @@
 \newcommand{\LePtC}{L\hspace{-2pt}\raisebox{4pt}{e}\hspace{1pt}P\raisebox{-1pt}{\scalebox{0.8}{t}}\hspace{1pt}C}
 
 % text 中打 $\sim$
-\newcommand{\tld}{{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}}
+\newcommand{\tld}{{\raise.17ex\hbox{\!$\mathtt{\sim}$}}}
 
 % 区分一撇 comma 和求导 slash，会覆盖掉 accent commands
 \newcommand{\co}[1][]{\ensuremath{\mathchoice
@@ -527,6 +567,7 @@
 % 角度，温度 ---------------
 
 \renewcommand{\deg}{^\circ} % text 模式用 \textsuperscript{}
+\newcommand{\oA}{\text{\AA}} % angstrom
 
 \newcommand{\oC}{{\ensuremath{\color{b}\,^{\circ}{\mathrm C}}}}
 \newcommand{\oF}{{\ensuremath{\color{b}\,^{\circ}{\mathrm F}}}}
@@ -542,8 +583,18 @@
 
 % 量子力学 ---------------
 
+\newcommand{\aB}{a_0} % 玻尔半径
+\newcommand{\RH}{R_\mathrm{H}} % 里德伯常量
+\newcommand{\ladB}{\lambda_{\mathrm{dB}}} % 德布罗意波长
+
 \newcommand{\hatv}[1]{\ensuremath{\hat{\vec{#1}}}}
 \newcommand{\hatvs}[1]{\ensuremath{\hat{\vec{#1}}\raisebox{3pt}{$^2$}}}
+
+\newcommand{\sigmatot}{\sigma_{\mathrm{tot}}}
+
+\newcommand{\vBeff}[1][]{\vec{B}_{\text{eff}#1}}
+\newcommand{\Beff}[1][]{B_{\text{eff}#1}}
+
 
 % bar ---------------
 

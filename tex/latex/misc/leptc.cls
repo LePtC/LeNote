@@ -84,13 +84,13 @@
 \newcommand{\kai}{\CJKfamily{kai}} 
 
 % 自动把 l 全部换成 \ell
-\mathcode`l="8000
-\begingroup
-\makeatletter
-\lccode`\~=`\l
-\DeclareMathSymbol{\lsb@l}{\mathalpha}{letters}{`l}
-\lowercase{\gdef~{\ifnum\the\mathgroup=\m@ne \ell \else \lsb@l \fi}}%
-\endgroup
+% \mathcode`l="8000
+% \begingroup
+% \makeatletter
+% \lccode`\~=`\l
+% \DeclareMathSymbol{\lsb@l}{\mathalpha}{letters}{`l}
+% \lowercase{\gdef~{\ifnum\the\mathgroup=\m@ne \ell \else \lsb@l \fi}}%
+% \endgroup
 
 
 
@@ -131,6 +131,9 @@
 
 % 带圈数字序号
 \def\N#1{{\color{b}\scalebox{1.2}{\raisebox{.5pt}{\textcircled{\scalebox{0.8}{\raisebox{-.4pt}{$\mathbf{#1}$}}}}}}}
+
+% 首字母缩写
+\renewcommand{\B}[1]{{\textbf{#1}}}
 
 
 

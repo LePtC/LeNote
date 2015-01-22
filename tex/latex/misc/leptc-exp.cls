@@ -50,7 +50,7 @@
 \RequirePackage{subfigure}
 
 \RequirePackage{caption}
-\RequirePackage{subcaption}
+% \RequirePackage{subcaption}
 \setlength{\abovecaptionskip}{0pt} % 图表都另外做标题
 \setlength{\belowcaptionskip}{2pt}
 \setlength{\intextsep}{2pt}
