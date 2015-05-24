@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 笔记
 % filename  = leptc.sty
 % author = LePtC
-% version = 2014.12
+% version = 2015.05
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -32,7 +32,7 @@
 % 公式设置 ---------------
 
 \setlength{\thickmuskip}{1 mu} % 等号两边空太大
-\setlength{\medmuskip}{1 mu} 
+\setlength{\medmuskip}{1 mu}
 \setlength{\thinmuskip}{2 mu} % 会缩小 \, 的距离
 
 % 中括号大括号有特殊含义，公式中多层括号尽量都用圆括号
@@ -46,7 +46,7 @@
 \RequirePackage{tabularx}
 \RequirePackage{multirow}
 \setlength{\extrarowheight}{2pt} % 表格上下还是太紧
-\renewcommand{\arraystretch}{1.2} % 后面矩阵会单独处理
+\renewcommand{\arraystretch}{1.0} % 后面矩阵会单独处理
 \setlength{\tabcolsep}{5pt} % 表格列间距又太多...
 
 \RequirePackage{subcaption}
@@ -68,7 +68,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 % 解决 math 和 text 里逗号不一样的问题
-\RequirePackage[adobe-fangsong]{mathdesign} 
+\RequirePackage[adobe-fangsong]{mathdesign}
 \RequirePackage{mathrsfs} % \emf
 % \RequirePackage{unicode-math} % 不兼容！
 \RequirePackage{dtklogos} % 提供 \LaTeX \XeTeX 等
@@ -77,11 +77,13 @@
 
 
 \setmainfont{Times New Roman}
-\setCJKmainfont[BoldFont=Adobe Heiti Std, ItalicFont=Adobe Kaiti Std]{Adobe Fangsong Std}
-\setCJKfamilyfont{hei}{Adobe Heiti Std}
-\newcommand{\hei}{\CJKfamily{hei}} 
-\setCJKfamilyfont{kai}{Adobe Kaiti Std}
-\newcommand{\kai}{\CJKfamily{kai}} 
+% \setCJKmainfont[BoldFont=Adobe Heiti Std, ItalicFont=Adobe Kaiti Std]{Adobe Fangsong Std}
+% \setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setCJKmainfont{Adobe Fangsong Std}
+\setCJKfamilyfont{hei}{方正准圆_GBK}
+\newcommand{\hei}{\CJKfamily{hei}}
+% \setCJKfamilyfont{kai}{Adobe Kaiti Std}
+% \newcommand{\kai}{\CJKfamily{kai}}
 
 % 自动把 l 全部换成 \ell
 % \mathcode`l="8000
@@ -102,23 +104,23 @@
 
 
 \renewcommand{\rubysize}{0.7}
-\renewcommand{\rubysep}{-0.1ex} 
+\renewcommand{\rubysep}{-0.1ex}
 % 英文为 Verdana 体
-\newcommand{\eng}[2][]{\ruby{#2}{\textnormal{\fontspec{Verdana}#1}}} 
+\newcommand{\eng}[2][]{\ruby{#2}{\textnormal{\fontspec{Verdana}#1}}}
 % 英文注在右侧
-\newcommand{\engr}[2][]{#2\ \textnormal{\small\fontspec{Verdana}#1}} 
+\newcommand{\engr}[2][]{#2\ \textnormal{\small\fontspec{Verdana}#1}}
 
-\setlength\fboxsep{1pt} % 设框的偏移 
+\setlength\fboxsep{1pt} % 设框的偏移
 \setlength\fboxrule{0.5pt} % 设框宽 \fcolorbox{b}{b}{text}
 
 \newcommand{\entc}[2][]{{\color{b}\textnormal{
-	\hei 
+	\hei
 	\ruby{{\fcolorbox{b}{w}{{\color{b}#2}}}}
 	{\fontspec{Verdana}#1}
 }}}
 
 % \ruby 默认居中对齐，没有左对齐的选项，用 box 重新计算左对齐的宽度...
-\RequirePackage{calc} 
+\RequirePackage{calc}
 \newcommand{\ent}[2][]{{\textnormal{
 	\hei
 	\ruby{{\hspace{-3pt}\fcolorbox{b}{w}{{\color{b}#2}}\hspace{-3pt}}}

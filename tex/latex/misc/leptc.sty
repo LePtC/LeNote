@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 符号部分
 % filename  = leptc.sty
 % author = LePtC
-% version = 2014.12
+% version = 2015.05
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -41,15 +41,17 @@
 
 % 函数名称高亮橙色 ---------------
 
+% ln, lg, and lb respectively for the natural, decimal, and binary logarithmic functions
 \LetLtxMacro{\oldlog}{\log}
 \renewcommand{\log}{{\color{o}\,\oldlog\,}}
 \LetLtxMacro{\oldlg}{\lg}
 \renewcommand{\lg}{{\color{o}\,\oldlg\,}}
 \LetLtxMacro{\oldln}{\ln}
 \renewcommand{\ln}{{\color{o}\,\oldln\,}}
+\newcommand{\lb}{{\color{o}\,\mathrm{lb}\,}}
 
 % 自然对数正体，元电荷量斜体
-\newcommand{\e}{{\color{o}\,\mathbf{e}}} 
+\newcommand{\e}{{\color{o}\,\mathbf{e}}}
 \renewcommand{\exp}{{\color{o}\mathrm{exp}}}
 
 \LetLtxMacro{\oldsin}{\sin}
@@ -107,6 +109,7 @@
 
 % \lim \sum 之类不作处理?
 % 图画符号（\prime，根号）即使是算符也不上色,因为本身不易混淆,上色很麻烦 ...
+\renewcommand{\mod}{{\color{o}\,\mathrm{mod}\,}}
 
 % 字母大型运算符加粗
 \LetLtxMacro{\oldmax}{\max}
@@ -129,11 +132,11 @@
 % 单个字母 ---------------
 
 % 微分算符正体，带指数的用法 \dif[2] TODO: 不要这样用了…
-\newcommand{\dif}[1][]{{\color{o}\,\ensuremath{\mathrm{d}}}^{#1}} 
+\newcommand{\dif}[1][]{{\color{o}\,\ensuremath{\mathrm{d}}}^{#1}}
 % TODO: \ensuremath{\,\mathrm{d}#1\@ifnextchar\dif{\,}{}}
 
 % 协变导数
-\newcommand{\Dif}{{\color{o}\mathrm{D}}} 
+\newcommand{\Dif}{{\color{o}\mathrm{D}}}
 
 % 偏导数
 \LetLtxMacro{\oldpartial}{\partial}
@@ -180,16 +183,20 @@
 \newcommand{\bigO}{{\color{o}\mathrm{O}}}
 \newcommand{\smallo}{{\color{o}\mathrm{o}}}
 
+% 格式微调，会死循环原因不明
+% \renewcommand{\exists}[1]{\exists\,}
+% \renewcommand{\forall}[1]{\forall\,}
+
 % 常微分分式 ---------------
 
 \newcommand{\od}[3][]{\frac{\dif[#1] #2}{\dif #3^{#1}}}
 % \left. \right| 不好看
 % \mathchoice: display, text, script and scriptscript
 \newcommand{\odat}[4][]{ \mathchoice
-	{\od[#1]{#2}{#3}\Big|_{#4}} 
-	{\od[#1]{#2}{#3}\big|_{#4}} 
-	{\od[#1]{#2}{#3}|_{#4}} 
-	{\od[#1]{#2}{#3}|_{#4}} 
+	{\od[#1]{#2}{#3}\Big|_{#4}}
+	{\od[#1]{#2}{#3}\big|_{#4}}
+	{\od[#1]{#2}{#3}|_{#4}}
+	{\od[#1]{#2}{#3}|_{#4}}
 }
 
 % 偏微分分式  ---------------
@@ -239,9 +246,9 @@
 \newcommand{\vecdd}[1]{\ddot{\vec{#1}}}
 
 % 方便单位矢量
-\newcommand{\ve}[1]{\,\vec{e_{#1}}} 
-\newcommand{\ved}[1]{\,\vecd{e_{#1}}} 
-\newcommand{\vedd}[1]{\,\vecdd{e_{#1}}} 
+\newcommand{\ve}[1]{\,\vec{e_{#1}}}
+\newcommand{\ved}[1]{\,\vecd{e_{#1}}}
+\newcommand{\vedd}[1]{\,\vecdd{e_{#1}}}
 
 % 左矢量
 \newcommand{\lvec}[1]{\overset{\rotatebox[origin=c]{180}{$\fldr$}}{#1}}
@@ -291,7 +298,13 @@
 	\hspace{-10pt}
 	\ensuremath{\begin{bmatrix}#2\end{bmatrix}}
 	\hspace{-8pt}
-}} 
+}}
+\newcommand{\matp}[2][1.0]{\scalebox{#1}{
+	\renewcommand{\arraystretch}{.8}
+	\hspace{-10pt}
+	\ensuremath{\begin{pmatrix}#2\end{pmatrix}}
+	\hspace{-8pt}
+}}
 
 % 行列式 ---------------
 
@@ -344,10 +357,10 @@
 % 普通插图 ---------------
 
 % \figin[相对宽度]{图片文件名}
-\newcommand{\figin}[2][1.0]{ 
+\newcommand{\figin}[2][0.99]{
 	\includegraphics[width=#1\textwidth]{#2}
 }
-\newcommand{\fig}[2][1.0]{ 
+\newcommand{\fig}[2][0.99]{
 	\begin{figure}[!htb]\centering
 		\figin[#1]{#2}
 	\end{figure}
@@ -355,7 +368,7 @@
 
 % 并排插图 ---------------
 
-\newcommand{\figg}[6]{ 
+\newcommand{\figg}[6]{
 	\begin{figure}[!htb]\centering
 		\begin{subfigure}[!htb]{#2\textwidth}\vspace{#3 pt}
 			\includegraphics[width=\textwidth]{#1}
@@ -396,7 +409,7 @@
 
 %--------------------------------------------------
 % 方便贴源代码
-\RequirePackage{listings}  
+\RequirePackage{listings}
 %--------------------------------------------------
 
 
@@ -426,31 +439,31 @@
 \newcommand{\com}[1]{
 \ifmmode{{\color{y}{#1}}}
 \else{{\color{y}(#1)}}
-\fi} 
+\fi}
 \newcommand{\coms}[1]{{\color{y}%
 	$\left(\tab{#1}\right)$%
-}} 
+}}
 
 % 方括号代表证明
-\newcommand{\prv}[1]{{\color{g}{#1}}} 
+\newcommand{\prv}[1]{{\color{g}{#1}}}
 % \newcommand{\prv}[1]{
 % \ifmmode{{\color{g}{#1}}}
 % \else{\!{\color{g}{「#1」}}\!\!}
-% \fi} 
+% \fi}
 % \left[ \right]? \left| \right|? \lceil \rfloor? 还是啥都不用省心...
 % \newcommand{\prvs}[1]{{\color{g}%
 	% $\left|\tab{#1}\right|$%
-% }} 
-\newcommand{\prveq}[1]{{\color{g}{ \eq{#1}}}} 
+% }}
+\newcommand{\prveq}[1]{{\color{g}{ \eq{#1}}}}
 % {\color{g}{ $\lceil\left. #1 \right.\rfloor$}}}
-\newcommand{\prveqd}[1]{{\color{g}{ \eqd{#1}}}} 
+\newcommand{\prveqd}[1]{{\color{g}{ \eqd{#1}}}}
 % {{\color{g}{ \eqd{\Big\lceil\left. #1 \right.\Big\rfloor}}}}
 \newcommand{\prveqa}[1]{{\color{g}{\eqa{#1}}}}
 
 % 红色尖括号代表链接
-% \newcommand{\link}[2][]{{\color{p}{$\langle$#1$-$\nameref{#2}$\rangle$}}} 
+% \newcommand{\link}[2][]{{\color{p}{$\langle$#1$-$\nameref{#2}$\rangle$}}}
 % 未整合前先用这个
-\newcommand{\link}[2][]{{\color{p}{$\langle$#1$-$#2$\rangle$}}} 
+\newcommand{\link}[2][]{{\color{p}{$\langle$#1$-$#2$\rangle$}}}
 
 
 
@@ -468,15 +481,18 @@
 \newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
 \newcommand{\eqna}[1]{\eqn{\begin{aligned}#1\end{aligned}}}
 
+% damn bar...
+\renewcommand{\bar}[1]{\overline{#1}}
+
 % 物理单位高亮紫色 ---------------
 
 % 虚数单位正体
 % \RequirePackage{bbm} % Mathematica 狂人可设 e i 双线体 \mathbbm{i}
-\newcommand{\ii}{{\color{b}\mathbf{i}}} 
+\newcommand{\ii}{{\color{b}\mathbf{i}}}
 
-% \RequirePackage{siunitx} % 物理单位紫色，用法\SI{134.976}{MeV} 
+% \RequirePackage{siunitx} % 物理单位紫色，用法\SI{134.976}{MeV}
 % 改用下面这种方案了
-\newcommand{\uni}[1]{{\ensuremath{\color{b}\ \mathrm{#1}}}} 
+\newcommand{\uni}[1]{{\ensuremath{\color{b}\ \mathrm{#1}}}}
 
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
@@ -561,12 +577,16 @@
 
 % 电磁学 ---------------
 
-\newcommand{\emf}{\mathscr{E}} % electromotive force 
+\newcommand{\emf}{\mathscr{E}} % electromotive force
 \newcommand{\muB}{\mu_\mathrm{B}} % 玻尔磁子
 
 % 角度，温度 ---------------
 
-\renewcommand{\deg}{^\circ} % text 模式用 \textsuperscript{}
+\renewcommand{\deg}{
+\ifmmode{^\circ}
+\else{\textsuperscript{$\circ$}}
+\fi
+}
 \newcommand{\oA}{\text{\AA}} % angstrom
 
 \newcommand{\oC}{{\ensuremath{\color{b}\,^{\circ}{\mathrm C}}}}
@@ -578,8 +598,8 @@
 % 相对论 ---------------
 
 \newcommand{\Mp}{M_\mathrm{P}} % 普朗克单位制
-\newcommand{\lp}{l_\mathrm{P}} 
-\newcommand{\tp}{t_\mathrm{P}} 
+\newcommand{\lp}{l_\mathrm{P}}
+\newcommand{\tp}{t_\mathrm{P}}
 
 % 量子力学 ---------------
 
@@ -594,6 +614,32 @@
 
 \newcommand{\vBeff}[1][]{\vec{B}_{\text{eff}#1}}
 \newcommand{\Beff}[1][]{B_{\text{eff}#1}}
+
+
+% 群论 ---------------
+
+% \newcommand{\nors}{\trianglelefteq}
+
+\makeatletter
+\newcommand{\nors}{%
+  \mathrel{\mathpalette\sl@unlhd\relax}%
+}
+
+\newcommand{\sl@unlhd}[2]{%
+  \sbox\z@{$#1\lhd$}%
+  \sbox\tw@{$#1\leqslant$}%
+  \dimen@=\ht\tw@
+  \advance\dimen@-\ht\z@
+  \ifx#1\displaystyle
+    \advance\dimen@ .2pt
+  \else
+    \ifx#1\textstyle
+      \advance\dimen@ .2pt
+    \fi
+  \fi
+  \ooalign{\raisebox{\dimen@}{$\m@th#1\lhd$}\cr$\m@th#1\leqslant$\cr}%
+}
+\makeatother
 
 
 % bar ---------------
@@ -624,7 +670,7 @@
 
 % TEMPLATE ---------------
 
-\RequirePackage[xetex,colorlinks,unicode,pdfencoding=auto]{hyperref} 
+\RequirePackage[xetex,colorlinks,unicode,pdfencoding=auto]{hyperref}
 % 超链接包，unicode 和 \chap 有冲突？
 % \hypersetup{linkcolor=\color{o}, citecolor = \color{o}}
 
