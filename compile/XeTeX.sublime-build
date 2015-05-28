@@ -1,0 +1,8 @@
+{
+    "cmd": ["${packages}\\User\\xetex.bat", "${file_base_name}"],
+    "file_regex": "^((?:.:)?[^:\n\r]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    // "file_regex": "(.*):([0-9]+):(.*)",
+    "working_dir": "${file_path}",
+    "selector": "text.tex.latex",
+    "encoding": "UTF-8"
+}

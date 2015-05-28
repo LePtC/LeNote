@@ -80,7 +80,7 @@
 % \setCJKmainfont[BoldFont=Adobe Heiti Std, ItalicFont=Adobe Kaiti Std]{Adobe Fangsong Std}
 % \setCJKfamilyfont{hei}{Adobe Heiti Std}
 \setCJKmainfont{Adobe Fangsong Std}
-\setCJKfamilyfont{hei}{方正准圆_GBK}
+\setCJKfamilyfont{hei}{锐字云字库准圆体GBK}
 \newcommand{\hei}{\CJKfamily{hei}}
 % \setCJKfamilyfont{kai}{Adobe Kaiti Std}
 % \newcommand{\kai}{\CJKfamily{kai}}
@@ -151,7 +151,7 @@
 % no number
 \titleformat{\section}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{p}}
 
-\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\line(1,0){540}}\vspace{-38.5pt}\section{#1}\label{#1}\end{minipage}}
+\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\line(1,0){540}}\vspace{-39pt}\section{#1}\label{#1}\end{minipage}}
 
 
 
