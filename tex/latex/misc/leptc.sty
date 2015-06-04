@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 符号部分
 % filename  = leptc.sty
 % author = LePtC
-% version = 2015.05
+% version = 2015.06
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -97,7 +97,11 @@
 
 \newcommand{\sgn}{\,{\color{o}\mathrm{sgn}}\,}
 
+
 % 粗体被注册为群，双线被注册为数域，花体泛函
+\newcommand{\aut}{\,{\mathbf{Aut}}\,}
+\newcommand{\inn}{\,{\mathbf{Inn}}\,}
+\renewcommand{\ker}{\,{\mathbf{Ker}}\,}
 % 字母形的算符高亮绿色
 \newcommand{\Fo}[2][]{{\ensuremath{{\color{o}\mathcal{F}^{#1}}\left[#2\right]}}}
 
@@ -509,13 +513,18 @@
 % spacing ---------------
 
 % TODO: 改不了字体?
-% \renewcommand{\to}{{\ensuremath{\ \mathbf{\rightarrow}\ }}}
-\renewcommand{\to}{{\ \color{g}\scalebox{1.5}{$\fldr$}\ }}
+\renewcommand{\to}{{\color{g}\ensuremath{\,\rightarrow\,}}}
+% \renewcommand{\to}{{\ \color{g}\scalebox{1.5}{$\fldr$}\ }}
 
-\newcommand{\onto}[2][]{{\,\ensuremath{\xrightarrow[#1]{#2}}\,}}
+\newcommand{\onto}[2][]{{\color{g}\,\ensuremath{\xrightarrow[#1]{#2}}\,}}
+
+\LetLtxMacro{\oldRightarrow}{\Rightarrow}
+\renewcommand{\Rightarrow}{\ensuremath{\,\color{g}\oldRightarrow\,}}
+\LetLtxMacro{\oldLeftarrow}{\Leftarrow}
+\renewcommand{\Leftarrow}{\ensuremath{\,\color{g}\oldLeftarrow\,}}
 
 % 充要 necessary and sufficient
-\newcommand{\ns}{{\ensuremath{
+\newcommand{\ns}{{\color{g}\ensuremath{
 \,\mathbf{\Leftrightarrow}\,}}}
 % TODO: 怎么只改箭头类字符的字体?
 
@@ -539,6 +548,9 @@
 
 % text 中打 $\sim$
 \newcommand{\tld}{{\raise.17ex\hbox{\!$\mathtt{\sim}$}}}
+\newcommand{\xsim}[2][1.2]{
+  \mathrel{\overset{#2}{\scalebox{#1}[1]{$\sim$}}}
+}
 
 % 区分一撇 comma 和求导 slash，会覆盖掉 accent commands
 \newcommand{\co}[1][]{\ensuremath{\mathchoice
