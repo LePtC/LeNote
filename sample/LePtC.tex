@@ -8,6 +8,10 @@
 
 项目主页：\url{https://github.com/LePtC/LeNote }
 
+笔记主页：\url{http://leptc.github.io/lenote }
+
+使用 \href{http://opensource.org/licenses/MIT}{MIT 开源协议}
+
 Last compiled on {\yyyymmdddate\today} at {\hhmmsstime} [UTC+8]
 
 
@@ -19,18 +23,18 @@ Windows 系统可选择安装
 然后选择自动安装缺失的包,或直接安装
 \href{http://www.ctex.org/CTeXDownload }{CTeX Full}
 或 \href{http://www.ctan.org/tex-archive/systems/texlive/Images/ }{TeXLive iso} ,
-前两者是把 \file{leptc.cls} 放到
+前两者是把 \code{leptc.cls} 放到
 \code{CTeX/MiKTeX/tex/latex/} 目录下,
 然后在 MiKTeX 的 Settings 里面点 Refresh FNDB 即可,
 后者是在 \code{texlive/2014/texmf.cnf} 末尾加上
 \\ \code{TEXMFLOCAL = $SELFAUTOPARENT/../texmf-local,E:/blabla/(anypath)},
-\\然后把\file{leptc.cls} 放到
+\\然后把\code{leptc.cls} 放到
 \code{(anypath)/tex/latex/misc} 这个路径中,
 在命令行执行 \code{texhash} 即可
 
 \ent[compiler]{编译器}
 只有 latex+dvipdfmx 或 xelatex 编译出的 pdf 能正确复制,
-前者请参考文件 \file{leptc.sty}
+前者请参考文件 \code{leptc.sty}
 
 dvipdfmx 方案本狸已停止更新,推荐使用 \XeTeX 方案,
 xelatex 的编译命令及常用选项：
@@ -38,8 +42,8 @@ xelatex 的编译命令及常用选项：
 \code{xelatex --quiet --synctex=1 -interaction=nonstopmode $(NAME_PART).tex}
 
 xelatex 需要多编译几遍才能正确生成书签,
-可在所有编译完成后加入对
-\file{.aux,.out,.log}等文件的清理命令
+详见 \href{https://github.com/LePtC/LeNote}{项目主页}的
+\code{compile} 文件夹
 
 \com{xelatex.exe 等编译器均在
 \code{CTeX/MiKTeX/miktex/bin/}
@@ -52,21 +56,26 @@ xelatex 需要多编译几遍才能正确生成书签,
 熟悉哪个就用哪个好啦,
 初学者可以就用安装\TeX 系统时带的 TeXworks
 
-萌狸用的是 notepad++, synctex 需要借助一个 dde 插件
-cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
+有关编辑器不同的设置方法见\href{https://github.com/LePtC/LeNote}{项目主页}的 \code{README.md}
 
 \ent[reader]{阅读器} 推荐使用
 \href{http://blog.kowalczyk.info/software/sumatrapdf/download-free-pdf-viewer-cn.html }{SumatraPDF}
-来查看 pdf,有
+来查看 pdf, 有
 \href{http://xhmikosr.1f0.de/sumatrapdf/ }{64 位版本}
-\com{非官方的}
+\com{非官方}
 
-支持 synctex,需在 \code{InverseSearchCmdLine} 里填入相应编辑器反向查找的命令
+支持 synctex,需在 \code{InverseSearchCmdLine} 里填入相应编辑器的反向查找命令
 
-\ent[tex file]{tex 文档}
+Notepad++:
+\code{\"C:\\Program\ Files\ (x86)\\Notepad++\\notepad++.exe\" -n\%l \"\%f\"}
+
+Sublime:
+\code{\"C:\\Program\ Files\\Sublime\\sublime_text.exe\" \"\%f:\%l\"}
+
+\ent[tex file]{\TeX 文档}
 新建filename.tex,存为 UTF-8 无 BOM 格式,
 开头为 \verb|\documentclass{leptc}|,
-然后就可以 \\ \verb|\begin{document}| 闭着眼睛写啦,
+然后就可以在 \verb|\begin{document} ... \end{document}| 之间写正文啦,
 喵 \tld
 
 \com{待解决：文档名不能有空格否则不能识别,
@@ -84,18 +93,17 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\verb|\chap{中文}|
 	&\com{说明\eq{\downarrow} }\\
 
-
+  双语词条
 	&\ent[\B Superconducting \B{QU}antum \B Interference \B Device]{超导量子干涉器}
-
-	&\verb|\ent[entry]{词条} |
+	&\verb|\ent[\B Entry]{词条} |
 	&居中用 \verb|\entc| 		\\
 
-
+  双语正文
 	&\eng[English translation]{注英文}
 	&\verb|\eng[English]{正文} |
 	& 用 \verb|\engr| 则英文标在右侧 		\\
 
-
+  标签
 	&\enl{标签}
 	&\verb|\enl{标签} |
 	& 用于\enl{例},\enl{定理},\enl{推论}等		\\
@@ -103,89 +111,162 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	inline公式
 	&\eq{f(x,y)=\frac{\e^x}{y}}
 	&\verb|\eq{\frac{\e^x}{y}}|
-	&放弃用\verb|$$|,配对容易出错	\\
+	&长公式不用 \verb|$$|, 括号便于配对	\\
 
 	display公式
 	&\eqd{f(x,y)=\frac{\e^x}{y}}
 	&\verb|\eqd{\frac{\e^x}{y}}|
 	&修改公式模式只需加一个 \verb|d|即可	\\
 
+  圆括号表注释
 	&\com{注释}
 	&\verb|\com{注释}|
-	&多行注释用\verb|\coms{注\\释}|	\\
+	&多行注释: \verb|\coms{注\\释}|	\\
 
-	证明
-	&\eq{\vec{v}=\prv{\od{}{t}(r \ve{r})=}\dot r\ve{r}+r\dot \theta\ve{\theta}\quad}
+	方括号表证明
+	&\eq{\vec{v}=\prv{\od{}{t}(r\ve{r})=}\dot{r}\ve{r}+r\dot\theta\ve{\theta}}
 	&\verb|\prv{blabla=}|
 	&灰色的优先级低于自动高亮 	\\
 
-	笔记间的链接
+	尖括号表链接
 	&\link{颜色}
 	&\verb|\link[笔记名]{章节名}|
 	&同一笔记内的链接笔记名可省略	\\
 
 	贴图
 	&\figin[0.05]{ali}
-	&\verb|\fig[相对页面宽度]{图片名}|
-	&内置\verb|\figin|多图并排\verb|\figgg|	\\
-
-\end{tabular}
-
-\chap{排版}
-
-\figr{ali.jpg}{0.1}
-{
-图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to 图文混排 \to
-}
-\begin{tabular}{ll}
-{\ttfamily
-\begin{lstlisting}[language={[LaTeX]TeX}]
-\figr{ali.jpg}{0.1}
-{
-图文混排 \to
-...
-（所有左排的内容）
-}
-\end{lstlisting}}
-
-&\coms{记得在最后一个右括号之后还要有一个换行\\
-待解决：图文混排环境内不支持 listing?}\\
+	&\verb|\fig[相对宽度]{图片名}|
+	&内置: \verb|\figin| 多图并排: \verb|\figgg|	\\
 
 \end{tabular}
 
 
+\chap{实例}
 
 
+\com{本笔记均指实数域} \ent[orthogonal group]{正交群}
+\eq{\mathbf{O}(n)}
+需 \eq{\frac12n(n-1)} 个独立参数
+\prv{约束方程\eq{O^TO=I}上下三角的$=0$对称}
+
+
+\eq{\mathbf{O}(n)=\mathbf{SO}(n)\otimes\{I,-I\}}
+\prveq{\abs{O}=\pm1}
+\enl{例}
+\eq{\mathbf{O}(1)=\{\pm1\},\ \mathbf{SO}(1)=\{1\}}
+
+\ent{二维空间转动群}
+\eq{\mathbf{SO}(2)=\{R_z(\theta)|-\pi\le\theta\le\pi\}}
+\enl{例}
+\eq{\mathbf{D}_n} 是 \eq{\mathbf{O}(2)} 的离散子群
+\com{反射对应行列式 $-1$}
+
+\com{参数群可用数学分析方法}
+\prvs{
+由于\eq{\mathbf{SO}(2)}阿贝尔,表示一维,设 \eq{A=\{a(\theta)\}},
+已知乘法关系为 \eq{a(\theta_1+\theta_2)=a(\theta_1)a(\theta_2)},
+两边对\eq{\theta_1}求导后令\eq{\theta_1=0},
+得\eq{a'(\theta_2)=a(\theta_2)a'(0)},
+为使幺正取\eq{a'(0)=\ii m}纯虚,解得\eq{a(\theta)=\e^{\ii m\theta}},
+由周期性\eq{a(\theta)=a(\theta+2\pi)}\com{费米子是\eq{+4\pi}},
+得\eq{m\in\mathbb{Z}},然后证完备
+}
+
+\ent[three dimensional rotation group]{三维空间转动群}
+\eq{\mathbf{SO}(3)\nors\mathbf{O}(3)},
+均由3个\ent{群参数}表示 \com{独立,实数}, 群元素写法:
+
+\N1 \eq{R_{(\theta,\varphi)}(\psi),\ 0\le\psi\le\pi}
+\to 映射到半径 \eq{\pi} 球面上 \eq{(\psi,\theta,\varphi)}
+\com{球面上的点二对一 \eq{R_n(\pi)=R_{-n}(\pi)}} \link{拓扑}
+
+
+
+
+
+\chap{图片混排}
+
+图片混排的命令为 \verb|\figr{ali.jpg}{0.1}{很多行文字}|, 实例 \eq{\downarrow}
+\ \\
+
+\figr{natural.png}{0.22}
+{
+\ent[arc length]{弧长} \eq{s=s(t),\ \vec{r}=\vec{r}(s)}
+\com{可任意选定 \eq{s} 的零点和正向,与运动方向无关}
+
+\ent[tangential]{切向} \eq{\ve{t}=\frac{\dif \vec{r}}{\dif s}},
+\eq{\od{}{ \theta}\ve{t}=\ve{n}\ \to}
+\ent[normal]{法向}指向曲线凹侧, \eq{\od{}{\theta}\ve{n}=-\ve{t}},
+\eq{\ved{t}=\od{\ve{t}}{\theta}\od{\theta}{s}\dot s=\ve{n}\frac{1}{\rho}v}
+
+\eq{\vec{v}=\dot s\ve{t}},
+\eq{\vec{a}=\ddot s\ve{t}+\frac{v^2}{\rho}\ve{n}},
+\ent[curvature radius]{曲率半径} \eq{\rho=\od{s}{\theta}=(1+y'^2)^{\frac{3}{2}} / \abs{y''}},
+常用 \eq{a_t=\dot v=\od{v}{s}v}
+
+加速度既反映速度大小也反映方向变化
+\eq{a_t=\od{v}{t},\ a_n=\frac{v^2}{\rho},\
+a=\sqrt{a_t^2+a_n^2},\ \tan\theta=\frac{a_n}{a_t}}
+}
+
+
+\chap{表格混排}
+
+表格混排的命令为 \verb|\tabr[0.4]{很多行表格}{很多行文字}|, 实例 \eq{\downarrow}
+\ \\
+
+
+\tabr[0.72]{
+\enl{性质} 同类元素的特征标相等 \com{记类中元素个数为 \eq{n_i}, 求和公式中可合并}
+
+群的$\forall\ne$IUR的个数等于群中类的个数 \eq{r} \to 特征标表是方阵
+
+\ent{第一正交性关系} 特征标表各行正交
+\eq{\frac{1}{n}\sum^r n_i \chi^{(p)*}(g) \chi^{(q)}(g)=\delfun_{pq}}
+
+\ent{第二正交性关系} 特征标表各列正交
+\eq{\frac{n_i}{n}\sum^r_p \chi^{(p)*}(g_i) \chi^{(p)}(g_{i\co})=\delfun_{ii\co}}
+
+}{
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+  特征标 &\eq{e} &\eq{r_1,r_2} &\eq{a,b,c} \\
+\hline
+  \eq{\chi^S} &1 &1 &1 \\
+  \eq{\chi^A} &1 &1 &\eq{-1} \\
+  \eq{\chi^\Gamma} &2 &\eq{-1} &0 \\
+\hline
+\end{tabular}
+}
 
 
 \chap{颜色}
 
 模版对以下情况做自动高亮：
-
-\prv{更新：暂时取消橙色, 都用绿色, 单位换成蓝色, 章节由红色改为紫色}
+\prv{更新：绿色为注释专用, 算符改用橙色, 章节由红色改为紫色}
 \ \\
+
+\hspace{-10pt}
 \begin{tabular}{lccl}
 
-	函数名\sout{橙色}
+	函数名橙色
 	&\eq{\sin(x+y),\exp[x+y]}
 	&\verb|\e^{x+y},\exp[x+y]|
 	&自然对数 \eq{\e^x} 变橙色,命令为 \verb|\e| \\
 
-	算符绿色
+	算符\sout{绿色}
 	&\eq{\dif x,\Dif x,\delta x,\Delta x,\nabla x}
 	&\verb|\dif x,\delta x,\nabla x|
-	&默认自动高亮,不高亮用 \verb|\olddelta| \\
+	&默认高亮,不高亮用 \verb|\olddelta| \\
 
-	物理单位\sout{紫色}
+	物理单位蓝色
 	&\eq{\oC,6.67\E{-11}\uni{m^3/(kg\cdot s^2)}}
 	&\verb|\uni{m^3/(kg\cdot s^2)}|
 	&虚数单位 \eq{\ii} 变紫色,命令为 \verb|\ii| \\
 
 \end{tabular}
 
-\ \\
-但字母作大型运算符\com{如\eqd{\min_{i=1}^n}}不做高亮,
-不易混淆的符号型算符\com{如\eqd{\sqrt{\ }}}不做高亮
 
 
 \chap{字体}
@@ -193,14 +274,15 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 正文默认字体： Adobe 仿宋,\textbf{词条 Adobe 黑体},
 英文 Times New Roman,\engr[Verdana]{英文翻译}
 
-\prv{2015.05 更新：为改善斜杠的显示 \ent{例／例}, 黑体字体改为方正准圆, 不需要的请自行改回去}
-
-打字机 \verb|\texttt{}|用于源代码： \file{file.tex}
-
+\prv{2015.05 更新：为改善斜杠的显示 \ent{例／例}, 黑体字体改为方正准圆}
 \ \\
+
 为了避免命名空间冲突,为了世界的和平,强迫症如下规定数学字体的含义：
-
 \ \\
+
+打字机体 \verb|\texttt{}|用于源代码： \code{file.tex}
+\ \\
+
 \begin{tabular}{lcl}
 
 	所有变量、粒子符号为斜体
@@ -208,7 +290,7 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\com{公式环境下默认为斜体} \\
 
 	其它字母、元素符号为正体
-	&\eq{\kB,\NA,F\inter,\cc,\mathrm{He}}
+	&\eq{\Ek,\kB,\NA,F\inter,\cc,\ce{He}}
 	&\verb|\mathrm{}| \\
 
 	双线体注册为数域
@@ -220,21 +302,28 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\verb|\mathcal{}| \\
 
   粗体注册为群
-  &\eq{\mathbf{U}(n),\mathbf{SU}(2),\mathbf{T}^\alpha}
+  &\eq{\mathbf{D}_n,\mathbf{U}(n),\mathbf{SO}(3)}
   &\verb|\mathbf{}| \\
 
   哥特体注册为代数
-  &\eq{\mathfrak{su}(n),\mathfrak{so}(2)}
+  &\eq{\mathfrak{su}(n),\mathfrak{so}(3)}
   &\verb|\mathfrak{}| \\
+
+  特殊符号
+  &电动势 \eq{\emf}
+  &\verb|\emf| 使用 \verb|\mathscr{}| \\
 
 \end{tabular}
 
 
 
-\newpage
-\chap{数学}
+\chap{其它数学范例}
 
 \begin{tabular}{lcl}
+
+  区分求导/撇
+  &\eq{y',y\co,y\co[x]}
+  &\verb|y',y\co,y\co[x]|\\
 
 	矢量
 	&\eq{\vec{OA},\vec{p_c}',\vecd{p},\ve{r}}
@@ -248,9 +337,10 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\eq{\hatv{p},\hatvs{S}}
 	&\verb|\hatv{p},\hatvs{S}|\\
 
-	导数,偏导数
-	&\eqd{\od{y}{x},\pd[2]{L}{x},\md{L}{4}{x}{2}{y}{2}}
-	&\verb|\od{y}{x},\pd[2]{L}{x},\md{L}{4}{x}{2}{y}{2}|\\
+\vspace{3pt}\hspace{-4pt}
+  导数,偏导数
+  &\eqd{\od{y}{x},\pd[2]{L}{x},\md{L}{4}{x}{2}{y}{2}}
+  &\verb|\od{y}{x},\pd[2]{L}{x},\md{L}{4}{x}{2}{y}{2}|\\
 
 	某处的导数
 	&\eq{\odat{y}{x}{x_0},}
@@ -262,7 +352,7 @@ cl-2-dde-1.0.exe ,其它编辑器各有不同的设置方法
 	&\verb|\nabla x,\nablad \vec x,\nablat \vec x,\nablas x|\\
 
 	矩阵,行列式
-	&\eq{\mat{1&0\\0&1},\matd{-a&b\\c&-d}}
+	&\eq{\mat[0.8]{1&0\\0&1},\matd[0.8]{-a&b\\c&-d}}
 	&\verb|\mat{1&0\\0&1},\matd{-a&b\\c&-d}|\\
 
 	左花括号

@@ -113,7 +113,7 @@
 \setlength\fboxsep{1pt} % 设框的偏移
 \setlength\fboxrule{0.5pt} % 设框宽 \fcolorbox{b}{b}{text}
 
-\newcommand{\entc}[2][]{{\color{b}\textnormal{
+\newcommand{\entc}[2][]{{\color{b}\!\textnormal{
 	\hei
 	\ruby{{\fcolorbox{b}{w}{{\color{b}#2}}}}
 	{\fontspec{Verdana}#1}

@@ -107,6 +107,8 @@
 
 
 \newcommand{\tr}{\,{\color{o}\mathrm{tr}}\,}
+\newcommand{\rank}{\,{\color{o}\mathrm{rank}}\,}
+\renewcommand{\dim}{\,{\color{o}\mathrm{dim}}\,}
 \renewcommand{\det}{\,{\color{o}\mathrm{det}}\,}
 \newcommand{\diag}[1][]{\,{\color{o}\mathrm{diag}}
 	\ifthenelse{\equal{#1}{}}{}{\mat[0.8]{#1}}\,}
@@ -290,8 +292,20 @@
 % 常用：单列表
 
 \newcommand{\tab}[1]{\begin{tabular}{l}%
-	#1%
-	\end{tabular}%
+  #1%
+  \end{tabular}%
+}
+
+% 常用：右侧列表
+
+\newcommand{\tabr}[3][0.5]{
+\begin{tabular}{lr}%
+\hspace{-8pt}
+\begin{minipage}{#1\textwidth}
+{#2}
+\end{minipage}
+&{#3}
+\end{tabular}%
 }
 
 % 默认矩阵还是方括号好看 ---------------
@@ -458,25 +472,25 @@
 }}
 
 % 方括号代表证明
-\newcommand{\prv}[1]{{\color{g}{#1}}}
-% \newcommand{\prv}[1]{
-% \ifmmode{{\color{g}{#1}}}
-% \else{\!{\color{g}{「#1」}}\!\!}
-% \fi}
+\newcommand{\prvs}[1]{{\color{g}{#1}}}
+\newcommand{\prv}[1]{
+\ifmmode{{\color{g}{\lceil\left. #1 \right.\rfloor}}}
+\else{{\color{g}{\!$\lceil$\! #1 \!$\rfloor$\!}}}
+\fi}
 % \left[ \right]? \left| \right|? \lceil \rfloor? 还是啥都不用省心...
 % \newcommand{\prvs}[1]{{\color{g}%
 	% $\left|\tab{#1}\right|$%
 % }}
-\newcommand{\prveq}[1]{{\color{g}{ \eq{#1}}}}
-% {\color{g}{ $\lceil\left. #1 \right.\rfloor$}}}
-\newcommand{\prveqd}[1]{{\color{g}{ \eqd{#1}}}}
+\newcommand{\prveq}[1]{% {\color{g}{\eq{#1}}}}
+{\color{g}{$\lceil\left. #1 \right.\rfloor$}}}
+% \newcommand{\prveqd}[1]{{\color{g}{ \eqd{#1}}}}
 % {{\color{g}{ \eqd{\Big\lceil\left. #1 \right.\Big\rfloor}}}}
-\newcommand{\prveqa}[1]{{\color{g}{\eqa{#1}}}}
+% \newcommand{\prveqa}[1]{{\color{g}{\eqa{#1}}}}
 
 % 红色尖括号代表链接
 % \newcommand{\link}[2][]{{\color{p}{$\langle$#1$-$\nameref{#2}$\rangle$}}}
 % 未整合前先用这个
-\newcommand{\link}[2][]{{\color{p}{$\langle$#1$-$#2$\rangle$}}}
+\newcommand{\link}[2][]{{\color{p}{$\langle$#1 #2$\rangle$}}}
 
 
 
@@ -513,19 +527,18 @@
 % spacing ---------------
 
 % TODO: 改不了字体?
-\renewcommand{\to}{{\color{g}\ensuremath{\,\rightarrow\,}}}
+\renewcommand{\to}{{\color{g}\ensuremath{\,\rightarrow\ }}}
 % \renewcommand{\to}{{\ \color{g}\scalebox{1.5}{$\fldr$}\ }}
 
 \newcommand{\onto}[2][]{{\color{g}\,\ensuremath{\xrightarrow[#1]{#2}}\,}}
 
 \LetLtxMacro{\oldRightarrow}{\Rightarrow}
-\renewcommand{\Rightarrow}{\ensuremath{\,\color{g}\oldRightarrow\,}}
+\renewcommand{\Rightarrow}{{\ensuremath{\,\color{g}\oldRightarrow\,}}}
 \LetLtxMacro{\oldLeftarrow}{\Leftarrow}
-\renewcommand{\Leftarrow}{\ensuremath{\,\color{g}\oldLeftarrow\,}}
+\renewcommand{\Leftarrow}{{\ensuremath{\,\color{g}\oldLeftarrow\,}}}
 
 % 充要 necessary and sufficient
-\newcommand{\ns}{{\color{g}\ensuremath{
-\,\mathbf{\Leftrightarrow}\,}}}
+\newcommand{\ns}{{\ensuremath{\,\color{g}\Leftrightarrow\,}}}
 % TODO: 怎么只改箭头类字符的字体?
 
 
@@ -563,7 +576,7 @@
 % \renewcommand{\b}{^{\backprime}}
 
 %\RequirePackage{mhchem} % 化学公式
-\newcommand{\ce}[1]{$\mathrm{#1}$}
+\newcommand{\ce}[1]{\ensuremath{\mathrm{#1}}}
 
 \newcommand{\abs}[1]{\left|#1\right|}
 
@@ -592,9 +605,11 @@
 \newcommand{\kB}{k_\mathrm{B}}
 \newcommand{\NA}{N_\mathrm{A}}
 % \newcommand{\Tc}{T_\mathrm{c}} % 单个字母下标不能算文字,不然所有下标都是根据英文来的 ( 如 center of mass )
+
 % 两种求平均不一样!
 \newcommand{\tave}[1]{\overline{#1}}
 \newcommand{\pave}[1]{\braket{#1}}
+\newcommand{\ppave}[1]{\langle\!\braket{#1}\!\rangle}
 
 % 电磁学 ---------------
 
@@ -693,7 +708,7 @@
 
 \RequirePackage[xetex,colorlinks,unicode,pdfencoding=auto]{hyperref}
 % 超链接包，unicode 和 \chap 有冲突？
-% \hypersetup{linkcolor=\color{o}, citecolor = \color{o}}
+\hypersetup{urlcolor=[rgb]{0.5,0,0.5},linkcolor=[rgb]{0.5,0,0.5}}
 
 % \RequirePackage[sort&compress]{natbib} % 参考文献包
 % \setlength{\bibsep}{0pt}

@@ -10,6 +10,9 @@ LePtC 双语彩色笔记模版
 详细使用说明见 sample 文件夹
 
 
+![example](https://github.com/LePtC/lenote/blob/master/LePtC_2.png)
+
+
 2015.05.28
 ======
 
