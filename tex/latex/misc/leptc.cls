@@ -132,7 +132,8 @@
 \newcommand{\enl}[1]{{\colorbox{b}{{\hei\color{w}#1}}}}
 
 % 带圈数字序号
-\def\N#1{{\color{b}\scalebox{1.2}{\raisebox{.5pt}{\textcircled{\scalebox{0.8}{\raisebox{-.4pt}{$\mathbf{#1}$}}}}}}}
+\def\N#1{{\color{b}\scalebox{1.1}{\raisebox{.5pt}{\textcircled{\scalebox{0.8}{\raisebox{-.4pt}{$\mathbf{#1}$}}}}}}}
+\def\n#1{\raisebox{1pt}{\textcircled{\scalebox{0.8}{\raisebox{-.4pt}{$\mathbf{#1}$}}}}}
 
 % 首字母缩写
 \renewcommand{\B}[1]{{\textbf{#1}}}

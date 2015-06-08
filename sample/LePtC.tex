@@ -247,13 +247,20 @@ a=\sqrt{a_t^2+a_n^2},\ \tan\theta=\frac{a_n}{a_t}}
 \prv{更新：绿色为注释专用, 算符改用橙色, 章节由红色改为紫色}
 \ \\
 
+
+
 \hspace{-10pt}
 \begin{tabular}{lccl}
+
+  推导为绿色
+  &\eq{\to \ns \Rightarrow}
+  &\verb|\to \ns \Rightarrow|
+  & \\
 
 	函数名橙色
 	&\eq{\sin(x+y),\exp[x+y]}
 	&\verb|\e^{x+y},\exp[x+y]|
-	&自然对数 \eq{\e^x} 变橙色,命令为 \verb|\e| \\
+	&自然对数 \eq{\e^x} 变色,命令为 \verb|\e| \\
 
 	算符\sout{绿色}
 	&\eq{\dif x,\Dif x,\delta x,\Delta x,\nabla x}
@@ -263,7 +270,7 @@ a=\sqrt{a_t^2+a_n^2},\ \tan\theta=\frac{a_n}{a_t}}
 	物理单位蓝色
 	&\eq{\oC,6.67\E{-11}\uni{m^3/(kg\cdot s^2)}}
 	&\verb|\uni{m^3/(kg\cdot s^2)}|
-	&虚数单位 \eq{\ii} 变紫色,命令为 \verb|\ii| \\
+	&虚数单位 \eq{\ii} 变色,命令为 \verb|\ii| \\
 
 \end{tabular}
 
@@ -317,9 +324,13 @@ a=\sqrt{a_t^2+a_n^2},\ \tan\theta=\frac{a_n}{a_t}}
 
 
 
-\chap{其它数学范例}
+\chap{其它符号范例}
 
 \begin{tabular}{lcl}
+
+  大圈小圈
+  &\N1 \N2 \n1 \n2
+  &\verb|\N1 \N2 \n1 \n2|\\
 
   区分求导/撇
   &\eq{y',y\co,y\co[x]}
@@ -337,6 +348,10 @@ a=\sqrt{a_t^2+a_n^2},\ \tan\theta=\frac{a_n}{a_t}}
 	&\eq{\hatv{p},\hatvs{S}}
 	&\verb|\hatv{p},\hatvs{S}|\\
 
+  矢量微分
+  &\eq{\nabla x,\nablad \vec x,\nablat \vec x,\nablas x}
+  &\verb|\nabla x,\nablad \vec x,\nablat \vec x,\nablas x|\\
+
 \vspace{3pt}\hspace{-4pt}
   导数,偏导数
   &\eqd{\od{y}{x},\pd[2]{L}{x},\md{L}{4}{x}{2}{y}{2}}
@@ -347,17 +362,22 @@ a=\sqrt{a_t^2+a_n^2},\ \tan\theta=\frac{a_n}{a_t}}
 	\eqd{\odat{y}{x}{x_0},\pdat{L}{x}{y,z}}
 	&\verb|\odat{y}{x}{x_0},\pdat{L}{x}{y,z}|\\
 
-	矢量微分
-	&\eq{\nabla x,\nablad \vec x,\nablat \vec x,\nablas x}
-	&\verb|\nabla x,\nablad \vec x,\nablat \vec x,\nablas x|\\
+\vspace{3pt}\hspace{-4pt}
+	圈积分
+	&\eqd{\oiint_S \vec{B} \cdot\dif \vec{S}= \oint_L \vec{A} \cdot\dif \vec{l}}
+	&\verb|\oiint_S \oint_L|\\
 
 	矩阵,行列式
 	&\eq{\mat[0.8]{1&0\\0&1},\matd[0.8]{-a&b\\c&-d}}
 	&\verb|\mat{1&0\\0&1},\matd{-a&b\\c&-d}|\\
 
-	左花括号
-	&\eq{\delta _{ij} = \leftB[2]{\matn{1 &(i = j)\\ 0 &(i \ne j)}}}
-	&\verb|\leftB[行数]{\matn{1 &(i = j)\\ 0 &(i \ne j)}}|\\
+  左花括号
+  &\eq{\delta _{ij} = \leftB[2]{\matn{1 &(i = j)\\ 0 &(i \ne j)}}}
+  &\verb|\leftB[行数]{\matn{1 &(i = j)\\ 0 &(i \ne j)}}|\\
+
+	推导上加字
+	&\eq{\xlongequal{\text{归一}}, \xrightarrow{\times a^2}}
+	&\verb|\xlongequal{\text{}} \xrightarrow{}|\\
 
 \end{tabular}
 
