@@ -106,6 +106,8 @@
 \newcommand{\Fo}[2][]{{\ensuremath{{\color{o}\mathcal{F}^{#1}}\left[#2\right]}}}
 
 
+\newcommand{\id}{\,{\color{o}\mathrm{id}}\,}
+
 \newcommand{\tr}{\,{\color{o}\mathrm{tr}}\,}
 \newcommand{\rank}{\,{\color{o}\mathrm{rank}}\,}
 \renewcommand{\dim}{\,{\color{o}\mathrm{dim}}\,}
@@ -189,9 +191,11 @@
 \newcommand{\bigO}{{\color{o}\mathrm{O}}}
 \newcommand{\smallo}{{\color{o}\mathrm{o}}}
 
-% 格式微调，会死循环原因不明
-% \renewcommand{\exists}[1]{\exists\,}
-% \renewcommand{\forall}[1]{\forall\,}
+% 格式微调
+\LetLtxMacro{\oldexists}{\exists}
+\renewcommand{\exists}{\oldexists\,}
+\LetLtxMacro{\oldforall}{\forall}
+\renewcommand{\forall}{\oldforall\,}
 
 % 常微分分式 ---------------
 
@@ -530,12 +534,17 @@
 \renewcommand{\to}{{\color{g}\ensuremath{\,\rightarrow\ }}}
 % \renewcommand{\to}{{\ \color{g}\scalebox{1.5}{$\fldr$}\ }}
 
-\newcommand{\onto}[2][]{{\color{g}\,\ensuremath{\xrightarrow[#1]{#2}}\,}}
+% \newcommand{\onto}[2][]{{\color{g}\,\ensuremath{\xrightarrow[#1]{#2}}\,}}
 
 \LetLtxMacro{\oldRightarrow}{\Rightarrow}
 \renewcommand{\Rightarrow}{{\ensuremath{\,\color{g}\oldRightarrow\,}}}
 \LetLtxMacro{\oldLeftarrow}{\Leftarrow}
 \renewcommand{\Leftarrow}{{\ensuremath{\,\color{g}\oldLeftarrow\,}}}
+
+\LetLtxMacro{\oldLeftrightarrow}{\Leftrightarrow}
+\renewcommand{\Leftrightarrow}{{\ensuremath{\,\color{g}\oldLeftrightarrow\,}}}
+\LetLtxMacro{\oldleftrightarrow}{\leftrightarrow}
+\renewcommand{\leftrightarrow}{{\ensuremath{\,\color{g}\oldleftrightarrow\,}}}
 
 % 充要 necessary and sufficient
 \newcommand{\ns}{{\ensuremath{\,\color{g}\Leftrightarrow\,}}}
