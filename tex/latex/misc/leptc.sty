@@ -373,6 +373,20 @@
 }
 % http://tex.stackexchange.com/questions/45001/how-do-i-left-align-entries-in-a-matrix-with-beginmatrix
 
+% 群论,杨图 ---------------
+\RequirePackage{ytableau}
+
+% 杨图: \ynd{2+2,1+2,2,1}
+\newcommand{\ynd}[2][0.6]{\scalebox{#1}{
+  \ydiagram{#2}
+}}
+% 杨盘: \yng[0.5]{a&b\\c}
+\newcommand{\yng}[2][0.6]{\scalebox{#1}{
+  \begin{ytableau}
+  #2
+  \end{ytableau}
+}}
+
 
 
 %--------------------------------------------------
@@ -566,7 +580,7 @@
 % \newcommand{\onequal}[1]{\overset{\text{#1}}{=\joinrel=}}
 % \onright 有 \xrightarrow 了
 
-\newcommand{\LePtC}{L\hspace{-2pt}\raisebox{4pt}{e}\hspace{1pt}P\raisebox{-1pt}{\scalebox{0.8}{t}}\hspace{1pt}C}
+\newcommand{\LePtC}{L\raisebox{3pt}{e}\hspace{1pt}P\raisebox{-1pt}{\scalebox{0.8}{t}}\hspace{1pt}C}
 
 % text 中打 $\sim$
 \newcommand{\tld}{{\raise.17ex\hbox{\!$\mathtt{\sim}$}}}
@@ -732,7 +746,6 @@
 % \RequirePackage{feynmp} % 用法：记得给整个文档包上
 % \begin{fmffile}{feynman}
 % \end{fmffile}
-
 
 
 

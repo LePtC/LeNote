@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 笔记
 % filename  = leptc.sty
 % author = LePtC
-% version = 2015.05
+% version = 2015.06
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -57,6 +57,7 @@
 
 % \newcommand{\ski}{\vspace{3pt}} % 手动小间距
 
+\setlength{\footskip}{15pt} % 页码
 
 
 %--------------------------------------------------
