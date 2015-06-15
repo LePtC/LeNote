@@ -22,7 +22,7 @@
 
 %--------------------------------------------------
 % 页面设置
-\RequirePackage[a4paper, top=30pt, bottom=25pt, left=30pt, right=30pt]{geometry}
+\RequirePackage[a4paper, top=30pt, bottom=30pt, left=30pt, right=30pt]{geometry}
 %--------------------------------------------------
 
 
@@ -57,7 +57,8 @@
 
 % \newcommand{\ski}{\vspace{3pt}} % 手动小间距
 
-\setlength{\footskip}{15pt} % 页码
+\setlength{\footskip}{20pt} % 页码位置
+\renewcommand{\thepage}{- \arabic{page} -} % 页码样式 arabic,roman,alph
 
 
 %--------------------------------------------------
