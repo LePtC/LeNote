@@ -100,49 +100,6 @@
 
 
 %--------------------------------------------------
-% LePtC 双语词条
-\RequirePackage{ruby}
-%--------------------------------------------------
-
-
-\renewcommand{\rubysize}{0.7}
-\renewcommand{\rubysep}{-0.1ex}
-% 英文为 Verdana 体
-\newcommand{\eng}[2][]{\ruby{#2}{\textnormal{\fontspec{Verdana}#1}}}
-% 英文注在右侧
-\newcommand{\engr}[2][]{#2\ \textnormal{\small\fontspec{Verdana}#1}}
-
-\setlength\fboxsep{1pt} % 设框的偏移
-\setlength\fboxrule{0.5pt} % 设框宽 \fcolorbox{b}{b}{text}
-
-\newcommand{\entc}[2][]{{\color{b}\!\textnormal{
-	\hei
-	\ruby{{\fcolorbox{b}{w}{{\color{b}#2}}}}
-	{\fontspec{Verdana}#1}
-}}}
-
-% \ruby 默认居中对齐，没有左对齐的选项，用 box 重新计算左对齐的宽度...
-\RequirePackage{calc}
-\newcommand{\ent}[2][]{{\textnormal{
-	\hei
-	\ruby{{\hspace{-3pt}\fcolorbox{b}{w}{{\color{b}#2}}\hspace{-3pt}}}
-	{{\hspace{3pt}\color{b}\makebox[\widthof{#2}+\widthof{#2}/2][l]{\fontspec{Verdana}#1}}
-	}
-}}}
-
-% label, 用于"例","定理","推论"等
-\newcommand{\enl}[1]{{\colorbox{b}{{\hei\color{w}#1}}}}
-
-% 带圈数字序号
-\def\N#1{{\color{b}\scalebox{1.1}{\raisebox{.5pt}{\textcircled{\scalebox{0.8}{\raisebox{-.4pt}{$\mathbf{#1}$}}}}}}}
-\def\n#1{\raisebox{1pt}{\textcircled{\scalebox{0.8}{\raisebox{-.4pt}{$\mathbf{#1}$}}}}}
-
-% 首字母缩写
-\renewcommand{\B}[1]{{\textbf{#1}}}
-
-
-
-%--------------------------------------------------
 % LePtC 彩色条目
 \RequirePackage{titlesec}
 %--------------------------------------------------
