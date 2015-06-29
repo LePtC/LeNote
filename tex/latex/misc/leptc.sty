@@ -354,7 +354,9 @@
 \begin{minipage}{#1\textwidth}
 {#2}
 \end{minipage}
-&{#3}
+&{\begin{minipage}{{\textwidth-#1\textwidth}}
+{#3}
+\end{minipage}}
 \end{tabular}%
 }
 
@@ -786,7 +788,7 @@
 \RequirePackage{datetime} % 当前时间
 \newcommand{\compiled}{
 \begin{flushright}
-Last compiled on {\yyyymmdddate\today} at {\hhmmsstime} [UTC+8]
+Last compiled on {\yyyymmdddate\today} at {\hhmmsstime}
 \end{flushright}
 }
 

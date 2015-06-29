@@ -1,6 +1,6 @@
 %--------------------------------------------------
 % LePtC 双语彩色笔记模版 - 笔记
-% filename  = leptc.sty
+% filename  = leptc.cls
 % author = LePtC
 % version = 2015.06
 % email = alileptc@gmail.com
@@ -110,8 +110,11 @@
 % \titleformat{\section}{\centering\large\hei\color{w}}{\Large{\color{p}\fontspec{Adobe Heiti Std}\thesection}}{5pt}{\colorbox{r}}
 % no number
 \titleformat{\section}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{p}}
+\titleformat{\subsection}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{p}}
 
 \newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\line(1,0){540}}\vspace{-39pt}\section{#1}\label{#1}\end{minipage}}
+\newcommand{\chaps}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\hspace{210pt}\line(1,0){120}}\vspace{-31pt}\subsection{#1}\label{#1}\end{minipage}}
+
 
 
 
@@ -119,5 +122,15 @@
 
 
 \RequirePackage{leptc}
+
+\newcommand{\notetime}{
+\ \\
+
+编者：\href{mailto:alileptc@gmail.com}{\LePtC}
+\quad
+笔记项目主页：\url{http://leptc.github.io/lenote }
+
+\compiled
+}
 
 \endinput

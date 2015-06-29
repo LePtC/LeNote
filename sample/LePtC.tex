@@ -10,8 +10,6 @@
 
 笔记主页：\url{http://leptc.github.io/lenote }
 
-使用 \href{http://opensource.org/licenses/MIT}{MIT 开源协议}
-
 \compiled
 
 
@@ -42,8 +40,7 @@ xelatex 的编译命令及常用选项：
 \code{xelatex --quiet --synctex=1 -interaction=nonstopmode $(NAME_PART).tex}
 
 xelatex 需要多编译几遍才能正确生成书签,
-详见 \href{https://github.com/LePtC/LeNote}{项目主页}的
-\code{compile} 文件夹
+详见 \code{compile} 文件夹
 
 \com{xelatex.exe 等编译器均在
 \code{CTeX/MiKTeX/miktex/bin/}
@@ -53,7 +50,7 @@ xelatex 需要多编译几遍才能正确生成书签,
 
 \ent[editor]{编辑器}
 \href{http://tex.stackexchange.com/questions/339/latex-editors-ides }{各种编辑器的比较},
-有关编辑器不同的设置方法见\href{https://github.com/LePtC/LeNote}{项目主页}的 \code{README.md}
+有关编辑器不同的设置方法见 \code{compile} 文件夹的 \code{readme.txt}
 
 \ent[reader]{阅读器} 推荐使用
 \href{http://blog.kowalczyk.info/software/sumatrapdf/download-free-pdf-viewer-cn.html }{SumatraPDF}
@@ -88,7 +85,7 @@ Sublime:
 	章节
 	&\com{效果见右上方\eq{\nearrow} }
 	&\verb|\chap{中文}|
-	&\com{说明\eq{\downarrow} }\\
+	&子章节 \verb|\chaps|\\
 
   双语词条
 	&\ent[\B Superconducting \B{QU}antum \B Interference \B Device]{超导量子干涉器}
@@ -138,7 +135,7 @@ Sublime:
 \end{tabular}
 
 
-\chap{实例}
+\chaps{实例}
 
 
 \com{本笔记均指实数域} \ent[orthogonal group]{正交群}
@@ -181,7 +178,7 @@ Sublime:
 
 
 
-\chap{图片混排}
+\chaps{图片混排}
 
 图片混排的命令为 \verb|\figr{ali.jpg}{0.1}{很多行文字}|, 实例 \eq{\downarrow}
 \ \\
@@ -207,7 +204,26 @@ a=\sqrt{a_t^2+a_n^2},\ \tan\theta=\frac{a_n}{a_t}}
 }
 
 
-\chap{表格混排}
+\chaps{图片并排}
+
+\verb|\figg...{fig1.png}{0.25}{offset}{fig2.png}{0.25}{offset}...|
+
+\vspace{-15pt}
+\figgg{positive1.png}{0.25}{0}{positive2.png}{0.25}{0}{passive.png}{0.25}{0}
+\vspace{-10pt}
+
+\N1 用基表示的主动变换 \com{物动,基动坐标不变}
+\eq{\hat{A}(r_1)\vec{x}=\vec{x}\co=
+\cos\theta\vec{x}+\sin\theta\vec{y}+0\vec{z}}, 系数竖写第一列
+
+\N2 用坐标表示的主动变换 \com{物动,基不动坐标变}
+\eq{x\co=r\cos(\theta+\varphi)=\cos\theta\ x-\sin\theta\ y}, 系数横写第一行
+
+\N3 被动变换 \com{物不动,基动坐标变}
+\eq{x\co=r\cos(\varphi-\theta)=\cos\theta\ x+\sin\theta\ y}, 系数横写第一行
+
+
+\chaps{表格混排}
 
 表格混排的命令为 \verb|\tabr[0.4]{很多行文字}{很多行表格}|, 实例 \eq{\downarrow}
 \ \\
@@ -237,7 +253,7 @@ a=\sqrt{a_t^2+a_n^2},\ \tan\theta=\frac{a_n}{a_t}}
 \end{tabular}
 }
 
-
+\newpage
 \chap{颜色}
 
 模版对以下情况做自动高亮：
