@@ -8,7 +8,7 @@ for the Lenote content homepage
 [click me](http://leptc.github.io/lenote/)
 
 
-LeNote provides the following feature:
+LeNote provides the following features:
 
 - CJK and alphabet mix
 

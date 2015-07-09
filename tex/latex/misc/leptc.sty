@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 符号部分
 % filename  = leptc.sty
 % author = LePtC
-% version = 2015.06
+% version = 2015.07
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -164,6 +164,8 @@
 % \lim \sum 之类不作处理?
 % 图画符号（\prime，根号）即使是算符也不上色,因为本身不易混淆,上色很麻烦 ...
 \renewcommand{\mod}{{\color{o}\,\mathrm{mod}\,}}
+\renewcommand{\gcd}{{\color{o}\,\mathrm{gcd}\,}}
+\newcommand{\lcm}{{\color{o}\,\mathrm{lcm}\,}}
 
 % 字母大型运算符加粗
 \LetLtxMacro{\oldmax}{\max}
@@ -636,6 +638,9 @@
   \mathrel{\overset{#2}{\scalebox{#1}[1]{$\sim$}}}
 }
 
+% 空集
+\renewcommand{\emptyset}{\scalebox{1.15}{$\varnothing$}}
+
 % 区分一撇 comma 和求导 slash，会覆盖掉 accent commands
 \newcommand{\co}[1][]{\ensuremath{\mathchoice
 	{^{\raisebox{3pt}{$,$}}}
@@ -691,7 +696,7 @@
 
 \renewcommand{\deg}{
 \ifmmode{^\circ}
-\else{\textsuperscript{$\circ$}}
+\else{\!\textsuperscript{$\circ$}}
 \fi
 }
 \newcommand{\oA}{\text{\AA}} % angstrom
