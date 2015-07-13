@@ -104,7 +104,7 @@
 % no number
 \titleformat{\section}{\centering\large\color{w}}{}{5pt}{\colorbox{p}}
 
-\newcommand{\chap}[2]{\vspace{10pt}
+\newcommand{\chap}[2]{\vspace{20pt}
 \begin{minipage}{\textwidth}
 \vspace{10pt}{\color{p}\line(1,0){540}}
 \vspace{-56pt}\section{#1}\label{#1}
@@ -124,7 +124,7 @@
 \newcommand{\cn}[1]{{\color{g}\hei #1}}
 
 
-\newcommand{\ru}[2]{{\color{b}\ruby{#1}{#2}}}
+\newcommand{\ru}[2]{{\color{b}\ruby{\,\emph{#1}\,}{#2}}}
 
 \RequirePackage{leptc}
 
