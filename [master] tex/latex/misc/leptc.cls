@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 笔记
 % filename  = leptc.cls
 % author = LePtC
-% version = 2015.06
+% version = 2015.07
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -113,7 +113,7 @@
 \titleformat{\subsection}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{p}}
 
 \newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\line(1,0){540}}\vspace{-39pt}\section{#1}\label{#1}\end{minipage}}
-\newcommand{\chaps}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\hspace{210pt}\line(1,0){120}}\vspace{-31pt}\subsection{#1}\label{#1}\end{minipage}}
+\newcommand{\chaps}[1]{\vspace{5pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\hspace{210pt}\line(1,0){120}}\vspace{-31pt}\subsection{#1}\label{#1}\end{minipage}\vspace{-7pt}}
 
 
 
@@ -126,7 +126,7 @@
 \newcommand{\notetime}{
 \ \\
 
-编者：\href{mailto:alileptc@gmail.com}{\LePtC}
+编者：\href{mailto:alileptc@gmail.com}{\LePtC} \com{萌狸}
 \quad
 笔记项目主页：\url{http://leptc.github.io/lenote }
 
