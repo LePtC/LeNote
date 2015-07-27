@@ -133,4 +133,50 @@
 \compiled
 }
 
+
+% 制作封面 \makecover{电}{电磁学}{E}
+
+\newenvironment{lecover}[3]
+{{
+\noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{cover.eps}}
+
+\vspace{-145pt}
+\hspace{535pt}
+{{\Huge\color{w}#3}}
+
+\vspace{20pt}
+\scalebox{1.5}{{\Huge\hei\color{w}#1}}
+
+\vspace{-32pt}
+\begin{center}
+{{\Huge\hei\color{w}#2}}
+\end{center}
+
+\vspace{-5pt}
+\begin{flushright}
+\textcopyright\ \href{mailto:alileptc@gmail.com}{\LePtC} \com{萌狸}
+
+笔记项目主页：\url{http://leptc.github.io/lenote }
+\end{flushright}
+\vspace{20pt}
+
+% {\large\hei\color{w}\colorbox{p}{参考文献}}
+% \vspace{10pt}
+
+\fig[0.5]{moele.png}
+
+\vfill
+}}
+{
+\compiled
+\thispagestyle{empty}
+\clearpage
+\setcounter{page}{1}
+}
+
+
+
+
+
+
 \endinput
