@@ -30,7 +30,11 @@ Other details: see the LePtC.pdf in the sample folder.
 (Currently in Chinese only)
 
 
-2015.06.08
+
+
+
+
+Sample
 ======
 
 Print out style
@@ -40,6 +44,50 @@ Print out style
 Reverse color style (using SumatraPDF on PC)
 
 ![example](https://github.com/LePtC/lenote/blob/master/LePtC_2r.png)
+
+
+
+
+更新日志
+======
+
+###2015.08.12
+
+加入 physymb 包，修复其与其他包的冲突，Griffiths 的相对位矢符号为 \rr
+
+###2015.07.27
+
+加入封面环境 \begin{lecover}
+
+###2015.07.21
+
+颜色改进，加深橙色从而更易读
+
+###2015.07.13
+
+新分支：lenote-日语笔记（日文字体使用 [源柔ゴシック](http://jikasei.me/font/genjyuu/)）
+
+###2015.06.30
+
+加入子章节 \chaps{}
+
+###2015.06.15
+
+加入页码
+
+###2015.06.14
+
+加入 ytableau 包，绘制杨图 \ynd，绘制杨盘 \yng
+
+###2015.06.08
+
+提供 Sample 截图
+
+###2015.05.29
+
+更新 README，日志从今天开始写…
+
+
 
 
 2015.05.28

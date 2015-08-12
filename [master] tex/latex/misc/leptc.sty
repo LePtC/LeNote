@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 符号部分
 % filename  = leptc.sty
 % author = LePtC
-% version = 2015.07
+% version = 2015.08
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -83,6 +83,7 @@
 % 函数名的自动高亮，包括三角函数等，不包括大型运算符类函数
 \RequirePackage{letltxmacro} % 替换原有的 command
 \RequirePackage{xifthen} % \ifthenelse
+\RequirePackage{physymb} % 2015.08 重要新包，主要是提供 Griffiths 的 r，这个包放 esvec 之后会让矢量变 harpoon，原因不明
 %--------------------------------------------------
 
 
@@ -116,9 +117,11 @@
 
 \LetLtxMacro{\oldsinh}{\sinh}
 \renewcommand{\sinh}{{\color{o}\,\oldsinh\,}}
+\let\sech\relax % 避免与 physymb 冲突
 \newcommand{\sech}{{\color{o}\,\mathrm{sech}\,}}
 \LetLtxMacro{\oldcosh}{\cosh}
 \renewcommand{\cosh}{{\color{o}\,\oldcosh\,}}
+\let\csch\relax % 避免与 physymb 冲突
 \newcommand{\csch}{{\color{o}\,\mathrm{csch}\,}}
 \LetLtxMacro{\oldtanh}{\tanh}
 \renewcommand{\tanh}{{\color{o}\,\oldtanh\,}}
@@ -142,6 +145,7 @@
 \renewcommand{\Re}{{\color{o}\mathrm{Re}}}
 \renewcommand{\Im}{{\color{o}\mathrm{Im}}}
 
+\let\sgn\relax % 避免与 physymb 冲突
 \newcommand{\sgn}{\,{\color{o}\mathrm{sgn}}\,}
 
 
@@ -159,6 +163,7 @@
 \newcommand{\rank}{\,{\color{o}\mathrm{rank}}\,}
 \renewcommand{\dim}{\,{\color{o}\mathrm{dim}}\,}
 \renewcommand{\det}{\,{\color{o}\mathrm{det}}\,}
+\let\diag\relax % 避免与 physymb 冲突
 \newcommand{\diag}[1][]{\,{\color{o}\mathrm{diag}}
 	\ifthenelse{\equal{#1}{}}{}{\mat[0.9]{#1}}\,}
 
@@ -260,7 +265,9 @@
 
 % 偏微分分式  ---------------
 
-\newcommand{\pd}[3][]{\frac{\partial[#1] #2}{\partial {#3}^{#1}}}
+% physymb 还提供了 pdd, pddd… 以简化高阶导
+\renewcommand{\pd}[3][]{\frac{\partial[#1] #2}{\partial {#3}^{#1}}}
+
 \newcommand{\pdat}[4][]{ \mathchoice
 	{\Big(\pd[#1]{#2}{#3}\Big)_{#4}}
 	{\big(\pd[#1]{#2}{#3}\big)_{#4}}
@@ -279,7 +286,7 @@
 
 %--------------------------------------------------
 % esvect 包的进一步扩展，包括矢量、矢量导数、双矢量
-\RequirePackage[b]{esvect} %（esvect 能不能出鱼叉选项啊 ...）
+\RequirePackage[b]{esvect} %（esvect 能不能出鱼叉型的 vec 啊 ...）
 % \RequirePackage{harpoon}
 %--------------------------------------------------
 
@@ -536,9 +543,10 @@
 \ifmmode{{\color{y}{#1}}}
 \else{{\color{y}(#1)}}
 \fi}
-\newcommand{\coms}[1]{{\color{y}%
-	$\left(\tab{#1}\right)$%
-}}
+% \newcommand{\coms}[1]{{\color{y}%
+%   $\left(\tab{#1}\right)$%
+% }}
+\newcommand{\coms}[1]{{\color{y}#1}}
 
 % 方括号代表证明
 \newcommand{\prvs}[1]{{\color{g}{#1}}}
@@ -626,6 +634,13 @@
 \RequirePackage{slashed} % 协变导数 \cancel 不行?
 %--------------------------------------------------
 
+% 符号水平移动工具
+\makeatletter
+\newcommand*{\shifttext}[2]{%
+  \settowidth{\@tempdima}{#2}%
+  \makebox[\@tempdima]{\hspace*{#1}#2}%
+}
+\makeatother
 
 % 不用下面这种了
 % \newcommand{\onequal}[1]{\overset{\text{#1}}{=\joinrel=}}
@@ -655,7 +670,7 @@
 %\RequirePackage{mhchem} % 化学公式
 \newcommand{\ce}[1]{\ensuremath{\mathrm{#1}}}
 
-\newcommand{\abs}[1]{\left|#1\right|}
+% \newcommand{\abs}[1]{\left|#1\right|} % 已由 physymb 提供
 
 \newcommand{\E}[1]{\times10^{#1}} % 方便数量级
 
@@ -691,6 +706,7 @@
 % 电磁学 ---------------
 
 \newcommand{\emf}{\mathscr{E}} % electromotive force
+\newcommand{\rr}{\shifttext{-2pt}{\ensuremath{\scriptr}}} % Griffiths 的相对位矢
 \newcommand{\muB}{\mu_\mathrm{B}} % 玻尔磁子
 
 % 角度，温度 ---------------
