@@ -4,7 +4,7 @@ LeNote
 LeNote is a LaTeX note template created by LePtC, for templating his physics and mathematics notes.
 
 This is the LeNote template development homepage,
-for the Lenote content homepage
+for LeNote pdf files homepage
 [click me](http://leptc.github.io/lenote/)
 
 
@@ -53,7 +53,7 @@ Reverse color style (using SumatraPDF on PC)
 
 ###2015.08.12
 
-加入 physymb 包，修复其与其他包的冲突，Griffiths 的相对位矢符号为 \rr
+加入 physymb 包，修复其与其他包的冲突，Griffiths 的相对位矢符号用 \rr
 
 ###2015.07.27
 
@@ -65,7 +65,7 @@ Reverse color style (using SumatraPDF on PC)
 
 ###2015.07.13
 
-新分支：lenote-日语笔记（日文字体使用 [源柔ゴシック](http://jikasei.me/font/genjyuu/)）
+新分支：lenote-日语（日文字体使用 [源柔ゴシック](http://jikasei.me/font/genjyuu/)）
 
 ###2015.06.30
 
