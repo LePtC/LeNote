@@ -706,7 +706,13 @@
 % 电磁学 ---------------
 
 \newcommand{\emf}{\mathscr{E}} % electromotive force
-\newcommand{\rr}{\shifttext{-2pt}{\ensuremath{\scriptr}}} % Griffiths 的相对位矢
+% Griffiths 的相对位矢
+\newcommand{\rr}{{\mathchoice
+  {\shifttext{-2pt}{\ensuremath{\scriptr}}}
+  {\shifttext{-2pt}{\ensuremath{\scriptr}}}
+  {\scalebox{0.8}{\ensuremath{\scriptr}}}
+  {\scalebox{0.65}{\ensuremath{\scriptr}}}
+}}
 \newcommand{\muB}{\mu_\mathrm{B}} % 玻尔磁子
 
 % 角度，温度 ---------------
