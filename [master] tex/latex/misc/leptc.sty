@@ -202,16 +202,16 @@
 
 % 偏导数
 \LetLtxMacro{\oldpartial}{\partial}
-\renewcommand{\partial}[1][]{{\color{o}\,\ensuremath{\oldpartial^{#1}}}}
+\renewcommand{\partial}[1][]{{\color{o}\,\oldpartial}^{#1}}
 
 % 矢量微分算符，可作梯度、散度、旋度、拉普拉斯算符
 \LetLtxMacro{\oldnabla}{\nabla}
 \renewcommand{\nabla}{{\color{o}\mathbf{\oldnabla}}}
 \newcommand{\nablad}{{\color{o}\mathbf{\oldnabla\cdot}}}
 \newcommand{\nablat}{{\color{o}\mathbf{\oldnabla\times}}}
-\newcommand{\nablas}{{\color{o}\oldnabla^2}}
+\newcommand{\nablas}{\nabla^2}
 
-\newcommand{\squares}{{\color{o}\square^2}}
+\newcommand{\squares}{{\color{o}\square}^2}
 
 \LetLtxMacro{\olddelta}{\delta}
 \renewcommand{\delta}{{\color{o}\olddelta}}
@@ -710,8 +710,8 @@
 \newcommand{\rr}{{\mathchoice
   {\shifttext{-2pt}{\ensuremath{\scriptr}}}
   {\shifttext{-2pt}{\ensuremath{\scriptr}}}
-  {\scalebox{0.8}{\ensuremath{\scriptr}}}
-  {\scalebox{0.65}{\ensuremath{\scriptr}}}
+  {\scalebox{0.8}{\shifttext{-2pt}{\ensuremath{\scriptr}}}}
+  {\scalebox{0.65}{\shifttext{-2pt}{\ensuremath{\scriptr}}}}
 }}
 \newcommand{\muB}{\mu_\mathrm{B}} % 玻尔磁子
 
