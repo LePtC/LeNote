@@ -1,7 +1,11 @@
-LeNote
+\\ent[LeNote]{狸笔记}
 ======
 
+狸笔记（LeNote）是 LePtC 为整理物理数学笔记开发的 LaTeX 模版，主要特点有双语词条、自动高亮、图文混排、表文混排、紧凑版面、简化数理命令、强迫症友好型格式约定等…
+
 LeNote is a LaTeX note template created by LePtC, for templating his physics and mathematics notes.
+
+（此为狸笔记模版开发主页，狸笔记 pdf 文件主页 [戳这](http://leptc.github.io/lenote/)）
 
 This is the LeNote template development homepage,
 for LeNote pdf files homepage
@@ -10,19 +14,19 @@ for LeNote pdf files homepage
 
 LeNote provides the following features:
 
-- CJK and alphabet mix
+- 双语词条 CJK alphabet combined entry
 
 ![lenotef1](http://leptc.github.io/lenote/lenotef1.jpg)
 
-- Syntax highlighting
+- 自动高亮 Syntax highlighting
 
 ![lenotef3](http://leptc.github.io/lenote/lenotef3.jpg)
 
-- Picture, table mix with text
+- 图文混排，表文混排 Picture, table mix with text
 
 ![lenotef2](http://leptc.github.io/lenote/lenotef2.jpg)
 
-- Other symbol conventions in physics and math
+- 数理符号约定 Other symbol conventions in physics and math
 
 ![lenotef4](http://leptc.github.io/lenote/lenotef4.jpg)
 
