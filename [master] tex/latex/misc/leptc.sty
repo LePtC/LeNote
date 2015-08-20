@@ -202,14 +202,22 @@
 
 % 偏导数
 \LetLtxMacro{\oldpartial}{\partial}
-\renewcommand{\partial}[1][]{{\color{o}\,\oldpartial}^{#1}}
+\renewcommand{\partial}[1][]{
+  \ifthenelse{\equal{#1}{}}{
+    {{\color{o}\,\oldpartial}}
+  }{
+    {{\color{o}\,\oldpartial}^{#1}}
+  }
+}
 
 % 矢量微分算符，可作梯度、散度、旋度、拉普拉斯算符
 \LetLtxMacro{\oldnabla}{\nabla}
-\renewcommand{\nabla}{{\color{o}\mathbf{\oldnabla}}}
-\newcommand{\nablad}{{\color{o}\mathbf{\oldnabla\cdot}}}
-\newcommand{\nablat}{{\color{o}\mathbf{\oldnabla\times}}}
-\newcommand{\nablas}{\nabla^2}
+\renewcommand{\nabla}[1][]{{\color{o}\mathbf{\oldnabla}}
+  \ifthenelse{\equal{#1}{}}{}{_{\!{#1}}}
+}
+\newcommand{\nablad}[1][]{\nabla[#1]{\color{o}\cdot}}
+\newcommand{\nablat}[1][]{\nabla[#1]{\color{o}\times}}
+\newcommand{\nablas}[1][]{\nabla[#1]^2}
 
 \newcommand{\squares}{{\color{o}\square}^2}
 
@@ -659,11 +667,11 @@
 
 % 区分一撇 comma 和求导 slash，会覆盖掉 accent commands
 \newcommand{\co}[1][]{\ensuremath{\mathchoice
-	{^{\raisebox{3pt}{$,$}}}
-	{^{\raisebox{3pt}{$,$}}}
-	{^{\scalebox{0.8}{\raisebox{3pt}{$,$}}}}
-	{^{\scalebox{0.8}{\raisebox{3pt}{$,$}}}}
-	\ifthenelse{\equal{#1}{}}{}{\kern-0.8ex_{#1}}
+	{^{\raisebox{3pt}{$\,,$}}}
+	{^{\raisebox{3pt}{$\,,$}}}
+	{^{\scalebox{0.8}{\raisebox{3pt}{$\,,$}}}}
+	{^{\scalebox{0.8}{\raisebox{3pt}{$\,,$}}}}
+	\ifthenelse{\equal{#1}{}}{}{\kern-0.7ex_{#1}}
 }}
 % \renewcommand{\b}{^{\backprime}}
 

@@ -5,7 +5,7 @@
 
 LeNote is a LaTeX note template created by LePtC, for templating his physics and mathematics notes.
 
-（此为狸笔记模版开发主页，狸笔记 pdf 文件主页 [戳这](http://leptc.github.io/lenote/)）
+（此为狸笔记模版开发主页，狸笔记 pdf 文件主页 [戳这](http://leptc.github.io/lenote/) ）
 
 This is the LeNote template development homepage,
 for LeNote pdf files homepage
@@ -30,6 +30,8 @@ LeNote provides the following features:
 
 ![lenotef4](http://leptc.github.io/lenote/lenotef4.jpg)
 
+具体指导详见 sample 文件夹中的 LePtC.pdf 文件
+
 Other details: see the LePtC.pdf in the sample folder.
 (Currently in Chinese only)
 
@@ -41,11 +43,11 @@ Other details: see the LePtC.pdf in the sample folder.
 Sample
 ======
 
-Print out style
+打印效果 Print out style
 
 ![example](https://github.com/LePtC/lenote/blob/master/LePtC_2.png)
 
-Reverse color style (using SumatraPDF on PC)
+反色效果（电脑上用 SumatraPDF 查看） Reverse color style (using SumatraPDF on PC)
 
 ![example](https://github.com/LePtC/lenote/blob/master/LePtC_2r.png)
 

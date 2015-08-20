@@ -157,6 +157,10 @@
 \textcopyright\ \href{mailto:alileptc@gmail.com}{\LePtC} \com{萌狸}
 
 笔记项目主页：\url{http://leptc.github.io/lenote }
+
+\vspace{16pt}
+
+\ent{署名·非商用·相同方式共享}
 \end{flushright}
 \vspace{20pt}
 
