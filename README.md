@@ -7,11 +7,11 @@ LeNote is a LaTeX note template created by LePtC, for templating his physics and
 
 （此为狸笔记模版开发主页，狸笔记 pdf 文件主页 [戳这](http://leptc.github.io/lenote/) ）
 
-This is the LeNote template development homepage,
+(This is the homepage for LeNote template development,
 for LeNote pdf files homepage
-[click me](http://leptc.github.io/lenote/)
+[click me](http://leptc.github.io/lenote/))
 
-
+狸笔记的主要特性有：
 LeNote provides the following features:
 
 - 双语词条 CJK alphabet combined entry
@@ -30,7 +30,7 @@ LeNote provides the following features:
 
 ![lenotef4](http://leptc.github.io/lenote/lenotef4.jpg)
 
-具体指导详见 sample 文件夹中的 LePtC.pdf 文件
+详细指导见 sample 文件夹中的 LePtC.pdf 文件
 
 Other details: see the LePtC.pdf in the sample folder.
 (Currently in Chinese only)
@@ -95,6 +95,8 @@ Sample
 
 
 
-（萌狸的 LaTeX 属于现学现卖，模版可能开发的灰常不专业，欢迎提出指导意见…）
+======
+
+（萌狸的 LaTeX 属于现学现卖滴，模版可能开发的灰常不专业，欢迎提出指导意见～）
 
 

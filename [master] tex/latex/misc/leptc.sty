@@ -137,9 +137,11 @@
 
 \newcommand{\sinc}{{\color{o}\,\mathrm{sinc}\,}}
 
-% 函数名只有一个字母时,不用正体区分?
-\newcommand{\He}{{\color{o}\,\mathrm{H}\,}} % 厄米函数
-\renewcommand{\La}{{\color{o}\,\mathrm{L}\,}} % 拉盖尔函数
+% 函数名要用正体区分
+\newcommand{\He}{{\color{o}\mathrm{H}}} % 厄米多项式
+\newcommand{\Pl}{{\color{o}\mathrm{P}}} % 勒让德多项式
+\renewcommand{\La}{{\color{o}\mathrm{L}}} % 拉盖尔多项式
+\newcommand{\Yl}{{\color{o}\mathrm{Y}}} % 球谐函数
 \newcommand{\Li}{{\color{o}\,\mathrm{Li}\,}} % 多对数函数...
 
 \renewcommand{\Re}{{\color{o}\mathrm{Re}}}
@@ -154,7 +156,8 @@
 \newcommand{\inn}{\,{\mathbf{Inn}}\,}
 \renewcommand{\ker}{\,{\mathbf{Ker}}\,}
 % 字母形的算符高亮绿色
-\newcommand{\Fo}[2][]{{\ensuremath{{\color{o}\mathcal{F}^{#1}}\left[#2\right]}}}
+\newcommand{\Fo}{{\ensuremath{{\color{o}\mathcal{F}}}}}
+\newcommand{\Lp}{{\ensuremath{{\color{o}\mathcal{L}}}}}
 
 
 \newcommand{\id}{\,{\color{o}\mathrm{id}}\,}
@@ -671,7 +674,7 @@
 	{^{\raisebox{3pt}{$\,,$}}}
 	{^{\scalebox{0.8}{\raisebox{3pt}{$\,,$}}}}
 	{^{\scalebox{0.8}{\raisebox{3pt}{$\,,$}}}}
-	\ifthenelse{\equal{#1}{}}{}{\kern-0.7ex_{#1}}
+	\ifthenelse{\equal{#1}{}}{}{\kern-1.0ex_{#1}}
 }}
 % \renewcommand{\b}{^{\backprime}}
 
@@ -732,8 +735,8 @@
 }
 \newcommand{\oA}{\text{\AA}} % angstrom
 
-\newcommand{\oC}{{\ensuremath{\color{b}\,^{\circ}{\mathrm C}}}}
-\newcommand{\oF}{{\ensuremath{\color{b}\,^{\circ}{\mathrm F}}}}
+\newcommand{\oC}{{\ensuremath{\color{b}\,^{\circ}{\mathrm C}\,}}}
+\newcommand{\oF}{{\ensuremath{\color{b}\,^{\circ}{\mathrm F}\,}}}
 
 % 光学 ---------------
 % \newcommand{\no}{n_\mathrm{o}} % 非寻常光？...
