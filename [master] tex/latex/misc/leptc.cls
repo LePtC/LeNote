@@ -162,7 +162,7 @@
 
 \ent{署名·非商用·相同方式共享}
 \end{flushright}
-\vspace{20pt}
+\vspace{10pt}
 
 % {\large\hei\color{w}\colorbox{p}{参考文献}}
 % \vspace{10pt}

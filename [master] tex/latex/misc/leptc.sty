@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 符号部分
 % filename  = leptc.sty
 % author = LePtC
-% version = 2015.08
+% version = 2015.10
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -150,6 +150,8 @@
 \let\sgn\relax % 避免与 physymb 冲突
 \newcommand{\sgn}{\,{\color{o}\mathrm{sgn}}\,}
 
+\newcommand{\erf}{\,{\color{o}\mathrm{erf}}\,}
+
 
 % 粗体被注册为群，双线被注册为数域，花体泛函
 \newcommand{\aut}{\,{\mathbf{Aut}}\,}
@@ -158,6 +160,9 @@
 % 字母形的算符高亮绿色
 \newcommand{\Fo}{{\ensuremath{{\color{o}\mathcal{F}}}}}
 \newcommand{\Lp}{{\ensuremath{{\color{o}\mathcal{L}}}}}
+
+% 与拉氏量密度区分, 不上色
+\newcommand{\Lag}{\mathcal{L}}
 
 
 \newcommand{\id}{\,{\color{o}\mathrm{id}}\,}
@@ -168,7 +173,7 @@
 \renewcommand{\det}{\,{\color{o}\mathrm{det}}\,}
 \let\diag\relax % 避免与 physymb 冲突
 \newcommand{\diag}[1][]{\,{\color{o}\mathrm{diag}}
-	\ifthenelse{\equal{#1}{}}{}{\mat[0.9]{#1}}\,}
+	\ifthenelse{\equal{#1}{}}{}{\,\big[\matn[0.9]{#1}}\big]}
 
 % \lim \sum 之类不作处理?
 % 图画符号（\prime，根号）即使是算符也不上色,因为本身不易混淆,上色很麻烦 ...
@@ -209,7 +214,7 @@
   \ifthenelse{\equal{#1}{}}{
     {{\color{o}\,\oldpartial}}
   }{
-    {{\color{o}\,\oldpartial}^{#1}}
+    {{\color{o}\,\oldpartial}^{\,#1}}
   }
 }
 
@@ -339,7 +344,7 @@
 
 % 双矢量  ---------------
 
-\newcommand{\vvec}[1]{\overset{ }{\tightoverset{\fldr\joinrel\fldr}{#1}}}
+\newcommand{\vvec}[1]{\raisebox{1pt}{\ensuremath{\overset{ }{\tightoverset{\fldr\joinrel\fldr}{#1}}}}}
 \newcommand{\vvecd}[1]{\dot{\vvec{#1}}}
 \newcommand{\vvecdd}[1]{\ddot{\vvec{#1}}}
 
@@ -585,6 +590,7 @@
 %--------------------------------------------------
 % 补充特殊格式
 % （物理单位、函数正体，变量、粒子符号斜体）
+% TODO 排列组合的 C A 应该变个字体 http://tex.stackexchange.com/questions/107125/is-there-a-command-to-write-the-form-of-a-combination-or-permutation
 %--------------------------------------------------
 
 % 对于很长的公式，用括号配对更明确，替代 $$
@@ -642,6 +648,7 @@
 \RequirePackage{wasysym} % 提供 \apprge \apprle
 \RequirePackage{esint} % 提供 \varoiint，要 overide 掉 amsmath
 \RequirePackage{extarrows} % 等号上面写东西 \xlongequal[below]{above}
+\RequirePackage{chemarr} % 左右箭头写东西  \xrightleftharpoons[below]{above}
 \RequirePackage{slashed} % 协变导数 \cancel 不行?
 %--------------------------------------------------
 
@@ -672,8 +679,8 @@
 \newcommand{\co}[1][]{\ensuremath{\mathchoice
 	{^{\raisebox{3pt}{$\,,$}}}
 	{^{\raisebox{3pt}{$\,,$}}}
-	{^{\scalebox{0.8}{\raisebox{3pt}{$\,,$}}}}
-	{^{\scalebox{0.8}{\raisebox{3pt}{$\,,$}}}}
+	{^{\scalebox{0.8}{\raisebox{3pt}{$,$}}}}
+	{^{\scalebox{0.8}{\raisebox{3pt}{$,$}}}}
 	\ifthenelse{\equal{#1}{}}{}{\kern-1.0ex_{#1}}
 }}
 % \renewcommand{\b}{^{\backprime}}
@@ -737,6 +744,7 @@
 
 \newcommand{\oC}{{\ensuremath{\color{b}\,^{\circ}{\mathrm C}\,}}}
 \newcommand{\oF}{{\ensuremath{\color{b}\,^{\circ}{\mathrm F}\,}}}
+\newcommand{\oR}{{\ensuremath{\color{b}\,^{\circ}{\mathrm R}\,}}}
 
 % 光学 ---------------
 % \newcommand{\no}{n_\mathrm{o}} % 非寻常光？...
@@ -827,7 +835,7 @@
 \RequirePackage{datetime} % 当前时间
 \newcommand{\compiled}{
 \begin{flushright}
-Last compiled on {\yyyymmdddate\today} at {\hhmmsstime}
+\com{\,Last compiled on {\yyyymmdddate\today} at {\hhmmsstime}\,}
 \end{flushright}
 }
 
