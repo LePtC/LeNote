@@ -63,7 +63,7 @@ Sample
 
 自动高亮增加新成员：单位矢量
 
-<img src="http://leptc.github.io/lenote/lenotef5.jpg" style="max-width:200px"/>
+![lenotef5](lenotef5.jpg)
 
 
 ###2015.10.16
