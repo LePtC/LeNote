@@ -261,6 +261,11 @@
 \newcommand{\bigO}{{\color{o}\mathrm{O}}}
 \newcommand{\smallo}{{\color{o}\mathrm{o}}}
 
+% 排列组合, 我习惯 \Choose \Arrange , 也有叫 Combination Permutation
+\newcommand{\Cho}[2]{{\color{o}\mathsf{C}}_{#1}^{#2}\,}
+% \newcommand{\Arr}[2]{\scalebox{0.7}[1]{\color{o}$\mathsf{A}$}_{#1}^{#2}\,}
+\newcommand{\Arr}[2]{{\color{o}\mathsf{A}}_{#1}^{#2}\,}
+
 % 格式微调
 \LetLtxMacro{\oldexists}{\exists}
 \renewcommand{\exists}{\oldexists\,}
@@ -269,7 +274,9 @@
 
 % 常微分分式 ---------------
 
-\newcommand{\od}[3][]{\frac{\dif[#1] #2}{\dif #3^{#1}}}
+\newcommand{\od}[3][]{\frac{\dif[#1] #2}{\dif
+  \ifthenelse{\equal{#1}{}}{#3}{{#3}^{#1}}
+}}
 % \left. \right| 不好看
 % \mathchoice: display, text, script and scriptscript
 \newcommand{\odat}[4][]{ \mathchoice
@@ -282,8 +289,9 @@
 % 偏微分分式  ---------------
 
 % physymb 还提供了 pdd, pddd… 以简化高阶导
-\renewcommand{\pd}[3][]{\frac{\partial[#1] #2}{\partial {#3}^{#1}}}
-
+\renewcommand{\pd}[3][]{\frac{\partial[#1] #2}{\partial
+  \ifthenelse{\equal{#1}{}}{#3}{{#3}^{#1}}
+}}
 \newcommand{\pdat}[4][]{ \mathchoice
 	{\Big(\pd[#1]{#2}{#3}\Big)_{#4}}
 	{\big(\pd[#1]{#2}{#3}\big)_{#4}}
@@ -328,12 +336,12 @@
 \newcommand{\vecdd}[1]{\ddot{\vec{#1}}}
 
 % 方便单位矢量
-\newcommand{\ve}[1]{\,\vec{e_{#1}}}
-\newcommand{\ved}[1]{\,\vecd{e_{#1}}}
-\newcommand{\vedd}[1]{\,\vecdd{e_{#1}}}
+\newcommand{\ve}[1]{\,{\color{b}\vec{e_{#1}}}}
+\newcommand{\ved}[1]{\dot{\ve{#1}}}
+\newcommand{\vedd}[1]{\ddot{\ve{#1}}}
 
 % 左矢量
-\newcommand{\lvec}[1]{\overset{\rotatebox[origin=c]{180}{$\fldr$}}{#1}}
+\newcommand{\lvec}[1]{\overset{\rotatebox[origin=c]{180}{\raisebox{-0.7pt}{$\fldr$}}}{#1}}
 \newcommand{\lrvec}[1]{\overset{\rotatebox[origin=c]{180}{$\fldr$}\hspace{-3pt}\raisebox{-1.6pt}{$\fldr$}}{#1}} % 在 \lrvec{\partial^\mu} 上效果很好...
 
 % 发明一种新的记号区分对t求导和对s求导（待议） ---------------
@@ -498,7 +506,20 @@
 	\end{figure}
 }
 \newcommand{\figgg}[9]{
-	\begin{figure}[!htb]\centering
+  \begin{figure}[!htb]\centering
+    \begin{subfigure}[!htb]{#2\textwidth}\vspace{#3 pt}
+      \includegraphics[width=\textwidth]{#1}
+    \end{subfigure}
+    \begin{subfigure}[!htb]{#5\textwidth}\vspace{#6 pt}
+      \includegraphics[width=\textwidth]{#4}
+    \end{subfigure}
+    \begin{subfigure}[!htb]{#8\textwidth}\vspace{#9 pt}
+      \includegraphics[width=\textwidth]{#7}
+    \end{subfigure}
+  \end{figure}
+}
+\newcommand{\figggr}[9]{
+	\begin{figure}[!htb]\raggedleft
 		\begin{subfigure}[!htb]{#2\textwidth}\vspace{#3 pt}
 			\includegraphics[width=\textwidth]{#1}
 		\end{subfigure}
@@ -590,7 +611,6 @@
 %--------------------------------------------------
 % 补充特殊格式
 % （物理单位、函数正体，变量、粒子符号斜体）
-% TODO 排列组合的 C A 应该变个字体 http://tex.stackexchange.com/questions/107125/is-there-a-command-to-write-the-form-of-a-combination-or-permutation
 %--------------------------------------------------
 
 % 对于很长的公式，用括号配对更明确，替代 $$
@@ -604,6 +624,7 @@
 
 % damn bar...
 \renewcommand{\bar}[1]{\overline{#1}}
+\newcommand{\tld}[1]{\widetilde{#1}}
 
 % 物理单位高亮紫色 ---------------
 
@@ -637,7 +658,7 @@
 \renewcommand{\leftrightarrow}{{\ensuremath{\,\color{g}\oldleftrightarrow\,}}}
 
 % 充要 necessary and sufficient
-\newcommand{\ns}{{\ensuremath{\,\color{g}\Leftrightarrow\,}}}
+\newcommand{\ns}{\,{\color{g}\ensuremath{\Leftrightarrow}}\,}
 % TODO: 怎么只改箭头类字符的字体?
 
 
@@ -667,13 +688,16 @@
 \newcommand{\LePtC}{L\raisebox{3pt}{e}\hspace{1pt}P\raisebox{-1pt}{\scalebox{0.8}{t}}\hspace{1pt}C}
 
 % text 中打 $\sim$
-\newcommand{\tld}{{\raise.17ex\hbox{\!$\mathtt{\sim}$}}}
+\newcommand{\tsim}{{\raise.17ex\hbox{\!$\mathtt{\sim}$}}}
 \newcommand{\xsim}[2][1.2]{
   \mathrel{\overset{#2}{\scalebox{#1}[1]{$\sim$}}}
 }
 
 % 空集
 \renewcommand{\emptyset}{\scalebox{1.15}{$\varnothing$}}
+
+% 转置
+\renewcommand{\T}{{\color{o}\mathsf{T}}}
 
 % 区分一撇 comma 和求导 slash，会覆盖掉 accent commands
 \newcommand{\co}[1][]{\ensuremath{\mathchoice
@@ -748,6 +772,8 @@
 
 % 光学 ---------------
 % \newcommand{\no}{n_\mathrm{o}} % 非寻常光？...
+
+% TODO 左手右手 LR 变正体, 透射反射 TR 不用变?
 
 % 相对论 ---------------
 
