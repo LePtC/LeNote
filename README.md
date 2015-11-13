@@ -16,19 +16,19 @@ LeNote provides the following features:
 
 - 双语词条 CJK alphabet combined entry
 
-![lenotef1](http://leptc.github.io/lenote/lenotef1.jpg)
+![lenotef1](http://leptc.github.io/lenote/lenotef1.jpg =300x)
 
 - 自动高亮 Syntax highlighting
 
-![lenotef3](http://leptc.github.io/lenote/lenotef3.jpg)
+![lenotef3](http://leptc.github.io/lenote/lenotef3.jpg =300x)
 
 - 图文混排，表文混排 Picture, table mix with text
 
-![lenotef2](http://leptc.github.io/lenote/lenotef2.jpg)
+![lenotef2](http://leptc.github.io/lenote/lenotef2.jpg =300x)
 
 - 数理符号约定 Other symbol conventions in physics and math
 
-![lenotef4](http://leptc.github.io/lenote/lenotef4.jpg)
+![lenotef4](http://leptc.github.io/lenote/lenotef4.jpg =300x)
 
 详细指导见 sample 文件夹中的 LePtC.pdf 文件
 
@@ -63,7 +63,7 @@ Sample
 
 自动高亮增加新成员：单位矢量
 
-![lenotef5](http://leptc.github.io/lenote/lenotef5.jpg)
+![lenotef5](http://leptc.github.io/lenote/lenotef5.jpg =200x)
 
 
 ###2015.10.16
