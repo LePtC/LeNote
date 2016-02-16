@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 笔记
 % filename  = leptc.cls
 % author = LePtC
-% version = 2015.07
+% version = 2015.12
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -59,6 +59,19 @@
 
 \setlength{\footskip}{20pt} % 页码位置
 \renewcommand{\thepage}{- \arabic{page} -} % 页码样式 arabic,roman,alph
+
+% 每一页都加入作者信息
+\RequirePackage{fancyhdr}
+% \fancypagestyle{plain}{
+  \lfoot{\small \url{http://leptc.github.io/lenote }}
+  \cfoot{\thepage}
+  \rfoot{\small \textcopyright\ \href{mailto:alileptc@gmail.com}{\LePtC}}
+  \renewcommand{\headrulewidth}{0pt}
+  % \renewcommand{\footrulewidth}{0.4pt} % 画横线
+
+% \makeatletter
+% \let\ps@plain\ps@fancy   % debug: Plain page style = fancy page style
+% \makeatother
 
 
 %--------------------------------------------------
@@ -119,6 +132,12 @@
 
 
 
+%--------------------------------------------------
+% 图片都放在 figure 文件夹下, 封面用图公共
+\graphicspath{{figure/}{C:/}}
+% 用 C:/Program Files/MiKTeX 2.9/tex/latex/leptc/ 会有 bug…
+%--------------------------------------------------
+
 
 
 \RequirePackage{leptc}
@@ -149,19 +168,22 @@
 
 \vspace{-32pt}
 \begin{center}
-{{\Huge\hei\color{w}#2}}
+{\hspace{40pt}{\Huge\hei\color{w}#2}}
 \end{center}
 
-\vspace{-5pt}
+\ent{署名·非商用·相同方式共享}
+\vspace{-30pt}
+
 \begin{flushright}
+\com{\,最后编辑于 {\yyyymmdddate\today} - {\hhmmsstime}\,}
+% 笔记项目主页：
+\quad
 \textcopyright\ \href{mailto:alileptc@gmail.com}{\LePtC} \com{萌狸}
 
-笔记项目主页：\url{http://leptc.github.io/lenote }
-
-\vspace{16pt}
-
-\ent{署名·非商用·相同方式共享}
+\vspace{5pt}
+\url{http://leptc.github.io/lenote }
 \end{flushright}
+
 \vspace{10pt}
 
 % {\large\hei\color{w}\colorbox{p}{参考文献}}
@@ -172,7 +194,6 @@
 \vfill
 }}
 {
-\compiled
 \thispagestyle{empty}
 \clearpage
 \setcounter{page}{1}
@@ -180,7 +201,7 @@
 
 
 
-
+\pagestyle{fancy}
 
 
 \endinput

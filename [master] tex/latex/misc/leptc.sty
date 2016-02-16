@@ -2,7 +2,7 @@
 % LePtC 双语彩色笔记模版 - 符号部分
 % filename  = leptc.sty
 % author = LePtC
-% version = 2015.10
+% version = 2016.02
 % email = alileptc@gmail.com
 % available on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
@@ -15,7 +15,7 @@
 
 %--------------------------------------------------
 % 定义颜色
-\RequirePackage{color}
+\RequirePackage{xcolor} % Package xcolor Warning: Incompatible color definition 已修正
 %--------------------------------------------------
 
 
@@ -135,6 +135,10 @@
 \LetLtxMacro{\oldarctan}{\arctan}
 \renewcommand{\arctan}{{\color{o}\,\oldarctan\,}}
 
+\newcommand{\arcsinh}{{\color{o}\,\mathrm{arcsinh}\,}}
+\newcommand{\arccosh}{{\color{o}\,\mathrm{arccosh}\,}}
+\newcommand{\arctanh}{{\color{o}\,\mathrm{arctanh}\,}}
+
 \newcommand{\sinc}{{\color{o}\,\mathrm{sinc}\,}}
 
 % 函数名要用正体区分
@@ -144,8 +148,17 @@
 \newcommand{\Yl}{{\color{o}\mathrm{Y}}} % 球谐函数
 \newcommand{\Li}{{\color{o}\,\mathrm{Li}\,}} % 多对数函数...
 
-\renewcommand{\Re}{{\color{o}\mathrm{Re}}}
-\renewcommand{\Im}{{\color{o}\mathrm{Im}}}
+\let\Re\relax
+\DeclareMathOperator{\Re}{{\color{o}\mathrm{Re}}}
+\let\Im\relax
+\DeclareMathOperator{\Im}{{\color{o}\mathrm{Im}}}
+% 方便下标
+\def\re{_\mathrm{r}}
+\def\im{_\mathrm{i}}
+
+% 定义域和值域
+\DeclareMathOperator{\Do}{{\color{o}\mathcal{D}}}
+\DeclareMathOperator{\Ra}{{\color{o}\mathcal{R}}}
 
 \let\sgn\relax % 避免与 physymb 冲突
 \newcommand{\sgn}{\,{\color{o}\mathrm{sgn}}\,}
@@ -153,10 +166,13 @@
 \newcommand{\erf}{\,{\color{o}\mathrm{erf}}\,}
 
 
-% 粗体被注册为群，双线被注册为数域，花体泛函
+% 粗体被注册为群，双线被注册为数域，花体泛函，TODO new: 斜粗体为矩阵
+\RequirePackage{bm}
+
 \newcommand{\aut}{\,{\mathbf{Aut}}\,}
 \newcommand{\inn}{\,{\mathbf{Inn}}\,}
 \renewcommand{\ker}{\,{\mathbf{Ker}}\,}
+
 % 字母形的算符高亮绿色
 \newcommand{\Fo}{{\ensuremath{{\color{o}\mathcal{F}}}}}
 \newcommand{\Lp}{{\ensuremath{{\color{o}\mathcal{L}}}}}
@@ -167,13 +183,26 @@
 
 \newcommand{\id}{\,{\color{o}\mathrm{id}}\,}
 
-\newcommand{\tr}{\,{\color{o}\mathrm{tr}}\,}
-\newcommand{\rank}{\,{\color{o}\mathrm{rank}}\,}
-\renewcommand{\dim}{\,{\color{o}\mathrm{dim}}\,}
-\renewcommand{\det}{\,{\color{o}\mathrm{det}}\,}
+% TODO 全都换 operator 新方案
+\DeclareMathOperator{\tr}{{\color{o}\mathrm{tr}}}
+\DeclareMathOperator{\rank}{{\color{o}\mathrm{rank}}}
+\let\dim\relax
+\DeclareMathOperator{\dim}{{\color{o}\mathrm{dim}}}
+\let\det\relax
+\DeclareMathOperator{\det}{{\color{o}\mathrm{det}}}
+\DeclareMathOperator{\eig}{{\color{o}\mathrm{eig}}}
 \let\diag\relax % 避免与 physymb 冲突
-\newcommand{\diag}[1][]{\,{\color{o}\mathrm{diag}}
-	\ifthenelse{\equal{#1}{}}{}{\,\big[\matn[0.9]{#1}}\big]}
+% \newcommand{\diag}[1][]{\,{\color{o}\mathrm{diag}}
+%   \ifthenelse{\equal{#1}{}}{}{\,\big[\matn[0.9]{#1}}\big]}
+\DeclareMathOperator{\diag}{{\color{o}\mathrm{diag}}}
+\DeclareMathOperator{\cond}{{\color{o}\mathrm{cond}}}
+
+
+% TODO E D Cov 等是用 mathrm 还是 mathsf?
+% \newcommand{\Ep}{{\color{o}\operatorname{E}}}
+\DeclareMathOperator{\Ep}{{\color{o}\mathrm{E}}}
+\newcommand{\Dv}{{\color{o}\operatorname{D}}}
+\newcommand{\Cov}{{\color{o}\operatorname{Cov}}}
 
 % \lim \sum 之类不作处理?
 % 图画符号（\prime，根号）即使是算符也不上色,因为本身不易混淆,上色很麻烦 ...
@@ -181,7 +210,7 @@
 \renewcommand{\gcd}{{\color{o}\,\mathrm{gcd}\,}}
 \newcommand{\lcm}{{\color{o}\,\mathrm{lcm}\,}}
 
-% 字母大型运算符加粗
+% 字母大型运算符,加粗?
 \LetLtxMacro{\oldmax}{\max}
 % \renewcommand{\max}{\mathop{\boldsymbol\oldmax}}
 \renewcommand{\max}{{\color{o}\oldmax}}
@@ -189,7 +218,6 @@
 % \renewcommand{\min}{\mathop{\boldsymbol\oldmin}}
 \renewcommand{\min}{{\color{o}\oldmin}}
 
-% TODO: \mathcal 表示范畴或者描述渐进行为的大O记号，\mathfrak表示李群对应的李代数  \mathfrak{g}, \mathfrak{h}
 
 
 
@@ -257,9 +285,17 @@
 \LetLtxMacro{\oldPi}{\Pi}
 \renewcommand{\Pi}{\varPi}
 
+% 克里斯托费尔符号
+\newcommand{\Chris}{{\color{o}\oldGamma}}
+% 黎曼曲率张量
+\newcommand{\Rie}[4]{{\color{o}R}_{#1#2#3}{}^{#4}}
+
+
+% TODO: \mathcal 表示范畴或者描述渐进行为的大O记号，\mathfrak表示李群对应的李代数  \mathfrak{g}, \mathfrak{h}
+
 % 大小O记号
-\newcommand{\bigO}{{\color{o}\mathrm{O}}}
-\newcommand{\smallo}{{\color{o}\mathrm{o}}}
+\newcommand{\bigO}{{\color{o}\mathsf{O}}}
+\newcommand{\smallo}{{\color{o}\mathsf{o}}}
 
 % 排列组合, 我习惯 \Choose \Arrange , 也有叫 Combination Permutation
 \newcommand{\Cho}[2]{{\color{o}\mathsf{C}}_{#1}^{#2}\,}
@@ -271,6 +307,8 @@
 \renewcommand{\exists}{\oldexists\,}
 \LetLtxMacro{\oldforall}{\forall}
 \renewcommand{\forall}{\oldforall\,}
+\LetLtxMacro{\oldmapsto}{\mapsto}
+\renewcommand{\mapsto}{\,\oldmapsto\,}
 
 % 常微分分式 ---------------
 
@@ -298,7 +336,7 @@
 	{(\pd[#1]{#2}{#3})_{#4}}
 	{(\pd[#1]{#2}{#3})_{#4}}
 }
-\newcommand{\md}[6]{\frac{\partial[#2] #1}{\partial{#3^{#4}}\partial{#5^{#6}}}}
+\newcommand{\md}[6]{\frac{\partial[#2] #1}{\partial{#3{}^{#4}}\partial{#5{}^{#6}}}}
 \newcommand{\mdat}[7]{ \mathchoice
 	{\left(\dmd{#1}{#2}{#3}{#4}{#5}{#6}\right)_{#7}}
 	{(\tmd{#1}{#2}{#3}{#4}{#5}{#6})_{#7}}
@@ -337,8 +375,15 @@
 
 % 方便单位矢量
 \newcommand{\ve}[1]{\,{\color{b}\vec{e_{#1}}}}
+\newcommand{\veb}[1]{\,{\color{b}\bm{e}_{#1}}} % 矩阵中用粗体表示
+\newcommand{\vg}[1]{\,{\color{b}\vec{g_{#1}}}}
 \newcommand{\ved}[1]{\dot{\ve{#1}}}
 \newcommand{\vedd}[1]{\ddot{\ve{#1}}}
+% 对偶空间基矢 up low
+\newcommand{\vel}[1]{\,{\color{b}e_{#1}}}
+\newcommand{\veu}[1]{\,{\color{b}e^{#1}}}
+\newcommand{\vgl}[1]{\,{\color{b}g_{#1}}}
+\newcommand{\vgu}[1]{\,{\color{b}g^{#1}}}
 
 % 左矢量
 \newcommand{\lvec}[1]{\overset{\rotatebox[origin=c]{180}{\raisebox{-0.7pt}{$\fldr$}}}{#1}}
@@ -370,6 +415,7 @@
 \RequirePackage{arydshln} % ,leftidx,mathtools矩阵中画虚线…
 % \setlength{\dashlinedash}{.4pt}
 % \setlength{\dashlinegap}{.8pt}
+\RequirePackage{mathdots} % \iddots
 %--------------------------------------------------
 
 
@@ -393,6 +439,20 @@
 \end{minipage}}
 \end{tabular}%
 }
+
+% 一个 \enl 下列举多条内容
+
+\newcommand{\enlr}[2]{
+\enl{#1}
+\vspace{-17pt}
+
+{\setlength{\parindent}{29pt}
+
+#2
+}}
+
+
+
 
 % 默认矩阵还是方括号好看 ---------------
 
@@ -479,7 +539,6 @@
 %--------------------------------------------------
 
 
-\graphicspath{{figure/}} % 图片都放在 figure 文件夹下
 
 % 普通插图 ---------------
 
@@ -535,7 +594,6 @@
 % \RequirePackage{wrapfig} 放弃，文字环绕各种乱跑
 % 手动用表格实现混排 ---------------
 
-\def\imagetop#1{\vtop{\null\hbox{#1}}}
 \newcommand{\figr}[3]{
 	{\setlength{\tabcolsep}{2pt}
 	\begin{tabular}{@{}p{{\textwidth-#2\textwidth}}p{#2\textwidth}@{}}
@@ -630,7 +688,10 @@
 
 % 虚数单位正体
 % \RequirePackage{bbm} % Mathematica 狂人可设 e i 双线体 \mathbbm{i}
-\newcommand{\ii}{{\color{b}\mathbf{i}}}
+\newcommand{\ii}{\,{\color{b}\mathbf{i}}\,}
+\newcommand{\jj}{\,{\color{b}\mathbf{j}}\,}
+\newcommand{\kk}{\,{\color{b}\mathbf{k}}\,}
+\newcommand{\lli}{\,{\color{b}\mathbf{l}}\,}
 
 % \RequirePackage{siunitx} % 物理单位紫色，用法\SI{134.976}{MeV}
 % 改用下面这种方案了
@@ -658,7 +719,7 @@
 \renewcommand{\leftrightarrow}{{\ensuremath{\,\color{g}\oldleftrightarrow\,}}}
 
 % 充要 necessary and sufficient
-\newcommand{\ns}{\,{\color{g}\ensuremath{\Leftrightarrow}}\,}
+\newcommand{\ns}{\ifmmode{\,}\fi{\color{g}\ensuremath{\Leftrightarrow}}\,}
 % TODO: 怎么只改箭头类字符的字体?
 
 
@@ -697,7 +758,7 @@
 \renewcommand{\emptyset}{\scalebox{1.15}{$\varnothing$}}
 
 % 转置
-\renewcommand{\T}{{\color{o}\mathsf{T}}}
+\renewcommand{\T}{{{\color{o}\mathsf{T}}}}
 
 % 区分一撇 comma 和求导 slash，会覆盖掉 accent commands
 \newcommand{\co}[1][]{\ensuremath{\mathchoice
@@ -713,6 +774,7 @@
 \newcommand{\ce}[1]{\ensuremath{\mathrm{#1}}}
 
 % \newcommand{\abs}[1]{\left|#1\right|} % 已由 physymb 提供
+% \newcommand{\norm}[1]{\left\lVert{#1}\right\rVert}
 
 \newcommand{\E}[1]{\times10^{#1}} % 方便数量级
 
@@ -728,11 +790,17 @@
 
 % 动能
 \newcommand{\Ek}[1][]{E_{\mathrm{k}#1}}
+\newcommand{\Ekco}[1][]{E\co[\mathrm{k}#1]}
+% 合力
+\newcommand{\FR}[1][]{\vec{F}_{\!\!\mathrm{R}#1}}
 % 内力外力
-\newcommand{\inter}{^{(\mathrm{i})}}
-\newcommand{\exter}{^{(\mathrm{e})}}
+% \newcommand{\inter}{^{(\mathrm{i})}}
+% \newcommand{\exter}{^{(\mathrm{e})}}
+\newcommand{\inter}{^{\text{内}}}
+\newcommand{\exter}{^{\text{外}}}
 % 有效势
 \newcommand{\Veff}{V_\text{eff}}
+\newcommand{\Eeff}{E_\text{eff}}
 
 % 热学 ---------------
 
@@ -866,7 +934,7 @@
 }
 
 \RequirePackage{ulem} % 删除线 \sout{...}
-\RequirePackage{soul} % 高亮工具 \hl{...} \st{...}
+\RequirePackage{soul} % 高亮工具 \hl{高亮} \st{删除} \ul{下划线}
 
 % http://tex.stackexchange.com/questions/48706/feynmf-doesnt-produce-feynman-diagram-at-all-in-txc
 % \RequirePackage{feynmp} % 用法：记得给整个文档包上
