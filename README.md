@@ -57,18 +57,26 @@ Sample
 更新日志
 ======
 
+###2016.11.09
+
+本次更新改动较大，主要是模版名由 `leptc` 改成了 `lenote`，安装过旧版 LeNote 的童鞋请修改文档的 `\documentclass`
+
+因为重装系统，重新测试了一遍最新的 MikTeX 和 TeXLive，写了新版的说明书
+
+
+
 ###2016.02.16
 
 leptc.sty：
 
-- 增加 \enlr 命令，用于罗列多个定理或推论时的缩进排版
-- 加入 bm 包，斜粗体注册为矩阵，命令为 \bm
-- 更多矩阵运算符号 \eig \cond
-- 更多概率统计符号 \Ep \Dv \Cov
+- 增加 `\enlr` 命令，用于罗列多个定理或推论时的缩进排版
+- 加入 `bm` 包，斜粗体注册为矩阵，命令为 `\bm`
+- 更多矩阵运算符号 `\eig` `\cond`
+- 更多概率统计符号 `\Ep` `\Dv` `\Cov`
 - 增加张量分析用的单位基矢，克氏符号，黎曼曲率
 - 增加四元数用的虚数单位
-- 用 DeclareMathOperator 代替蠢哭了的手打空格
-- xcolor warning 已修正（貌似…）
+- 用 `\DeclareMathOperator` 代替蠢哭了的手打空格
+- `xcolor warning` 已修正（貌似…）
 
 leptc.cls：
 
@@ -80,7 +88,7 @@ leptc.cls：
 
 ###2015.11.13
 
-将字体 \mathsf 注册为特殊数学运算（排列 A 组合 C ，转置 T）
+将字体 `\mathsf` 注册为特殊数学运算（排列 A 组合 C ，转置 T）
 
 自动高亮增加新成员：单位矢量
 
@@ -93,11 +101,11 @@ leptc.cls：
 
 ###2015.08.12
 
-加入 physymb 包，修复其与其他包的冲突，Griffiths 的相对位矢符号用 \rr
+加入 `physymb` 包，修复其与其他包的冲突，Griffiths 的相对位矢符号用 `\rr`
 
 ###2015.07.27
 
-加入封面环境 \begin{lecover}
+加入封面环境 `\begin{lecover}`
 
 ###2015.07.21
 
@@ -109,7 +117,7 @@ leptc.cls：
 
 ###2015.06.30
 
-加入子章节 \chaps{}
+加入子章节 `\chaps{}`
 
 ###2015.06.15
 
@@ -117,7 +125,7 @@ leptc.cls：
 
 ###2015.06.14
 
-加入 ytableau 包，绘制杨图 \ynd，绘制杨盘 \yng
+加入 `ytableau` 包，绘制杨图 `\ynd`，绘制杨盘 `\yng`
 
 ###2015.06.08
 

@@ -1,18 +1,18 @@
 %--------------------------------------------------
 % LePtC 双语彩色笔记模版 - 笔记
-% filename  = leptc.cls
+% filename  = lenote.cls
 % author = LePtC
-% version = 2015.12
+% version = 2016.11
 % email = alileptc@gmail.com
-% available on GitHub: https://github.com/LePtC/LeNote
+% README on GitHub: https://github.com/LePtC/LeNote
 %--------------------------------------------------
-% 本模版用于 xelatex+xeCJK 方案，编译命令为：
+% 本模版用于 xelatex+xeCJK 方案，常用编译命令为：
 % xelatex --quiet --synctex=1 -interaction=nonstopmode $(NAME_PART).tex
 % 文档前加入 \documentclass{leptc} 即可
 %--------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}[2007/10/19]
-\ProvidesClass{leptc}
+\ProvidesClass{lenote}
 
 \LoadClass[12pt]{article} % [UTF8,noindent]{ctexart}
 % 其它 pt 用 \LoadClass[14pt]{extarticle}
@@ -50,10 +50,15 @@
 \setlength{\tabcolsep}{5pt} % 表格列间距又太多...
 
 \RequirePackage{subcaption}
-\RequirePackage[skip=0pt,labelsep=none]{caption}
+% \RequirePackage[skip=0pt,labelsep=none]{caption}
 % \setlength{\abovecaptionskip}{0pt} % 图表都另外做标题
 % \setlength{\belowcaptionskip}{0pt}
 % \setlength{\intextsep}{2pt}
+
+\usepackage[font=small,labelfont=bf,margin=1cm]{caption}
+\renewcommand{\contentsname}{目\ 录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
 
 % \newcommand{\ski}{\vspace{3pt}} % 手动小间距
 
@@ -86,7 +91,7 @@
 \RequirePackage[adobe-fangsong]{mathdesign}
 \RequirePackage{mathrsfs} % \emf
 % \RequirePackage{unicode-math} % 不兼容！
-\RequirePackage{dtklogos} % 提供 \LaTeX \XeTeX 等
+\RequirePackage{dtk-logos} % 提供 \LaTeX \XeTeX 等
 \RequirePackage{xeCJK} % 顺序必须放最后 ...
 %--------------------------------------------------
 
@@ -95,7 +100,7 @@
 % \setCJKmainfont[BoldFont=Adobe Heiti Std, ItalicFont=Adobe Kaiti Std]{Adobe Fangsong Std}
 % \setCJKfamilyfont{hei}{Adobe Heiti Std}
 \setCJKmainfont{Adobe Fangsong Std}
-\setCJKfamilyfont{hei}{锐字云字库准圆体GBK}
+\setCJKfamilyfont{hei}{方正准圆_GBK}
 \newcommand{\hei}{\CJKfamily{hei}}
 % \setCJKfamilyfont{kai}{Adobe Kaiti Std}
 % \newcommand{\kai}{\CJKfamily{kai}}
@@ -125,22 +130,20 @@
 \titleformat{\section}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{p}}
 \titleformat{\subsection}{\centering\large\hei\color{w}}{}{5pt}{\colorbox{p}}
 
-\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\line(1,0){540}}\vspace{-39pt}\section{#1}\label{#1}\end{minipage}}
-\newcommand{\chaps}[1]{\vspace{5pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\hspace{210pt}\line(1,0){120}}\vspace{-31pt}\subsection{#1}\label{#1}\end{minipage}\vspace{-7pt}}
+\newcommand{\chap}[1]{\vspace{10pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\line(1,0){540}}\vspace{-42pt}\section{#1}\label{#1}\end{minipage}}
+\newcommand{\chaps}[1]{\vspace{5pt}\begin{minipage}{\textwidth}\vspace{10pt}{\color{p}\hspace{210pt}\line(1,0){120}}\vspace{-33pt}\subsection{#1}\label{#1}\end{minipage}\vspace{-7pt}}
 
 
 
 
 
 %--------------------------------------------------
-% 图片都放在 figure 文件夹下, 封面用图公共
-\graphicspath{{figure/}{C:/}}
-% 用 C:/Program Files/MiKTeX 2.9/tex/latex/leptc/ 会有 bug…
+% 图片都放在 figure 文件夹下, 还可设置公共位置放封面用图
+\graphicspath{{figure/}{D:/D/Website/lenote/tex/latex/lenote/}}
 %--------------------------------------------------
 
 
-
-\RequirePackage{leptc}
+\RequirePackage{lenote}
 
 \newcommand{\notetime}{
 \ \\
@@ -160,8 +163,8 @@
 \noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{cover.eps}}
 
 \vspace{-145pt}
-\hspace{535pt}
-{{\Huge\color{w}#3}}
+\hspace{532pt}
+{{\Huge\color{w}\fontspec{Verdana}#3}}
 
 \vspace{20pt}
 \scalebox{1.5}{{\Huge\hei\color{w}#1}}
@@ -181,7 +184,9 @@
 \textcopyright\ \href{mailto:alileptc@gmail.com}{\LePtC} \com{萌狸}
 
 \vspace{5pt}
-\url{http://leptc.github.io/lenote }
+项目主页：\url{https://github.com/LePtC/LeNote }
+\hspace{5pt}
+笔记主页：\url{http://leptc.github.io/lenote }
 \end{flushright}
 
 \vspace{10pt}
